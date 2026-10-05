@@ -1,0 +1,214 @@
+.service-card,
+.industry-card,
+.insight-card,
+.value-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e9ee;
+
+  overflow: hidden;
+
+  height: 100%;
+}
+
+.service-card a,
+.industry-card a,
+.insight-card a {
+  display: block;
+  height: 100%;
+}
+
+/* SERVICE */
+
+.service-card-image {
+  height: 260px;
+  overflow: hidden;
+}
+
+.service-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.06);
+}
+
+.service-card-content {
+  padding: 28px;
+}
+
+.service-card-content h3 {
+  color: #183f68;
+  font-size: 23px;
+}
+
+.service-card-content p {
+  margin-top: 12px;
+
+  color: #687481;
+
+  line-height: 1.7;
+}
+
+.card-link {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 22px;
+
+  color: #b3262e;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* INDUSTRY */
+
+.industry-image {
+  height: 220px;
+  overflow: hidden;
+}
+
+.industry-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.industry-card:hover .industry-image img {
+  transform: scale(1.07);
+}
+
+.industry-content {
+  position: relative;
+  padding: 25px;
+}
+
+.industry-content h3 {
+  color: #183f68;
+  font-size: 21px;
+}
+
+.industry-content p {
+  margin-top: 10px;
+
+  color: #687481;
+
+  line-height: 1.6;
+}
+
+.industry-arrow {
+  position: absolute;
+
+  top: 25px;
+  right: 25px;
+
+  color: #b3262e;
+}
+
+/* INSIGHTS */
+
+.insight-image {
+  height: 230px;
+  overflow: hidden;
+}
+
+.insight-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.insight-card:hover img {
+  transform: scale(1.06);
+}
+
+.insight-content {
+  padding: 25px;
+}
+
+.insight-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  color: #b3262e;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.insight-content h3 {
+  margin-top: 15px;
+
+  color: #183f68;
+
+  font-size: 21px;
+  line-height: 1.3;
+}
+
+.insight-content p {
+  margin-top: 12px;
+
+  color: #687481;
+
+  line-height: 1.6;
+}
+
+.insight-read {
+  display: flex;
+
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 20px;
+
+  color: #b3262e;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* VALUES */
+
+.value-card {
+  padding: 32px;
+}
+
+.value-number {
+  color: #b3262e;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.value-card h3 {
+  margin-top: 18px;
+
+  color: #183f68;
+
+  font-size: 23px;
+}
+
+.value-card p {
+  margin-top: 12px;
+
+  color: #687481;
+
+  line-height: 1.7;
+}

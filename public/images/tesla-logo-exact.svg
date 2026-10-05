@@ -1,0 +1,57 @@
+<svg width="1800" height="600" viewBox="0 0 1800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="teslaBlue" x1="0" y1="0" x2="1500" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#48D9FF"/>
+      <stop offset="0.45" stop-color="#1FC8F6"/>
+      <stop offset="1" stop-color="#0C8EDB"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#0A6DA7" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <path d="M220 218H546V274H220V218Z" fill="url(#teslaBlue)" opacity="0.12"/>
+    <path d="M145 204C145 132 204 74 275 74C341 74 392 128 392 194C392 264 343 316 281 316H203C175 316 152 293 152 265V229H192V248C192 256 200 263 208 263H261C293 263 319 245 319 212C319 172 289 147 249 147C215 147 184 167 170 194L145 204Z" fill="url(#teslaBlue)"/>
+
+    <path d="M237 150C237 76 293 17 364 17C444 17 506 82 506 164C506 273 425 351 321 351C263 351 219 333 181 298L243 251C278 279 307 291 340 291C382 291 412 271 427 242L323 182L237 150Z" fill="url(#teslaBlue)" opacity="0.16"/>
+
+    <path d="M255 128C159 178 117 268 135 351C154 436 229 492 318 492C418 492 493 436 533 356" stroke="url(#teslaBlue)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M330 52C346 83 350 109 338 136" stroke="url(#teslaBlue)" stroke-width="24" stroke-linecap="round"/>
+    <path d="M308 43C346 70 384 76 432 61" stroke="url(#teslaBlue)" stroke-width="20" stroke-linecap="round"/>
+
+    <g transform="translate(570 40)">
+      <g fill="url(#teslaBlue)">
+        <path d="M0 188H54V350H0V188Z"/>
+        <path d="M90 0H144V338H90V0Z"/>
+        <path d="M180 0H234V338H180V0Z"/>
+        <path d="M270 0H324V338H270V0Z"/>
+        <path d="M360 0H414V338H360V0Z"/>
+        <path d="M450 0H504V338H450V0Z"/>
+        <path d="M540 0H594V338H540V0Z"/>
+        <path d="M630 0H684V338H630V0Z"/>
+        <path d="M720 0H774V338H720V0Z"/>
+      </g>
+
+      <path d="M60 190H790V246H60V190Z" fill="url(#teslaBlue)"/>
+      <path d="M90 250H690V302H90V250Z" fill="url(#teslaBlue)" opacity="0.7"/>
+
+      <g fill="url(#teslaBlue)">
+        <path d="M640 0H720V338H640V0Z"/>
+        <path d="M615 0L720 0L800 118H720L615 0Z"/>
+      </g>
+
+      <g fill="url(#teslaBlue)">
+        <path d="M958 0L1068 0L1040 96H958L902 0H958Z"/>
+      </g>
+
+      <path d="M870 0L920 124H805L870 0Z" fill="url(#teslaBlue)" opacity="0.28"/>
+    </g>
+
+    <g transform="translate(1120 10)">
+      <path d="M230 70L318 178H260L180 70H230Z" fill="url(#teslaBlue)"/>
+      <path d="M338 70L418 178H352L280 70H338Z" fill="url(#teslaBlue)" opacity="0.75"/>
+      <path d="M438 70L518 178H468L392 70H438Z" fill="url(#teslaBlue)"/>
+    </g>
+  </g>
+</svg>

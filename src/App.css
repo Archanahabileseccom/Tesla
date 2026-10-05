@@ -1,0 +1,59 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: #ffffff;
+  color: #111111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.not-found {
+  min-height: 70vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  padding: 40px;
+}
+
+.not-found h1 {
+  margin: 0;
+
+  font-size: 100px;
+
+  color: #315ba8;
+}
+
+.not-found h2 {
+  margin: 10px 0;
+
+  font-size: 30px;
+}
+
+.not-found p {
+  color: #666666;
+}

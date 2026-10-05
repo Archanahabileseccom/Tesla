@@ -1,0 +1,20 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="74" y1="90" x2="1460" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1D54"/>
+      <stop offset="1" stop-color="#1B4CBE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#bg)"/>
+  <g opacity="0.8">
+    <path d="M112 260L360 150L560 390L630 840H170L112 260Z" fill="#F0F6FF" fill-opacity="0.06"/>
+    <path d="M830 250L1500 180L1518 760L942 850L830 250Z" fill="#D9E8FF" fill-opacity="0.07"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="230" y="220" width="360" height="420" rx="28" fill="#F0F6FF" fill-opacity="0.08" stroke="#E1EDFF" stroke-opacity="0.18"/>
+    <rect x="286" y="290" width="240" height="22" rx="11" fill="#F0F6FF" fill-opacity="0.2"/>
+    <rect x="286" y="340" width="180" height="16" rx="8" fill="#F0F6FF" fill-opacity="0.16"/>
+    <rect x="286" y="500" width="130" height="100" rx="20" fill="#6E9CFF" fill-opacity="0.82"/>
+    <rect x="438" y="500" width="100" height="100" rx="20" fill="#F0F6FF" fill-opacity="0.08"/>
+  </g>
+</svg>

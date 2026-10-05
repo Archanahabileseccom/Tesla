@@ -1,0 +1,26 @@
+<svg width="1800" height="600" viewBox="0 0 1800 600" xmlns="http://www.w3.org/2000/svg" aria-label="Tesla logo">
+  <defs>
+    <linearGradient id="teslaGrad" x1="0" y1="0" x2="1600" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#41D8FF"/>
+      <stop offset="0.5" stop-color="#1EC4F6"/>
+      <stop offset="1" stop-color="#0D8BD9"/>
+    </linearGradient>
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0A6FA6" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#drop)">
+    <g transform="translate(40 10)">
+      <path d="M330 90C271 90 230 131 230 190C230 248 271 289 330 289C390 289 432 248 432 190C432 131 390 90 330 90Z" fill="url(#teslaGrad)" opacity="0.12"/>
+      <path d="M215 255C215 170 278 90 367 90C457 90 519 170 519 255C519 299 502 340 473 374C440 413 392 437 337 437C282 437 233 412 202 374C176 345 160 306 160 268C160 260 164 255 171 255H215Z" fill="none" stroke="url(#teslaGrad)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M340 120C392 120 433 146 458 182C470 200 474 227 469 252" stroke="#0E7FC4" stroke-width="16" stroke-linecap="round"/>
+      <path d="M333 195C364 175 392 168 436 170" stroke="#0E7FC4" stroke-width="16" stroke-linecap="round"/>
+      <path d="M190 281C238 340 279 374 341 374C405 374 447 340 493 282" stroke="url(#teslaGrad)" stroke-width="18" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(540 50)">
+      <text x="0" y="310" font-size="320" font-weight="900" letter-spacing="-18" fill="url(#teslaGrad)" font-family="Arial Black, Segoe UI, sans-serif">TESLA</text>
+    </g>
+  </g>
+</svg>
