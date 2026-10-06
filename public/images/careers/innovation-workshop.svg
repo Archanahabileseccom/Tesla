@@ -1,0 +1,40 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="room" x1="90" y1="40" x2="1100" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10244D"/>
+      <stop offset="1" stop-color="#397A9D"/>
+    </linearGradient>
+    <linearGradient id="board" x1="590" y1="95" x2="1040" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E4F3EC"/>
+      <stop offset="1" stop-color="#A6D3D0"/>
+    </linearGradient>
+    <linearGradient id="desk" x1="275" y1="580" x2="1000" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDAF7A"/>
+      <stop offset="1" stop-color="#835A4A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#room)"/>
+  <path d="M0 584L1200 535V800H0V584Z" fill="#101D3A" fill-opacity=".52"/>
+  <rect x="575" y="92" width="490" height="360" rx="14" fill="#F7FAF8" fill-opacity=".12"/>
+  <rect x="594" y="111" width="452" height="322" rx="5" fill="url(#board)"/>
+  <path d="M652 184H900M652 231H845M652 278H934" stroke="#246879" stroke-opacity=".74" stroke-width="14" stroke-linecap="round"/>
+  <path d="M661 357L739 314L805 350L885 294L982 330" stroke="#E45757" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="738" cy="314" r="13" fill="#E45757"/>
+  <circle cx="885" cy="294" r="13" fill="#E45757"/>
+  <path d="M111 100C214 113 291 186 331 290V609H111V100Z" fill="#9FCFE0" fill-opacity=".18"/>
+  <path d="M219 100V608M111 333H331" stroke="#E5F5FA" stroke-opacity=".4" stroke-width="10"/>
+  <path d="M319 601C302 543 318 474 359 443L402 412L479 425L518 463C543 512 533 574 513 632L491 723H350L319 601Z" fill="#2587A6"/>
+  <path d="M365 421C370 382 395 357 434 358C472 359 495 387 492 426C489 463 466 485 429 485C392 485 361 458 365 421Z" fill="#A9684C"/>
+  <path d="M360 413C357 373 385 340 429 338C467 336 493 360 497 397L486 412C464 397 451 378 448 363C427 385 396 400 364 407L360 413Z" fill="#1B273A"/>
+  <path d="M397 483L429 515L463 481L483 495L458 564H405L379 496L397 483Z" fill="#E6B899"/>
+  <path d="M371 573L426 600L396 723H344L371 573Z" fill="#102A50"/>
+  <path d="M507 555L462 598L493 723H538L507 555Z" fill="#102A50"/>
+  <path d="M502 513L559 462" stroke="#A9684C" stroke-width="24" stroke-linecap="round"/>
+  <path d="M78 620C275 570 744 574 1044 615L1160 705C1054 770 831 793 555 793C315 793 116 757 0 694L78 620Z" fill="url(#desk)"/>
+  <path d="M80 620C303 665 832 666 1044 615" stroke="#F4D5B0" stroke-opacity=".58" stroke-width="10"/>
+  <path d="M667 589L825 577L891 606L849 628L686 622L667 589Z" fill="#F7F5EB"/>
+  <path d="M865 602L951 591L987 612L954 630L878 625L865 602Z" fill="#DCEBF0"/>
+  <path d="M742 557L774 535L805 543L793 574L755 581L742 557Z" fill="#E9F0ED"/>
+  <path d="M586 690L760 698" stroke="#F7E8D3" stroke-opacity=".65" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="1090" cy="111" r="79" fill="#FFD995" fill-opacity=".5"/>
+</svg>

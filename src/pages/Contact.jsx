@@ -1,845 +1,111 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import Section from "../components/Sections/Section";
-import SectionTitle from "../components/Sections/SectionTitle";
-
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    subject: "",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
-
-    setSubmitted(false);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-		const subject = formData.subject || "General Enquiry";
-		const body = [
-			`Name: ${formData.name}`,
-			`Email: ${formData.email}`,
-			`Phone: ${formData.phone || "Not provided"}`,
-			`Company: ${formData.company || "Not provided"}`,
-			`Enquiry type: ${subject}`,
-			"",
-			formData.message,
-		].join("\n");
-		window.location.href = `mailto:gsnnaren@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-  };
-
+function Contact() {
   return (
-    <>
-      <style>{`
-        /* =========================================
-           CONTACT PAGE
-        ========================================= */
+    <div className="contact-page">
 
-        .contact-page {
-          width: 100%;
-          overflow: hidden;
-          background: linear-gradient(180deg, #eef9f6 0%, #f8faf9 100%);
-          color: #111111;
-          font-family: "DM Sans", "Segoe UI", sans-serif;
-          font-size: 16px;
-          line-height: 1.65;
-        }
+      {/* =====================================================
+          HERO
+      ===================================================== */}
 
-        .contact-page *,
-        .contact-page *::before,
-        .contact-page *::after {
-          box-sizing: border-box;
-        }
+      <section className="contact-hero">
 
-        /* =========================================
-           HERO
-        ========================================= */
+        <div className="contact-hero-overlay"></div>
 
-        .contact-hero {
-          position: relative;
-          min-height: 480px;
-          display: flex;
-          align-items: center;
-          background:
-            linear-gradient(
-              90deg,
-              rgba(0, 0, 0, 0.88) 0%,
-              rgba(0, 0, 0, 0.68) 45%,
-              rgba(0, 0, 0, 0.25) 100%
-            ),
-            url("/images/contact/hero.svg") center / cover no-repeat;
-        }
+        <div className="contact-container contact-hero-content">
 
-        .contact-hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.12),
-            rgba(0, 0, 0, 0.35)
-          );
-        }
+          <div className="contact-hero-text">
 
-        .contact-hero-content {
-          position: relative;
-          z-index: 2;
-          width: min(100% - 64px, 1180px);
-          margin: 0 auto;
-          padding: 96px 0 112px;
-          color: #ffffff;
-        }
-
-        .contact-hero-eyebrow {
-          display: inline-block;
-          margin-bottom: 16px;
-          color: #e82127;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 1.5px;
-        }
-
-        .contact-hero h1 {
-          max-width: 780px;
-          margin: 0;
-          color: #ffffff;
-          font-family: Georgia, "Times New Roman", serif;
-          font-size: 60px;
-          line-height: 1.08;
-          font-weight: 400;
-        }
-
-        .contact-hero p {
-          max-width: 650px;
-          margin: 24px 0 26px;
-          color: rgba(255, 255, 255, 0.78);
-          font-size: 17px;
-          line-height: 1.75;
-        }
-
-        .contact-hero-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 18px;
-          padding: 16px 24px;
-          border: 1px solid rgba(255, 255, 255, 0.5);
-          color: #ffffff;
-          text-decoration: none;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          transition: 0.3s ease;
-        }
-
-        .contact-hero-button span {
-          font-size: 18px;
-        }
-
-        .contact-hero-button:hover {
-          background: #ffffff;
-          color: #111111;
-        }
-
-        /* =========================================
-           INTRO
-        ========================================= */
-
-        .contact-intro {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 72px;
-          align-items: center;
-        }
-
-        .contact-intro-text {
-          border-left: 1px solid #dddddd;
-          padding-left: 50px;
-        }
-
-        .contact-intro-text p {
-          margin: 0 0 22px;
-          color: #555555;
-          font-size: 16px;
-          line-height: 1.8;
-        }
-
-        .contact-intro-text p:last-child {
-          margin-bottom: 0;
-        }
-
-        /* =========================================
-           CONTACT INFORMATION
-        ========================================= */
-
-        .contact-info-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-          margin-top: 60px;
-        }
-
-        .contact-info-card {
-          position: relative;
-          min-height: 280px;
-          padding: 35px 28px;
-          border: 1px solid #e4e4e4;
-          background: #ffffff;
-          transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease,
-            border-color 0.3s ease;
-        }
-
-        .contact-info-card:hover {
-          transform: translateY(-8px);
-          border-color: #111111;
-          box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-info-number {
-          margin-bottom: 45px;
-          color: #e82127;
-          font-size: 13px;
-          font-weight: 700;
-        }
-
-        .contact-info-label {
-          display: block;
-          margin-bottom: 12px;
-          color: #888888;
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 2px;
-        }
-
-        .contact-info-card h3 {
-          margin: 0 0 18px;
-          color: #111111;
-          font-size: 21px;
-          line-height: 1.25;
-        }
-
-        .contact-info-card a {
-          display: inline-block;
-          margin-bottom: 18px;
-          color: #111111;
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 600;
-          word-break: break-word;
-        }
-
-        .contact-info-card a:hover {
-          color: #e82127;
-        }
-
-        .contact-info-card p {
-          margin: 0;
-          color: #777777;
-          font-size: 14px;
-          line-height: 1.6;
-        }
-
-        /* =========================================
-           CONTACT FORM
-        ========================================= */
-
-        .contact-form-section {
-          display: grid;
-          grid-template-columns: 0.8fr 1.2fr;
-          gap: 100px;
-          align-items: start;
-        }
-
-        .contact-form-heading {
-          color: #ffffff;
-        }
-
-        .contact-form-heading > span {
-          display: block;
-          margin-bottom: 25px;
-          color: #e82127;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 3px;
-        }
-
-        .contact-form-heading h2 {
-          margin: 0 0 25px;
-          color: #ffffff;
-          font-family: Georgia, "Times New Roman", serif;
-          font-size: 40px;
-          font-weight: 400;
-          line-height: 1.2;
-        }
-
-        .contact-form-heading p {
-          max-width: 480px;
-          margin: 0;
-          color: rgba(255, 255, 255, 0.65);
-          font-size: 16px;
-          line-height: 1.8;
-        }
-
-        .contact-form-wrapper {
-          width: 100%;
-        }
-
-        .contact-success-message {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          margin-bottom: 25px;
-          padding: 18px 20px;
-          border-left: 3px solid #e82127;
-          background: rgba(255, 255, 255, 0.06);
-          color: #ffffff;
-        }
-
-        .contact-success-message strong {
-          font-size: 15px;
-        }
-
-        .contact-success-message span {
-          color: rgba(255, 255, 255, 0.65);
-          font-size: 13px;
-        }
-
-        .contact-form {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 25px;
-        }
-
-        .contact-form-group {
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
-        }
-
-        .contact-form-full {
-          grid-column: 1 / -1;
-        }
-
-        .contact-form-group label {
-          margin-bottom: 10px;
-          color: #ffffff;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-        }
-
-        .contact-form-group input,
-        .contact-form-group select,
-        .contact-form-group textarea {
-          width: 100%;
-          padding: 15px 16px;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          outline: none;
-          background: rgba(255, 255, 255, 0.05);
-          color: #ffffff;
-          font-family: inherit;
-          font-size: 14px;
-          transition: 0.3s ease;
-        }
-
-        .contact-form-group input::placeholder,
-        .contact-form-group textarea::placeholder {
-          color: rgba(255, 255, 255, 0.4);
-        }
-
-        .contact-form-group select {
-          color: #ffffff;
-          cursor: pointer;
-        }
-
-        .contact-form-group select option {
-          background: #111111;
-          color: #ffffff;
-        }
-
-        .contact-form-group input:focus,
-        .contact-form-group select:focus,
-        .contact-form-group textarea:focus {
-          border-color: #e82127;
-          background: rgba(255, 255, 255, 0.08);
-        }
-
-        .contact-form-group textarea {
-          min-height: 170px;
-          resize: vertical;
-        }
-
-        .contact-form-submit {
-          grid-column: 1 / -1;
-          margin-top: 5px;
-        }
-
-        .contact-submit-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 18px;
-          padding: 17px 28px;
-          border: 1px solid #e82127;
-          background: #e82127;
-          color: #ffffff;
-          cursor: pointer;
-          font-family: inherit;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          transition: 0.3s ease;
-        }
-
-        .contact-submit-button span {
-          font-size: 18px;
-        }
-
-        .contact-submit-button:hover {
-          background: transparent;
-          color: #ffffff;
-        }
-
-        /* =========================================
-           OFFICE
-        ========================================= */
-
-        .contact-prep-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 25px;
-          margin-top: 60px;
-        }
-
-        .contact-prep-card {
-          padding: 40px 35px;
-          border-top: 1px solid #111111;
-          background: #ffffff;
-        }
-
-        .contact-prep-card > span {
-          display: block;
-          margin-bottom: 30px;
-          color: #888888;
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 2px;
-        }
-
-        .contact-prep-card h3 {
-          margin: 0 0 20px;
-          color: #111111;
-          font-size: 32px;
-          letter-spacing: -1px;
-        }
-
-        .contact-prep-card p {
-          margin: 0 0 25px;
-          color: #666666;
-          font-size: 14px;
-          line-height: 1.8;
-        }
-
-        .contact-prep-card a {
-          color: #111111;
-          text-decoration: none;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-        }
-
-        .contact-prep-card a:hover {
-          color: #e82127;
-        }
-
-        /* =========================================
-           FAQ
-        ========================================= */
-
-        .contact-faq {
-          max-width: 900px;
-          margin: 60px auto 0;
-        }
-
-        .contact-faq details {
-          border-top: 1px solid #dcdcdc;
-        }
-
-        .contact-faq details:last-child {
-          border-bottom: 1px solid #dcdcdc;
-        }
-
-        .contact-faq summary {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 30px;
-          padding: 25px 0;
-          cursor: pointer;
-          list-style: none;
-          color: #111111;
-          font-size: 17px;
-          font-weight: 600;
-        }
-
-        .contact-faq summary::-webkit-details-marker {
-          display: none;
-        }
-
-        .contact-faq summary span {
-          flex-shrink: 0;
-          font-size: 25px;
-          font-weight: 300;
-          transition: transform 0.3s ease;
-        }
-
-        .contact-faq details[open] summary span {
-          transform: rotate(45deg);
-        }
-
-        .contact-faq details p {
-          max-width: 750px;
-          margin: -5px 0 25px;
-          padding-right: 60px;
-          color: #666666;
-          font-size: 15px;
-          line-height: 1.8;
-        }
-
-        /* =========================================
-           CAREERS CTA
-        ========================================= */
-
-        .contact-careers-cta {
-          position: relative;
-          min-height: 580px;
-          display: flex;
-          align-items: center;
-          background:
-            linear-gradient(
-              90deg,
-              rgba(0, 0, 0, 0.92),
-              rgba(0, 0, 0, 0.62)
-            ),
-            url("/images/careers/hero.svg") center / cover no-repeat;
-        }
-
-        .contact-careers-content {
-          width: min(100% - 64px, 1180px);
-          margin: 0 auto;
-          padding: 100px 0;
-          color: #ffffff;
-        }
-
-        .contact-careers-content > span {
-          display: block;
-          margin-bottom: 25px;
-          color: #e82127;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 3px;
-        }
-
-        .contact-careers-content h2 {
-          margin: 0 0 25px;
-          color: #ffffff;
-          font-family: Georgia, "Times New Roman", serif;
-          font-size: 60px;
-          line-height: 1.08;
-          font-weight: 400;
-        }
-
-        .contact-careers-content p {
-          max-width: 550px;
-          margin: 0 0 35px;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 16px;
-          line-height: 1.75;
-        }
-
-        .contact-careers-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 18px;
-          padding: 16px 25px;
-          background: #ffffff;
-          color: #111111;
-          text-decoration: none;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          transition: 0.3s ease;
-        }
-
-        .contact-careers-button:hover {
-          background: #e82127;
-          color: #ffffff;
-        }
-
-        /* =========================================
-           FINAL CTA
-        ========================================= */
-
-        .contact-final-cta {
-          padding: 120px 20px;
-          background: #e82127;
-          color: #ffffff;
-          text-align: center;
-        }
-
-        .contact-final-content {
-          max-width: 850px;
-          margin: 0 auto;
-        }
-
-        .contact-final-content > span {
-          display: block;
-          margin-bottom: 25px;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 3px;
-        }
-
-        .contact-final-content h2 {
-          margin: 0 0 20px;
-          color: #ffffff;
-          font-family: Georgia, "Times New Roman", serif;
-          font-size: 60px;
-          line-height: 1.08;
-          font-weight: 400;
-        }
-
-        .contact-final-content p {
-          max-width: 600px;
-          margin: 0 auto 35px;
-          color: rgba(255, 255, 255, 0.85);
-          font-size: 16px;
-          line-height: 1.75;
-        }
-
-        .contact-final-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 18px;
-          padding: 16px 25px;
-          background: #ffffff;
-          color: #111111;
-          text-decoration: none;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          transition: 0.3s ease;
-        }
-
-        .contact-final-button:hover {
-          background: #111111;
-          color: #ffffff;
-        }
-
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
-
-        @media (max-width: 1050px) {
-          .contact-info-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .contact-form-section {
-            grid-template-columns: 1fr;
-            gap: 60px;
-          }
-
-          .contact-form-heading p {
-            max-width: 700px;
-          }
-        }
-
-        @media (max-width: 800px) {
-          .contact-hero {
-            min-height: 480px;
-          }
-
-          .contact-hero h1 {
-            font-size: 50px;
-          }
-
-          .contact-intro {
-            grid-template-columns: 1fr;
-            gap: 45px;
-          }
-
-          .contact-intro-text {
-            padding-left: 25px;
-          }
-
-          .contact-prep-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .contact-careers-cta {
-            min-height: 500px;
-          }
-        }
-
-        @media (max-width: 600px) {
-          .contact-hero {
-            min-height: 440px;
-          }
-
-          .contact-hero-content {
-            width: calc(100% - 40px);
-            padding: 70px 0 90px;
-          }
-
-          .contact-hero h1 {
-            font-size: 42px;
-          }
-
-          .contact-hero p {
-            font-size: 15px;
-          }
-
-          .contact-info-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .contact-form {
-            grid-template-columns: 1fr;
-          }
-
-          .contact-form-full,
-          .contact-form-submit {
-            grid-column: auto;
-          }
-
-          .contact-form-heading h2 {
-            font-size: 32px;
-          }
-
-          .contact-faq summary {
-            font-size: 15px;
-          }
-
-          .contact-faq details p {
-            padding-right: 20px;
-          }
-
-          .contact-careers-content h2 {
-            font-size: 42px;
-          }
-
-          .contact-final-cta {
-            padding: 90px 20px;
-          }
-
-          .contact-final-content h2 {
-            font-size: 42px;
-          }
-        }
-      `}</style>
-
-      <main className="contact-page">
-
-        {/* =========================================
-            HERO
-        ========================================= */}
-
-        <section className="contact-hero">
-          <div className="contact-hero-overlay"></div>
-
-          <div className="contact-hero-content">
-            <span className="contact-hero-eyebrow">
+            <span className="contact-eyebrow">
               CONTACT
             </span>
 
             <h1>
-              Let's Start
+              Let’s Start
               <br />
               a Conversation
             </h1>
 
             <p>
-              Connect with our team to discuss your
-              intellectual property, technology, corporate,
-              and business requirements.
+              Whether you have a question, an idea, or an opportunity to
+              explore, our team is ready to connect and understand how
+              we can help.
             </p>
 
-            <a
-              href="#contact-form"
-              className="contact-hero-button"
-            >
-              Get in Touch
-              <span>↓</span>
-            </a>
           </div>
-        </section>
 
-        {/* =========================================
-            INTRO
-        ========================================= */}
+          <div className="contact-hero-number">
+            GET IN TOUCH
+          </div>
 
-        <Section background="white" padding="large">
-          <div className="contact-intro">
+        </div>
 
-            <SectionTitle
-              eyebrow="GET IN TOUCH"
-              title="We're Here to Help"
-              description="Whether you have a specific requirement or simply want to explore how we can work together, our team is ready to connect."
-            />
+      </section>
 
-            <div className="contact-intro-text">
-              <p>
-                We work with businesses, innovators,
-                technology companies, and organizations
-                across a wide range of industries.
-              </p>
 
-              <p>
-                Tell us about your requirements and a
-                member of our team will get in touch with you.
-              </p>
-            </div>
+      {/* =====================================================
+          CONTACT INTRO
+      ===================================================== */}
+
+      <section className="contact-intro">
+
+        <div className="contact-container contact-intro-grid">
+
+          <div className="contact-intro-left">
+
+            <span className="contact-eyebrow contact-eyebrow-dark">
+              CONNECT WITH US
+            </span>
+
+            <h2>
+              Tell Us What
+              <br />
+              You’re Building
+            </h2>
 
           </div>
-        </Section>
 
-        {/* =========================================
-            CONTACT INFORMATION
-        ========================================= */}
+          <div className="contact-intro-right">
 
-        <Section background="light" padding="large">
+            <p>
+              We work with organizations, businesses, innovators, and
+              professionals navigating important decisions across
+              intellectual property, technology, innovation, legal
+              strategy, and corporate advisory.
+            </p>
 
-          <SectionTitle
-            eyebrow="CONTACT INFORMATION"
-            title="How You Can Reach Us"
-            description="Choose the most convenient way to connect with our team."
-            align="center"
-          />
+            <p>
+              Share a little about your requirement and our team will
+              connect with you to understand the opportunity.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          CONTACT INFORMATION
+      ===================================================== */}
+
+      <section className="contact-information">
+
+        <div className="contact-container">
+
+          <div className="contact-info-heading">
+            <h2>How You Can Reach Us</h2>
+            <p>Choose the most convenient way to connect with our team.</p>
+          </div>
 
           <div className="contact-info-grid">
 
+            {/* EMAIL */}
+
             <div className="contact-info-card">
+
               <div className="contact-info-number">
                 01
               </div>
@@ -848,43 +114,90 @@ const Contact = () => {
                 EMAIL
               </span>
 
-              <h3>General Enquiries</h3>
+              <h3>
+                General Enquiries
+              </h3>
 
-              <a href="mailto:gsnnaren@gmail.com">
+              <a
+                href="mailto:gsnnaren@gmail.com"
+                className="contact-info-link"
+              >
                 gsnnaren@gmail.com
+                <span>↗</span>
               </a>
 
-              <p>
+              <p className="contact-info-address">
                 For general enquiries and information.
               </p>
+
             </div>
 
+
+            {/* ENQUIRIES */}
+
             <div className="contact-info-card">
+
               <div className="contact-info-number">
                 02
               </div>
 
-              <span className="contact-info-label">ENQUIRIES</span>
-              <h3>Share Your Brief</h3>
-              <a href="#contact-form">Use the contact form ↓</a>
-              <p>Tell us what you are working on and how we can help.</p>
+              <span className="contact-info-label">
+                ENQUIRIES
+              </span>
+
+              <h3>
+                Share Your Brief
+              </h3>
+
+              <a
+                href="#contact-form"
+                className="contact-info-link"
+              >
+                Use the contact form
+                <span>↓</span>
+              </a>
+
+              <p className="contact-info-address">
+                Tell us what you are working on and how we can help.
+              </p>
+
             </div>
 
+
+            {/* SERVICES */}
+
             <div className="contact-info-card">
+
               <div className="contact-info-number">
                 03
               </div>
 
-              <span className="contact-info-label">SERVICES</span>
+              <span className="contact-info-label">
+                SERVICES
+              </span>
 
-              <h3>Business Enquiries</h3>
+              <h3>
+                Business Enquiries
+              </h3>
 
-              <Link to="/intellectual-property">Explore our services →</Link>
+              <Link
+                to="/intellectual-property"
+                className="contact-info-link"
+              >
+                Explore our services
+                <span>→</span>
+              </Link>
 
-              <p>Learn about our intellectual property and business advisory work.</p>
+              <p className="contact-info-address">
+                Learn about our intellectual property and business advisory work.
+              </p>
+
             </div>
 
+            {/* CAREERS */}
+
             <div className="contact-info-card">
+
               <div className="contact-info-number">
                 04
               </div>
@@ -893,404 +206,1905 @@ const Contact = () => {
                 CAREERS
               </span>
 
-              <h3>Join Our Team</h3>
+              <h3>
+                Join Our Team
+              </h3>
 
-              <Link to="/careers">
-                View Careers →
+              <Link
+                to="/careers"
+                className="contact-info-link"
+              >
+                View Careers
+                <span>→</span>
               </Link>
 
-              <p>
+              <p className="contact-info-address">
                 Explore current opportunities with our team.
               </p>
+
             </div>
 
           </div>
-        </Section>
 
-        {/* =========================================
-            CONTACT FORM
-        ========================================= */}
+        </div>
 
-        <Section
-          id="contact-form"
-          background="dark"
-          padding="large"
-        >
+      </section>
 
-          <div className="contact-form-section">
 
-            <div className="contact-form-heading">
+      {/* =====================================================
+          CONTACT FORM + LET'S CONNECT
+      ===================================================== */}
 
-              <span>SEND US A MESSAGE</span>
+      <section className="contact-main" id="contact-form">
 
-              <h2>
-                Tell Us How
-                <br />
-                We Can Help.
-              </h2>
+        <div className="contact-container contact-main-grid">
 
-              <p>
-                Complete the form and provide a few details
-                about your requirement. Our team will review
-                your message and get back to you.
-              </p>
+          {/* =================================================
+              FORM
+          ================================================= */}
 
-            </div>
+          <div className="contact-form-wrapper">
 
-            <div className="contact-form-wrapper">
+            <span className="contact-eyebrow contact-eyebrow-dark">
+              SEND AN ENQUIRY
+            </span>
 
-              {submitted && (
-                <div className="contact-success-message">
-                  <strong>
-                    Thank you for contacting us.
-                  </strong>
+            <h2>
+              How Can We Help?
+            </h2>
 
-                  <span>
-                    Your email app should open with your message prepared.
-                  </span>
-                </div>
-              )}
+            <p className="contact-form-description">
+              Tell us about your requirement and we’ll get back to you.
+            </p>
 
-              <form
-                className="contact-form"
-                onSubmit={handleSubmit}
-              >
+            <form
+              className="contact-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                alert("Thank you. Your enquiry has been submitted.");
+              }}
+            >
 
-                <div className="contact-form-group">
-                  <label htmlFor="name">
+              <div className="contact-form-row">
+
+                <div className="contact-field">
+
+                  <label htmlFor="contact-name">
                     Full Name
                   </label>
 
                   <input
-                    id="name"
-                    name="name"
+                    id="contact-name"
                     type="text"
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    name="name"
+                    placeholder="Your name"
                     required
                   />
+
                 </div>
 
-                <div className="contact-form-group">
-                  <label htmlFor="email">
+                <div className="contact-field">
+
+                  <label htmlFor="contact-email">
                     Email Address
                   </label>
 
                   <input
-                    id="email"
-                    name="email"
+                    id="contact-email"
                     type="email"
-                    placeholder="Enter your email address"
-                    value={formData.email}
-                    onChange={handleChange}
+                    name="email"
+                    placeholder="you@example.com"
                     required
                   />
+
                 </div>
 
-                <div className="contact-form-group">
-                  <label htmlFor="phone">
+              </div>
+
+
+              <div className="contact-form-row">
+
+                <div className="contact-field">
+
+                  <label htmlFor="contact-phone">
                     Phone Number
                   </label>
 
                   <input
-                    id="phone"
-                    name="phone"
+                    id="contact-phone"
                     type="tel"
-                    placeholder="Enter your phone number"
-                    value={formData.phone}
-                    onChange={handleChange}
+                    name="phone"
+                    placeholder="+91"
                   />
+
                 </div>
 
-                <div className="contact-form-group">
-                  <label htmlFor="company">
+                <div className="contact-field">
+
+                  <label htmlFor="contact-company">
                     Company
                   </label>
 
                   <input
-                    id="company"
-                    name="company"
+                    id="contact-company"
                     type="text"
-                    placeholder="Enter your company name"
-                    value={formData.company}
-                    onChange={handleChange}
+                    name="company"
+                    placeholder="Company name"
                   />
+
                 </div>
 
-                <div className="contact-form-group contact-form-full">
-                  <label htmlFor="subject">
-                    Subject
-                  </label>
+              </div>
 
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
+
+              <div className="contact-field">
+
+                <label htmlFor="contact-subject">
+                  Area of Interest
+                </label>
+
+                <select
+                  id="contact-subject"
+                  name="subject"
+                  defaultValue=""
+                  required
+                >
+
+                  <option
+                    value=""
+                    disabled
                   >
-                    <option value="">
-                      Select an enquiry type
-                    </option>
+                    Select an area
+                  </option>
 
-                    <option value="Intellectual Property">
-                      Intellectual Property
-                    </option>
+                  <option value="intellectual-property">
+                    Intellectual Property
+                  </option>
 
-                    <option value="Global IP">
-                      Global IP
-                    </option>
+                  <option value="technology">
+                    Technology & Innovation
+                  </option>
 
-                    <option value="Litigation">
-                      Litigation
-                    </option>
+                  <option value="corporate">
+                    Corporate Advisory
+                  </option>
 
-                    <option value="Corporate">
-                      Corporate Advisory
-                    </option>
+                  <option value="litigation">
+                    Litigation
+                  </option>
 
-                    <option value="Transactions">
-                      Transactions
-                    </option>
+                  <option value="transactions">
+                    Transactions
+                  </option>
 
-                    <option value="Technology">
-                      Technology & Innovation
-                    </option>
+                  <option value="other">
+                    Other
+                  </option>
 
-                    <option value="General Enquiry">
-                      General Enquiry
-                    </option>
+                </select>
 
-                    <option value="Other">
-                      Other
-                    </option>
-                  </select>
-                </div>
+              </div>
 
-                <div className="contact-form-group contact-form-full">
-                  <label htmlFor="message">
-                    Message
-                  </label>
 
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="7"
-                    placeholder="Tell us about your requirement..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              <div className="contact-field">
 
-                <div className="contact-form-submit">
-                  <button
-                    type="submit"
-                    className="contact-submit-button"
-                  >
-                    Send Message
-                    <span>→</span>
-                  </button>
-                </div>
+                <label htmlFor="contact-message">
+                  Message
+                </label>
 
-              </form>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="6"
+                  placeholder="Tell us a little about your requirement..."
+                  required
+                ></textarea>
 
-            </div>
+              </div>
+
+
+              <button
+                type="submit"
+                className="contact-submit"
+              >
+                SEND MESSAGE
+                <span>→</span>
+              </button>
+
+            </form>
 
           </div>
 
-        </Section>
 
-        <Section background="white" padding="large">
+          {/* =================================================
+              LET'S CONNECT IDEA BOX
+          ================================================= */}
 
-          <SectionTitle
-            eyebrow="MAKE YOUR ENQUIRY CLEAR"
-            title="What to Include"
-            description="A few details help us understand your priorities and direct your enquiry."
-            align="center"
-          />
+          <aside className="contact-idea-box">
+            <img
+              className="contact-idea-image"
+              src="/images/contact/lets-explore.png"
+              alt="Let's connect. Have an idea? Let's explore it together."
+            />
+          </aside>
 
-          <div className="contact-prep-grid">
+        </div>
 
-            <div className="contact-prep-card">
-              <span>01 — YOUR BUSINESS</span>
-              <h3>Context</h3>
-              <p>
-                Tell us about your organization,
-                <br />
-                product or project,
-                <br />
-                and the decision you are considering.
-              </p>
-            </div>
+      </section>
 
-            <div className="contact-prep-card">
-              <span>02 — YOUR ENQUIRY</span>
-              <h3>Area of Support</h3>
-              <p>
-                Select the closest enquiry type
-                <br />
-                in the form. Add key details
-                <br />
-                in your message.
-              </p>
-            </div>
+      {/* =====================================================
+          ENQUIRY PREPARATION
+      ===================================================== */}
 
-            <div className="contact-prep-card">
-              <span>03 — TIMING</span>
-              <h3>Important Dates</h3>
-              <p>
-                Include any relevant deadlines
-                <br />
-                or milestones so we can
-                <br />
-                understand the timing.
-              </p>
-            </div>
+      <section className="contact-preparation">
 
+        <div className="contact-container contact-prep-grid">
+
+          <article className="contact-prep-card">
+            <span>01 — YOUR BUSINESS</span>
+            <h2>Context</h2>
+            <p>
+              Tell us about your organization, product or project, and the
+              decision you are considering.
+            </p>
+          </article>
+
+          <article className="contact-prep-card">
+            <span>02 — YOUR ENQUIRY</span>
+            <h2>Area of Support</h2>
+            <p>
+              Select the closest enquiry type in the form and add key details
+              in your message.
+            </p>
+          </article>
+
+          <article className="contact-prep-card">
+            <span>03 — TIMING</span>
+            <h2>Important Dates</h2>
+            <p>
+              Include any relevant deadlines or milestones so we can understand
+              the timing.
+            </p>
+          </article>
+
+        </div>
+
+      </section>
+
+      {/* =====================================================
+          FREQUENTLY ASKED QUESTIONS
+      ===================================================== */}
+
+      <section className="contact-faq">
+
+        <div className="contact-faq-inner">
+
+          <div className="contact-faq-heading">
+            <span className="contact-eyebrow contact-eyebrow-dark">FAQ</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>A few common questions about getting in touch with our team.</p>
           </div>
 
-        </Section>
-
-        {/* =========================================
-            FAQ
-        ========================================= */}
-
-        <Section background="light" padding="large">
-
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Frequently Asked Questions"
-            description="A few common questions about getting in touch with our team."
-            align="center"
-          />
-
-          <div className="contact-faq">
+          <div className="contact-faq-list">
 
             <details>
-              <summary>
-                How can I contact your team?
-                <span>+</span>
-              </summary>
-
+              <summary>How can I contact your team?<span>+</span></summary>
               <p>
-                Use the form above to prepare an email to
-                gsnnaren@gmail.com. Your default email app
-                will open so you can review and send it.
+                Send us a message using the contact form or email
+                {" "}<a href="mailto:gsnnaren@gmail.com">gsnnaren@gmail.com</a>.
+                Include a short overview of your enquiry so we can direct it
+                to the right team.
               </p>
             </details>
 
             <details>
-              <summary>
-                Can I request a consultation?
-                <span>+</span>
-              </summary>
-
+              <summary>Can I request a consultation?<span>+</span></summary>
               <p>
-                Send a brief description of your requirements
-                using the form. We can discuss next steps after
-                reviewing your enquiry.
+                Yes. Tell us what you would like to discuss in the contact form.
+                Our team will review your enquiry and follow up about suitable
+                next steps.
               </p>
             </details>
 
             <details>
-              <summary>
-                How can I apply for a career opportunity?
-                <span>+</span>
-              </summary>
-
+              <summary>How can I apply for a career opportunity?<span>+</span></summary>
               <p>
-                Visit our Careers page to view available
-                positions and submit an application.
+                Visit our <Link to="/careers">Careers page</Link> to explore
+                current opportunities and submit your details.
               </p>
             </details>
 
             <details>
-              <summary>
-                Do you work with international clients?
-                <span>+</span>
-              </summary>
-
+              <summary>Do you work with international clients?<span>+</span></summary>
               <p>
-                Our services can support organizations
-                with domestic and international requirements.
-                Contact our team to discuss your specific needs.
+                We welcome enquiries from organizations across markets. Please
+                include your location and a brief description of your needs so
+                we can understand how best to assist.
               </p>
             </details>
 
           </div>
 
-        </Section>
+        </div>
 
-        {/* =========================================
-            CAREERS CTA
-        ========================================= */}
+      </section>
 
-        <section className="contact-careers-cta">
 
-          <div className="contact-careers-content">
+      {/* =====================================================
+          LOCATIONS
+      ===================================================== */}
 
-            <span>CAREERS</span>
+      <section className="contact-location">
+
+        <div className="contact-container contact-location-grid">
+
+          <div>
+
+            <span className="contact-eyebrow contact-eyebrow-dark">
+              OUR PRESENCE
+            </span>
 
             <h2>
-              Want to Work
+              Connecting Ideas
               <br />
-              With Us?
+              Across Markets
             </h2>
-
-            <p>
-              Explore opportunities and become part of a
-              team focused on technology, innovation, and
-              intellectual property.
-            </p>
-
-            <Link
-              to="/careers"
-              className="contact-careers-button"
-            >
-              Explore Careers
-              <span>→</span>
-            </Link>
 
           </div>
 
-        </section>
+          <div className="contact-location-content">
 
-        {/* =========================================
-            FINAL CTA
-        ========================================= */}
+            <p>
+              Our multidisciplinary approach allows us to work with
+              organizations across industries and markets, combining
+              strategic thinking with practical execution.
+            </p>
 
-        <section className="contact-final-cta">
+            <div className="contact-location-list">
 
-          <div className="contact-final-content">
+              <div>
+                <span>01</span>
+                <strong>India</strong>
+              </div>
 
-            <span>LET'S CONNECT</span>
+              <div>
+                <span>02</span>
+                <strong>Technology</strong>
+              </div>
+
+              <div>
+                <span>03</span>
+                <strong>Innovation</strong>
+              </div>
+
+              <div>
+                <span>04</span>
+                <strong>Intellectual Property</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          FINAL CTA
+      ===================================================== */}
+
+      <section className="contact-final">
+
+        <div className="contact-container contact-final-inner">
+
+          <div>
+
+            <span className="contact-eyebrow">
+              START HERE
+            </span>
 
             <h2>
-              Have an Idea?
+              Let’s Build the
+              <br />
+              Next Chapter Together.
             </h2>
-
-            <p>
-              Let's discuss how we can help turn your
-              ideas and challenges into practical solutions.
-            </p>
-
-            <a
-              href="#contact-form"
-              className="contact-final-button"
-            >
-              Start a Conversation
-              <span>↑</span>
-            </a>
 
           </div>
 
-        </section>
+          <Link
+            to="/careers"
+            className="contact-final-button"
+          >
+            EXPLORE CAREERS
+            <span>↗</span>
+          </Link>
 
-      </main>
-    </>
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          CSS
+      ===================================================== */}
+
+      <style>{`
+
+        /* =====================================================
+           BASE
+        ===================================================== */
+
+        .contact-page {
+
+          --contact-navy: #061d66;
+          --contact-navy-dark: #04164f;
+          --contact-red: #e31b23;
+          --contact-text: #111827;
+          --contact-muted: #5d697a;
+          --contact-line: #dce2e9;
+
+          width: 100%;
+
+          color: var(--contact-text);
+
+          background: #ffffff;
+
+          font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+          line-height: 1.6;
+
+          overflow-x: hidden;
+
+        }
+
+
+        .contact-page *,
+        .contact-page *::before,
+        .contact-page *::after {
+
+          box-sizing: border-box;
+
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+           EQUAL LEFT / RIGHT SPACING
+        ===================================================== */
+
+        .contact-container {
+
+          width: min(
+            1200px,
+            calc(100% - 160px)
+          );
+
+          margin-left: auto;
+          margin-right: auto;
+
+        }
+
+
+        /* =====================================================
+           EYEBROW
+        ===================================================== */
+
+        .contact-eyebrow {
+
+          display: block;
+
+          margin-bottom: 15px;
+
+          color: #ff7378;
+
+          font-size: 12px;
+
+          font-weight: 800;
+
+          letter-spacing: 2px;
+
+          line-height: 1.4;
+
+        }
+
+
+        .contact-eyebrow-dark {
+
+          color: var(--contact-red);
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .contact-hero {
+
+          position: relative;
+
+          min-height: 570px;
+
+          display: flex;
+
+          align-items: center;
+
+          overflow: hidden;
+
+          background-image:
+            linear-gradient(
+              90deg,
+              #04164f 0%,
+              rgba(4, 22, 79, 0.98) 34%,
+              rgba(6, 29, 102, 0.82) 49%,
+              rgba(6, 29, 102, 0.22) 76%,
+              rgba(6, 29, 102, 0.08) 100%
+            ),
+            url("/images/contact/contact-hero.png");
+
+          background-position: center;
+
+          background-repeat: no-repeat;
+
+          background-size: cover;
+
+          color: #ffffff;
+
+        }
+
+
+        .contact-hero::after {
+
+          position: absolute;
+
+          right: -120px;
+
+          top: -180px;
+
+          width: 600px;
+
+          height: 600px;
+
+          border: 1px solid
+            rgba(255,255,255,0.10);
+
+          border-radius: 50%;
+
+          content: "";
+
+        }
+
+
+        .contact-hero::before {
+
+          position: absolute;
+
+          right: 80px;
+
+          bottom: -280px;
+
+          width: 620px;
+
+          height: 620px;
+
+          border: 1px solid
+            rgba(255,255,255,0.08);
+
+          border-radius: 50%;
+
+          content: "";
+
+        }
+
+
+        .contact-hero-overlay {
+
+          position: absolute;
+
+          inset: 0;
+
+          background:
+            linear-gradient(
+              90deg,
+              rgba(2,12,42,0.45),
+              transparent
+            );
+
+        }
+
+
+        .contact-hero-content {
+
+          position: relative;
+
+          z-index: 2;
+
+          min-height: 570px;
+
+          display: flex;
+
+          align-items: center;
+
+          justify-content: space-between;
+
+        }
+
+
+        .contact-hero-text {
+
+          max-width: 720px;
+
+        }
+
+
+        .contact-hero h1 {
+
+          margin: 0;
+
+          color: #ffffff;
+
+          font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+          font-size: clamp(
+            50px,
+            6vw,
+            78px
+          );
+
+          font-weight: 400;
+
+          line-height: 1.05;
+
+        }
+
+
+        .contact-hero p {
+
+          max-width: 620px;
+
+          margin: 25px 0 0;
+
+          color:
+            rgba(255,255,255,0.88);
+
+          font-size: 17px;
+
+          line-height: 1.8;
+
+        }
+
+
+        .contact-hero-number {
+
+          position: absolute;
+
+          right: 0;
+
+          bottom: 38px;
+
+          color:
+            rgba(255,255,255,0.62);
+
+          font-size: 10px;
+
+          font-weight: 800;
+
+          letter-spacing: 2px;
+
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .contact-intro {
+
+          padding: 100px 0;
+
+          background: #ffffff;
+
+        }
+
+
+        .contact-intro-grid {
+
+          display: grid;
+
+          grid-template-columns: 1fr 1fr;
+
+          gap: 80px;
+
+          align-items: start;
+
+        }
+
+
+        .contact-intro h2,
+        .contact-main h2,
+        .contact-location h2 {
+
+          margin: 0;
+
+          font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+          font-size: clamp(
+            38px,
+            4vw,
+            54px
+          );
+
+          font-weight: 400;
+
+          line-height: 1.12;
+
+        }
+
+
+        .contact-intro-right {
+
+          padding-top: 8px;
+
+        }
+
+
+        .contact-intro-right p {
+
+          margin: 0 0 20px;
+
+          color: var(--contact-muted);
+
+          font-size: 15px;
+
+          line-height: 1.9;
+
+        }
+
+
+        /* =====================================================
+           INFORMATION
+        ===================================================== */
+
+        .contact-information {
+
+          padding: 78px 0 96px;
+
+          background: #f2f8f6;
+
+        }
+
+
+        .contact-info-heading {
+
+          margin-bottom: 52px;
+
+          text-align: center;
+
+        }
+
+
+        .contact-info-heading h2 {
+
+          margin: 0;
+
+          color: #173f68;
+
+          font-size: clamp(36px, 4.5vw, 54px);
+
+          line-height: 1.12;
+
+        }
+
+
+        .contact-info-heading p {
+
+          margin: 18px 0 0;
+
+          color: var(--contact-muted);
+
+          font-size: 16px;
+
+        }
+
+
+        .contact-info-grid {
+
+          display: grid;
+
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+
+          gap: 20px;
+
+        }
+
+
+        .contact-info-card {
+
+          min-height: 300px;
+
+          padding: 28px;
+
+          border: 1px solid var(--contact-line);
+
+          background: #ffffff;
+
+          display: flex;
+
+          flex-direction: column;
+
+          align-items: flex-start;
+
+        }
+
+
+        .contact-info-number {
+
+          color: var(--contact-red);
+
+          font-size: 11px;
+
+          font-weight: 800;
+
+        }
+
+
+        .contact-info-label {
+
+          display: block;
+
+          margin-top: 42px;
+
+          color: #687487;
+
+          font-size: 10px;
+
+          font-weight: 800;
+
+          letter-spacing: 1.5px;
+
+        }
+
+
+        .contact-info-card h3 {
+
+          margin: 8px 0 18px;
+
+          font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+          font-size: 23px;
+
+          font-weight: 400;
+
+          line-height: 1.2;
+
+        }
+
+
+        .contact-info-link {
+
+          display: inline-flex;
+
+          align-items: center;
+
+          gap: 10px;
+
+          color: var(--contact-navy);
+
+          font-size: 13px;
+
+          font-weight: 700;
+
+          text-decoration: none;
+
+        }
+
+
+        .contact-info-address {
+
+          margin: 18px 0 0;
+
+          color: var(--contact-muted);
+
+          font-size: 13px;
+
+          line-height: 1.7;
+
+        }
+
+
+        .contact-info-link:hover {
+
+          color: var(--contact-red);
+
+        }
+
+
+        /* =====================================================
+           MAIN CONTACT AREA
+        ===================================================== */
+
+        .contact-main {
+
+          padding: 100px 0;
+
+          background:
+            #f2f5f9;
+
+          border-top: 1px solid #e1e6ed;
+
+          border-bottom: 1px solid #e1e6ed;
+
+        }
+
+
+        .contact-main-grid {
+
+          display: grid;
+
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+          gap: clamp(40px, 5vw, 72px);
+
+          align-items: start;
+
+        }
+
+
+        .contact-form-wrapper h2 {
+
+          color: #101827;
+
+        }
+
+
+        .contact-form-description {
+
+          margin: 14px 0 35px;
+
+          color: var(--contact-muted);
+
+          font-size: 15px;
+
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .contact-form {
+
+          display: flex;
+
+          flex-direction: column;
+
+          gap: 20px;
+
+        }
+
+
+        .contact-form-row {
+
+          display: grid;
+
+          grid-template-columns: 1fr 1fr;
+
+          gap: 16px;
+
+        }
+
+
+        .contact-field {
+
+          display: flex;
+
+          flex-direction: column;
+
+          gap: 8px;
+
+        }
+
+
+        .contact-field label {
+
+          color: #202b3b;
+
+          font-size: 12px;
+
+          font-weight: 700;
+
+        }
+
+
+        .contact-field input,
+        .contact-field select,
+        .contact-field textarea {
+
+          width: 100%;
+
+          padding: 13px 14px;
+
+          border: 1px solid #d5dce5;
+
+          border-radius: 0;
+
+          outline: none;
+
+          background: #ffffff;
+
+          color: #172033;
+
+          font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+          font-size: 14px;
+
+          transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        }
+
+
+        .contact-field input {
+
+          height: 48px;
+
+        }
+
+
+        .contact-field input:focus,
+        .contact-field select:focus,
+        .contact-field textarea:focus {
+
+          border-color: var(--contact-navy);
+
+          box-shadow:
+            0 0 0 2px
+            rgba(6,29,102,0.08);
+
+        }
+
+
+        .contact-field textarea {
+
+          min-height: 140px;
+
+          resize: vertical;
+
+        }
+
+
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+
+          color: #9aa4b2;
+
+        }
+
+
+        .contact-submit {
+
+          align-self: flex-start;
+
+          min-height: 50px;
+
+          display: inline-flex;
+
+          align-items: center;
+
+          justify-content: center;
+
+          gap: 18px;
+
+          margin-top: 5px;
+
+          padding: 13px 23px;
+
+          border: 0;
+
+          border-radius: 0;
+
+          background: var(--contact-red);
+
+          color: #ffffff;
+
+          font-size: 12px !important;
+
+          font-weight: 800;
+
+          letter-spacing: 0.4px;
+
+          cursor: pointer;
+
+          transition:
+            transform 0.2s ease,
+            background 0.2s ease;
+
+        }
+
+
+        .contact-submit:hover {
+
+          transform: translateY(-2px);
+
+          background: #b9161c;
+
+        }
+
+
+        /* =====================================================
+           LET'S CONNECT IMAGE
+        ===================================================== */
+
+        .contact-idea-box {
+
+          width: 100%;
+
+          aspect-ratio: 3 / 2;
+
+          overflow: hidden;
+
+        }
+
+
+        .contact-idea-image {
+
+          display: block;
+
+          width: 100%;
+
+          height: 100%;
+
+          object-fit: cover;
+
+          object-position: center;
+
+        }
+
+
+        /* =====================================================
+           LOCATION
+        ===================================================== */
+
+        .contact-location {
+
+          padding: 100px 0;
+
+          background: #ffffff;
+
+        }
+
+
+        .contact-location-grid {
+
+          display: grid;
+
+          grid-template-columns: 1fr 1fr;
+
+          gap: 80px;
+
+        }
+
+
+        .contact-location-content > p {
+
+          margin: 5px 0 30px;
+
+          color: var(--contact-muted);
+
+          font-size: 15px;
+
+          line-height: 1.85;
+
+        }
+
+
+        .contact-location-list {
+
+          border-top: 1px solid var(--contact-line);
+
+        }
+
+
+        .contact-location-list div {
+
+          display: flex;
+
+          align-items: center;
+
+          gap: 20px;
+
+          padding: 15px 0;
+
+          border-bottom: 1px solid var(--contact-line);
+
+        }
+
+
+        .contact-location-list span {
+
+          color: var(--contact-red);
+
+          font-size: 10px;
+
+          font-weight: 800;
+
+        }
+
+
+        .contact-location-list strong {
+
+          color: #172033;
+
+          font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           ENQUIRY PREPARATION
+        ===================================================== */
+
+        .contact-preparation {
+
+          padding: 30px 0 55px;
+
+          background: #f2f8f6;
+
+        }
+
+
+        .contact-prep-grid {
+
+          display: grid;
+
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+
+          gap: 24px;
+
+        }
+
+
+        .contact-prep-card {
+
+          min-height: 285px;
+
+          padding: 38px 35px;
+
+          border-top: 2px solid #111111;
+
+          background: #ffffff;
+
+        }
+
+
+        .contact-prep-card > span {
+
+          color: #687487;
+
+          font-size: 10px;
+
+          font-weight: 800;
+
+          letter-spacing: 1.8px;
+
+        }
+
+
+        .contact-prep-card h2 {
+
+          margin: 28px 0 20px;
+
+          color: #111827;
+
+          font-size: 30px;
+
+          line-height: 1.2;
+
+        }
+
+
+        .contact-prep-card p {
+
+          max-width: 300px;
+
+          margin: 0;
+
+          color: var(--contact-muted);
+
+          font-size: 14px;
+
+          line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           FREQUENTLY ASKED QUESTIONS
+        ===================================================== */
+
+        .contact-faq {
+
+          padding: 30px 0 100px;
+
+          background: #f2f8f6;
+
+        }
+
+
+        .contact-faq-inner {
+
+          width: min(900px, calc(100% - 80px));
+
+          margin: 0 auto;
+
+        }
+
+
+        .contact-faq-heading {
+
+          margin-bottom: 58px;
+
+          text-align: center;
+
+        }
+
+
+        .contact-faq-heading .contact-eyebrow {
+
+          margin-bottom: 12px;
+
+        }
+
+
+        .contact-faq-heading h2 {
+
+          margin: 0;
+
+          color: #173f68;
+
+          font-size: clamp(36px, 4.5vw, 54px);
+
+          line-height: 1.12;
+
+        }
+
+
+        .contact-faq-heading p {
+
+          margin: 18px 0 0;
+
+          color: var(--contact-muted);
+
+          font-size: 16px;
+
+        }
+
+
+        .contact-faq-list details {
+
+          border-top: 1px solid #d5dfdc;
+
+        }
+
+
+        .contact-faq-list details:last-child {
+
+          border-bottom: 1px solid #d5dfdc;
+
+        }
+
+
+        .contact-faq-list summary {
+
+          display: flex;
+
+          align-items: center;
+
+          justify-content: space-between;
+
+          gap: 24px;
+
+          padding: 24px 0;
+
+          color: #111827;
+
+          font-size: 16px;
+
+          font-weight: 700;
+
+          cursor: pointer;
+
+          list-style: none;
+
+        }
+
+
+        .contact-faq-list summary::-webkit-details-marker {
+
+          display: none;
+
+        }
+
+
+        .contact-faq-list summary span {
+
+          flex: 0 0 auto;
+
+          font-size: 22px;
+
+          font-weight: 400;
+
+          transition: transform 0.2s ease;
+
+        }
+
+
+        .contact-faq-list details[open] summary span {
+
+          transform: rotate(45deg);
+
+        }
+
+
+        .contact-faq-list details p {
+
+          max-width: 760px;
+
+          margin: -3px 0 24px;
+
+          color: var(--contact-muted);
+
+          font-size: 14px;
+
+          line-height: 1.8;
+
+        }
+
+
+        .contact-faq-list details a {
+
+          color: var(--contact-navy);
+
+          font-weight: 700;
+
+          text-decoration: underline;
+
+          text-underline-offset: 3px;
+
+        }
+
+
+        /* =====================================================
+           FINAL CTA
+        ===================================================== */
+
+        .contact-final {
+
+          width: 100%;
+
+          margin-top: 0;
+
+          margin-bottom: 90px;
+
+          padding: 75px 0;
+
+          background:
+            linear-gradient(
+              135deg,
+              #061d66,
+              #04164f
+            );
+
+          color: #ffffff;
+
+        }
+
+
+        .contact-final-inner {
+
+          display: flex;
+
+          align-items: center;
+
+          justify-content: space-between;
+
+          gap: 40px;
+
+        }
+
+
+        .contact-final h2 {
+
+          margin: 0;
+
+          color: #ffffff;
+
+          font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+          font-size: clamp(
+            36px,
+            4vw,
+            52px
+          );
+
+          font-weight: 400;
+
+          line-height: 1.12;
+
+        }
+
+
+        .contact-final-button {
+
+          flex-shrink: 0;
+
+          display: inline-flex;
+
+          align-items: center;
+
+          gap: 15px;
+
+          padding: 15px 22px;
+
+          background: #ffffff;
+
+          color: var(--contact-navy);
+
+          font-size: 12px;
+
+          font-weight: 800;
+
+          text-decoration: none;
+
+          transition:
+            transform 0.2s ease,
+            background 0.2s ease;
+
+        }
+
+
+        .contact-final-button:hover {
+
+          transform: translateY(-2px);
+
+          background: var(--contact-red);
+
+          color: #ffffff;
+
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+          .contact-container {
+
+            width: 90%;
+
+          }
+
+
+          .contact-main-grid {
+
+            gap: 40px;
+
+          }
+
+
+          .contact-info-grid {
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+          }
+
+
+          .contact-prep-grid {
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+          }
+
+
+          .contact-intro-grid,
+          .contact-location-grid {
+
+            gap: 50px;
+
+          }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+          .contact-container {
+
+            width: calc(100% - 40px);
+
+          }
+
+
+          .contact-hero {
+
+            min-height: 520px;
+
+          }
+
+
+          .contact-hero-content {
+
+            min-height: 520px;
+
+          }
+
+
+          .contact-hero h1 {
+
+            font-size: 48px;
+
+          }
+
+
+          .contact-hero p {
+
+            font-size: 15px;
+
+          }
+
+
+          .contact-hero-number {
+
+            display: none;
+
+          }
+
+
+          .contact-intro {
+
+            padding: 65px 0;
+
+          }
+
+
+          .contact-intro-grid {
+
+            grid-template-columns: 1fr;
+
+            gap: 25px;
+
+          }
+
+
+          .contact-information {
+
+            padding: 65px 0;
+
+          }
+
+
+          .contact-info-grid {
+
+            grid-template-columns: 1fr;
+
+          }
+
+
+          .contact-info-heading {
+
+            margin-bottom: 35px;
+
+          }
+
+
+          .contact-info-card {
+
+            min-height: 250px;
+
+          }
+
+
+          .contact-info-label {
+
+            margin-top: 30px;
+
+          }
+
+
+          .contact-main {
+
+            padding: 65px 0;
+
+          }
+
+
+          .contact-main-grid {
+
+            grid-template-columns: 1fr;
+
+            gap: 50px;
+
+          }
+
+
+          .contact-form-row {
+
+            grid-template-columns: 1fr;
+
+          }
+
+
+          .contact-location {
+
+            padding: 65px 0;
+
+          }
+
+
+          .contact-preparation {
+
+            padding: 20px 0 35px;
+
+          }
+
+
+          .contact-prep-grid {
+
+            grid-template-columns: 1fr;
+
+            gap: 16px;
+
+          }
+
+
+          .contact-prep-card {
+
+            min-height: 0;
+
+            padding: 30px 26px;
+
+          }
+
+
+          .contact-prep-card h2 {
+
+            margin: 22px 0 14px;
+
+            font-size: 27px;
+
+          }
+
+
+          .contact-faq {
+
+            padding: 25px 0 65px;
+
+          }
+
+
+          .contact-faq-inner {
+
+            width: calc(100% - 40px);
+
+          }
+
+
+          .contact-faq-heading {
+
+            margin-bottom: 35px;
+
+          }
+
+
+          .contact-faq-list summary {
+
+            padding: 20px 0;
+
+            font-size: 15px;
+
+          }
+
+
+          .contact-location-grid {
+
+            grid-template-columns: 1fr;
+
+            gap: 30px;
+
+          }
+
+
+          .contact-final {
+
+            margin-bottom: 70px;
+
+            padding: 60px 0;
+
+          }
+
+
+          .contact-final-inner {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+          }
+
+
+          .contact-final-button {
+
+            width: 100%;
+
+            justify-content: center;
+
+          }
+
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 430px) {
+
+          .contact-container {
+
+            width: calc(100% - 30px);
+
+          }
+
+
+          .contact-hero h1 {
+
+            font-size: 42px;
+
+          }
+
+
+          .contact-intro h2,
+          .contact-main h2,
+          .contact-location h2 {
+
+            font-size: 36px;
+
+          }
+
+
+        }
+
+      `}</style>
+
+    </div>
   );
-};
+}
 
 export default Contact;

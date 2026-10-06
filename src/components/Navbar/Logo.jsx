@@ -71,12 +71,12 @@ function Logo({ onClick }) {
             <Link
                 to="/"
                 className="site-logo"
-                aria-label="Tesla Innovation Private Limited home"
+                aria-label="This Innovation Private Limited home"
                 onClick={onClick}
             >
                 <img
                     src="/logo.svg"
-                    alt="Tesla Innovation Private Limited logo"
+                    alt="This Innovation Private Limited logo"
                     className="site-logo-image"
                 />
             </Link>

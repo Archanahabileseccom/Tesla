@@ -141,6 +141,7 @@ function Navbar() {
 				.navbar-search-input:focus { border-color: #315ba8; }
 				.navbar-contact { min-height: 43px; display: inline-flex; align-items: center; justify-content: center; padding: 0 17px; background: #315ba8; color: #fff; font-size: 12px; font-weight: 650; text-decoration: none; white-space: nowrap; transition: background .2s ease; }
 				.navbar-contact:hover { background: #263d73; }
+				.navbar-sticky-contact { display: none; }
 				.navbar-mobile-toggle, .navbar-mobile-panel { display: none; }
 				@keyframes navbar-drop-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 				@media (max-width: 1250px) { .navbar-shell { width: calc(100% - 48px); gap: 14px; } .navbar-desktop { gap: 7px; } .navbar-link, .navbar-dropdown-trigger { font-size: 12px; } .navbar-actions { gap: 7px; } .navbar-contact { padding-inline: 12px; } }
@@ -151,6 +152,9 @@ function Navbar() {
 					.navbar-desktop { display: none; }
 					.navbar-actions { margin-left: auto; }
 					.navbar-actions > .navbar-contact { display: none; }
+					.navbar-sticky-contact { position: fixed; right: 18px; bottom: max(18px, env(safe-area-inset-bottom)); z-index: 51; display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 18px; background: #315ba8; box-shadow: 0 6px 20px rgba(21, 35, 58, .24); color: #fff; font-size: 14px; font-weight: 650; text-decoration: none; white-space: nowrap; }
+					.navbar-sticky-contact:hover, .navbar-sticky-contact:focus-visible { background: #263d73; }
+					.navbar-sticky-contact:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 					.navbar-mobile-toggle { display: grid; }
 					.navbar-mobile-panel { position: absolute; top: 100%; right: 0; left: 0; display: block; max-height: calc(100vh - 72px); overflow-y: auto; border-top: 1px solid #edf0f4; border-bottom: 1px solid #e1e5eb; background: #fff; box-shadow: 0 16px 28px rgba(21,35,58,.12); }
 					.navbar-mobile-inner { width: min(100% - 36px, 720px); margin: 0 auto; padding: 12px 0 20px; }
@@ -169,7 +173,7 @@ function Navbar() {
 			`}</style>
 
 			<div className="navbar-shell">
-				<Link to="/" className="brand-mark" aria-label="Tesla Innovation Private Limited home" onClick={closeMenu}>
+				<Link to="/" className="brand-mark" aria-label="This Innovation Private Limited home" onClick={closeMenu}>
 					<div className="logo-wrapper">
 						<img
 							src="https://lucid-wave-craft.lovable.app/assets/tesla-logo-Ca0GV0eq.png"
@@ -214,6 +218,8 @@ function Navbar() {
 					</button>
 				</div>
 			</div>
+
+			{!mobileMenuOpen && <Link className="navbar-sticky-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>}
 
 			{mobileMenuOpen && (
 				<nav className="navbar-mobile-panel" aria-label="Mobile navigation">

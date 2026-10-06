@@ -1,29 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 500" role="img" aria-labelledby="title">
-  <title id="title">Tesla logo</title>
+  <title id="title">This Innovation Private Limited logo</title>
   <defs>
-    <linearGradient id="teslaBlue" x1="80" y1="30" x2="1650" y2="420" gradientUnits="userSpaceOnUse">
+    <linearGradient id="brandBlue" x1="80" y1="30" x2="1650" y2="420" gradientUnits="userSpaceOnUse">
       <stop stop-color="#07dff5"/>
       <stop offset="0.45" stop-color="#05c9ee"/>
       <stop offset="1" stop-color="#0a8ff2"/>
     </linearGradient>
   </defs>
 
-  <g fill="none" stroke="url(#teslaBlue)" stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke="url(#brandBlue)" stroke-linecap="round" stroke-linejoin="round">
     <path d="M520 120c-93 0-168 75-168 168 0 53 24 101 64 134 18 15 33 32 41 57h126c8-25 24-42 41-57 40-33 64-81 64-134 0-93-75-168-168-168Z" stroke-width="28"/>
-    <path d="M522 212c-25 0-46 20-46 46 0 26 21 46 46 46 25 0 46-20 46-46 0-26-21-46-46-46Z" stroke-width="18" fill="url(#teslaBlue)"/>
+    <path d="M522 212c-25 0-46 20-46 46 0 26 21 46 46 46 25 0 46-20 46-46 0-26-21-46-46-46Z" stroke-width="18" fill="url(#brandBlue)"/>
     <path d="M520 318c0 0-14 0-29 0s-31-13-31-31" stroke-width="20"/>
     <path d="M560 168c0 0 31 41 34 92" stroke-width="18"/>
   </g>
 
-  <g font-family="Arial Black, Segoe UI, sans-serif" font-weight="900" font-size="260" letter-spacing="-16" fill="url(#teslaBlue)" stroke="none">
-    <text x="25" y="310">T</text>
-    <text x="150" y="310">E</text>
-    <text x="395" y="310">S</text>
-    <text x="610" y="310">L</text>
-    <text x="740" y="310">A</text>
-  </g>
-
-  <g fill="url(#teslaBlue)">
-    <path d="M1285 170 1450 170 1550 320 1285 320 Z" opacity="0.96"/>
+  <g font-family="Segoe UI, Arial, sans-serif" font-weight="700" fill="url(#brandBlue)" stroke="none">
+    <text x="900" y="205" font-size="72" letter-spacing="2">THIS</text>
+    <text x="900" y="295" font-size="82" letter-spacing="1">INNOVATION</text>
+    <text x="900" y="370" font-size="36" letter-spacing="6">PRIVATE LIMITED</text>
   </g>
 </svg>

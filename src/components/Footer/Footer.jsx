@@ -280,7 +280,7 @@ const Footer = () => {
             <div className="footer-brand">
 
               <div className="footer-logo-box">
-                <Link to="/" className="footer-wordmark" aria-label="Tesla Innovation Private Limited home">
+                <Link to="/" className="footer-wordmark" aria-label="This Innovation Private Limited home">
                   <img
                     src="https://lucid-wave-craft.lovable.app/assets/tesla-logo-Ca0GV0eq.png"
                     alt="Tesla Innovation Private Limited"
