@@ -57,7 +57,7 @@ const Footer = () => {
             1fr
             1fr
             0.9fr;
-          gap: 55px;
+          gap: 64px;
           padding-bottom: 50px;
         }
 
