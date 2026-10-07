@@ -339,11 +339,14 @@ function Litigation() {
 
         .litigation-hero {
           position: relative;
-          min-height: 480px;
+          width: 100%;
+          height: calc(100vh - 83px);
+          height: calc(100svh - 83px);
           display: flex;
           align-items: center;
           background-size: cover;
-          background-position: center;
+          background-position: center center;
+          background-repeat: no-repeat;
           overflow: hidden;
           animation: litigationFadeIn 0.8s ease both;
         }
@@ -789,6 +792,7 @@ function Litigation() {
 
         @media (max-width: 640px) {
           .litigation-hero {
+            height: auto;
             min-height: 440px;
           }
 

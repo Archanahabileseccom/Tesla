@@ -1,5 +1,5 @@
-import { ArrowRight, ChartNoAxesCombined, ChevronLeft, ChevronRight, Pause, Play, ShieldCheck, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, ChartNoAxesCombined, ChevronLeft, ChevronRight, ShieldCheck, Sparkles } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const heroSlides = [
@@ -151,17 +151,7 @@ const stats = [
 
 function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [carouselPaused, setCarouselPaused] = useState(false);
   const activeHero = heroSlides[activeSlide];
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-    if (carouselPaused || reduceMotion) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % heroSlides.length);
-    }, 7000);
-    return () => window.clearInterval(timer);
-  }, [carouselPaused]);
 
   const showSlide = (index) => {
     setActiveSlide((index + heroSlides.length) % heroSlides.length);
@@ -197,29 +187,9 @@ function Home() {
             <button type="button" aria-label="Previous slide" onClick={() => showSlide(activeSlide - 1)}>
               <ChevronLeft size={19} />
             </button>
-            <span className="hero-slide-count">0{activeSlide + 1} / 0{heroSlides.length}</span>
-            <button
-              type="button"
-              aria-label={carouselPaused ? "Play slides" : "Pause slides"}
-              aria-pressed={carouselPaused}
-              onClick={() => setCarouselPaused((paused) => !paused)}
-            >
-              {carouselPaused ? <Play size={16} /> : <Pause size={16} />}
-            </button>
             <button type="button" aria-label="Next slide" onClick={() => showSlide(activeSlide + 1)}>
               <ChevronRight size={19} />
             </button>
-            <div className="hero-slide-dots" aria-label="Choose a slide">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide.eyebrow}
-                  type="button"
-                  aria-label={`Show slide ${index + 1}: ${slide.eyebrow}`}
-                  aria-pressed={index === activeSlide}
-                  onClick={() => showSlide(index)}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -483,11 +453,13 @@ function Home() {
 
         .hero-controls {
           position: absolute;
-          right: 0;
           bottom: 26px;
+          right: 0;
+          left: 0;
           display: flex;
           align-items: center;
-          gap: 9px;
+          justify-content: space-between;
+          pointer-events: none;
           color: #fff;
         }
 
@@ -500,48 +472,13 @@ function Home() {
           background: rgba(5, 20, 38, 0.36);
           color: #fff;
           cursor: pointer;
+          pointer-events: auto;
         }
 
         .hero-controls > button:hover,
         .hero-controls > button:focus-visible {
           background: #fff;
           color: var(--navy-900);
-        }
-
-        .hero-slide-count {
-          min-width: 62px;
-          font-size: 12px;
-          font-variant-numeric: tabular-nums;
-          text-align: center;
-        }
-
-        .hero-slide-dots {
-          display: flex;
-          gap: 6px;
-          margin-left: 6px;
-        }
-
-        .hero-slide-dots button {
-          position: relative;
-          display: grid;
-          width: 28px;
-          height: 28px;
-          place-items: center;
-          padding: 0;
-          border: 0;
-          background: transparent;
-          cursor: pointer;
-        }
-
-        .hero-slide-dots button::before {
-          width: 18px;
-          height: 3px;
-          background: rgba(255, 255, 255, 0.48);
-          content: "";
-        }
-
-        .hero-slide-dots button[aria-pressed="true"]::before {
-          background: #a2dfce;
         }
 
         .section-heading {
@@ -918,27 +855,14 @@ function Home() {
           }
 
           .hero-controls {
-            right: 0;
             bottom: 20px;
-            gap: 6px;
+            right: 0;
+            left: 0;
           }
 
           .hero-controls > button {
             width: 34px;
             height: 34px;
-          }
-
-          .hero-slide-dots {
-            gap: 4px;
-            margin-left: 2px;
-          }
-
-          .hero-slide-dots button {
-            width: 24px;
-          }
-
-          .hero-slide-dots button::before {
-            width: 14px;
           }
 
           .stat-copy strong {

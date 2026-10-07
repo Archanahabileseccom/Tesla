@@ -399,11 +399,15 @@ function Transactions() {
 
         .transactions-hero {
           position: relative;
-          min-height: 480px;
+          width: 100%;
+          min-height: calc(100vh - 83px);
+          min-height: calc(100svh - 83px);
+          margin: 0;
           display: flex;
           align-items: center;
           background-size: cover;
-          background-position: center;
+          background-position: center center;
+          background-repeat: no-repeat;
           overflow: hidden;
           animation: transactionsFadeIn 0.8s ease both;
         }

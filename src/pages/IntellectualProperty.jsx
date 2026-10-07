@@ -685,12 +685,15 @@ function IntellectualProperty() {
 				.ip-wrap { width: min(100% - 64px, 1200px); margin-inline: auto; }
 				.ip-hero {
 					position: relative;
+					width: 100%;
+					height: calc(100vh - 83px);
+					height: calc(100svh - 83px);
 					display: flex;
 					align-items: center;
-					min-height: 490px;
 					overflow: hidden;
-					background-position: center;
+					background-position: center center;
 					background-size: cover;
+					background-repeat: no-repeat;
 					color: #ffffff;
 				}
 				.ip-hero-shade {
@@ -855,7 +858,7 @@ function IntellectualProperty() {
 				@media (max-width: 640px) {
 					.ip-page { font-size: 16px; }
 					.ip-wrap { width: calc(100% - 40px); }
-					.ip-hero { min-height: 430px; }
+					.ip-hero { height: auto; min-height: 430px; }
 					.ip-hero-content { width: calc(100% - 40px); padding: 70px 0 88px; }
 					.ip-hero h1 { font-size: 42px; }
 					.ip-hero-content p { margin-top: 20px; font-size: 15px; }

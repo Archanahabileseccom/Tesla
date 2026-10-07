@@ -435,12 +435,15 @@ function About() {
 				.about-page button { cursor: pointer; }
 				.about-hero {
 					position: relative;
+					width: 100%;
+					height: calc(100vh - 83px);
+					height: calc(100svh - 83px);
 					display: flex;
 					align-items: center;
-					min-height: 480px;
 					overflow: hidden;
-					background-position: center;
+					background-position: center center;
 					background-size: cover;
+					background-repeat: no-repeat;
 					color: white;
 				}
 				.hero-shade {
@@ -623,7 +626,7 @@ function About() {
 				}
 				@media (max-width: 640px) {
 					.about-page { font-size: 16px; }
-					.about-hero { min-height: 440px; }
+					.about-hero { height: auto; min-height: 440px; }
 					.hero-content, .section-wrap { width: calc(100% - 40px); }
 					.hero-content { padding: 70px 0 90px; }
 					.hero-content h1 { font-size: 42px; }

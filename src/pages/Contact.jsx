@@ -416,18 +416,6 @@ function Contact() {
           </div>
 
 
-          {/* =================================================
-              LET'S CONNECT IDEA BOX
-          ================================================= */}
-
-          <aside className="contact-idea-box">
-            <img
-              className="contact-idea-image"
-              src="/images/contact/lets-explore.png"
-              alt="Let's connect. Have an idea? Let's explore it together."
-            />
-          </aside>
-
         </div>
 
       </section>
@@ -1155,11 +1143,22 @@ function Contact() {
 
           display: grid;
 
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          grid-template-columns: 1fr;
 
           gap: clamp(40px, 5vw, 72px);
 
           align-items: start;
+
+          max-width: 920px;
+
+        }
+
+
+        .contact-form-wrapper {
+
+          width: 100%;
+
+          text-align: center;
 
         }
 
@@ -1173,7 +1172,9 @@ function Contact() {
 
         .contact-form-description {
 
-          margin: 14px 0 35px;
+          margin: 14px auto 35px;
+
+          max-width: 620px;
 
           color: var(--contact-muted);
 
@@ -1188,11 +1189,17 @@ function Contact() {
 
         .contact-form {
 
+          width: min(100%, 760px);
+
+          margin: 0 auto;
+
           display: flex;
 
           flex-direction: column;
 
           gap: 20px;
+
+          text-align: left;
 
         }
 
@@ -1345,36 +1352,6 @@ function Contact() {
           transform: translateY(-2px);
 
           background: #b9161c;
-
-        }
-
-
-        /* =====================================================
-           LET'S CONNECT IMAGE
-        ===================================================== */
-
-        .contact-idea-box {
-
-          width: 100%;
-
-          aspect-ratio: 3 / 2;
-
-          overflow: hidden;
-
-        }
-
-
-        .contact-idea-image {
-
-          display: block;
-
-          width: 100%;
-
-          height: 100%;
-
-          object-fit: cover;
-
-          object-position: center;
 
         }
 
