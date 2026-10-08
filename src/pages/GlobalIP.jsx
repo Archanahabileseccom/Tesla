@@ -72,6 +72,171 @@ const overviewCards = [
 	},
 ];
 
+const tabOverviews = {
+	strategy: {
+		title: "A wider lens on protection.",
+		description:
+			"A useful international plan looks beyond a single filing and considers how each asset supports the organization over time.",
+		cards: overviewCards,
+	},
+	"cross-border": {
+		title: "Coordination across markets.",
+		description:
+			"Bring local knowledge, clear communication and a shared view of priorities together across borders.",
+		cards: [
+			{
+				number: "01",
+				title: "Local context",
+				text: "Account for local procedures and requirements when planning international protection.",
+				image:
+					"https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1000&q=85",
+				alt: "Map used to consider international markets",
+			},
+			{
+				number: "02",
+				title: "Connected teams",
+				text: "Keep business teams and local professionals aligned on shared priorities.",
+				image:
+					"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85",
+				alt: "Colleagues coordinating work across locations",
+			},
+			{
+				number: "03",
+				title: "Clear communication",
+				text: "Organize information and decisions so each market can move forward.",
+				image:
+					"https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85",
+				alt: "Team collaborating on an international work plan",
+			},
+			{
+				number: "04",
+				title: "Shared direction",
+				text: "Keep local actions connected to the wider commercial strategy.",
+				image:
+					"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=85",
+				alt: "View of the Earth representing cross-border connections",
+			},
+		],
+	},
+	portfolio: {
+		title: "A portfolio that stays in view.",
+		description:
+			"Useful portfolio oversight brings records, deadlines and business priorities into one considered view.",
+		cards: [
+			{
+				number: "01",
+				title: "Organized records",
+				text: "Keep ownership details and portfolio information accessible and up to date.",
+				image:
+					"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=85",
+				alt: "Team reviewing portfolio records and business plans",
+			},
+			{
+				number: "02",
+				title: "Visible priorities",
+				text: "Understand which rights support products, brands and target markets.",
+				image:
+					"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85",
+				alt: "Business analytics displayed on a screen",
+			},
+			{
+				number: "03",
+				title: "Timely reviews",
+				text: "Revisit protection as products, market plans and teams change.",
+				image:
+					"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85",
+				alt: "Modern buildings representing a growing business",
+			},
+			{
+				number: "04",
+				title: "Lifecycle planning",
+				text: "Consider maintenance, use and ownership alongside new filings.",
+				image:
+					"https://images.unsplash.com/photo-1507207611509-ec012433ff52?auto=format&fit=crop&w=1000&q=85",
+				alt: "Professionals planning a long-term portfolio review",
+			},
+		],
+	},
+	filing: {
+		title: "Filing decisions with purpose.",
+		description:
+			"Connect filing routes and timing to asset needs, commercial plans and the markets that matter.",
+		cards: [
+			{
+				number: "01",
+				title: "Market selection",
+				text: "Prioritize jurisdictions in light of business plans and intended use.",
+				image:
+					"https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1000&q=85",
+				alt: "Map and notes used to plan international markets",
+			},
+			{
+				number: "02",
+				title: "Filing preparation",
+				text: "Bring the required asset and ownership information together.",
+				image:
+					"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1000&q=85",
+				alt: "International filing documents prepared for review",
+			},
+			{
+				number: "03",
+				title: "Timing and deadlines",
+				text: "Coordinate filing decisions with business timing and local requirements.",
+				image:
+					"https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1000&q=85",
+				alt: "Calendar used to plan filing dates and deadlines",
+			},
+			{
+				number: "04",
+				title: "Local coordination",
+				text: "Work with appropriate local professionals as applications progress.",
+				image:
+					"https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85",
+				alt: "Professionals coordinating an international filing plan",
+			},
+		],
+	},
+	enforcement: {
+		title: "A considered response across borders.",
+		description:
+			"Assess concerns with clear information, local context and a proportionate view of business priorities.",
+		cards: [
+			{
+				number: "01",
+				title: "Understand the issue",
+				text: "Review available information and identify the rights and markets involved.",
+				image:
+					"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=85",
+				alt: "Legal reference books supporting an enforcement review",
+			},
+			{
+				number: "02",
+				title: "Consider local context",
+				text: "Take account of relevant local procedures and available options.",
+				image:
+					"https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1000&q=85",
+				alt: "Legal setting representing local enforcement procedures",
+			},
+			{
+				number: "03",
+				title: "Coordinate a response",
+				text: "Align appropriate local input with the organization's wider goals.",
+				image:
+					"https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85",
+				alt: "Team discussing a coordinated business response",
+			},
+			{
+				number: "04",
+				title: "Keep clear records",
+				text: "Document decisions and next steps to support a measured approach.",
+				image:
+					"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1000&q=85",
+				alt: "Documents organized for a legal review",
+			},
+		],
+	},
+};
+
 const services = [
 	{
 		number: "01",
@@ -135,6 +300,7 @@ function GlobalIP() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const hero = heroContent[activeTab];
+	const overview = tabOverviews[activeTab];
 
 	useEffect(() => {
 		const hash = location.hash.slice(1);
@@ -188,38 +354,6 @@ function GlobalIP() {
 							with commercial priorities. Specific protection and outcomes
 							depend on the facts and laws applicable in each jurisdiction.
 						</p>
-					</div>
-				</section>
-
-				<section className="global-overview global-wrap" aria-labelledby="overview-title">
-					<div className="global-section-heading">
-						<div>
-							<span className="global-eyebrow">AT A GLANCE</span>
-							<h2 id="overview-title">A wider lens on protection.</h2>
-						</div>
-						<p>
-							A useful international plan looks beyond a single filing and
-							considers how each asset supports the organization over time.
-						</p>
-					</div>
-					<div className="global-stat-grid">
-						{overviewCards.map((card, index) => (
-							<article
-								className="global-stat-card"
-								key={card.title}
-								style={{ "--card-order": index }}
-							>
-								<div className="global-stat-image">
-									<img src={card.image} alt={card.alt} loading="lazy" />
-									<span className="global-stat-number">{card.number}</span>
-								</div>
-								<div className="global-stat-copy">
-									<span className="global-card-index">0{index + 1}</span>
-									<h3>{card.title}</h3>
-									<p>{card.text}</p>
-								</div>
-							</article>
-						))}
 					</div>
 				</section>
 
@@ -329,6 +463,35 @@ function GlobalIP() {
 					</div>
 				</section>}
 
+				<section className="global-overview global-wrap" aria-labelledby="overview-title">
+					<div className="global-section-heading">
+						<div>
+							<span className="global-eyebrow">AT A GLANCE</span>
+							<h2 id="overview-title">{overview.title}</h2>
+						</div>
+						<p>{overview.description}</p>
+					</div>
+					<div className="global-stat-grid">
+						{overview.cards.map((card, index) => (
+							<article
+								className="global-stat-card"
+								key={card.title}
+								style={{ "--card-order": index }}
+							>
+								<div className="global-stat-image">
+									<img src={card.image} alt={card.alt} loading="lazy" />
+									<span className="global-stat-number">{card.number}</span>
+								</div>
+								<div className="global-stat-copy">
+									<span className="global-card-index">0{index + 1}</span>
+									<h3>{card.title}</h3>
+									<p>{card.text}</p>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+
 				<section className="global-contact-band">
 					<div className="global-wrap global-contact-inner">
 						<div>
@@ -370,12 +533,12 @@ function GlobalIP() {
 
 			<style>{`
 				.global-ip-page {
-					--global-ink: #182a2a;
-					--global-muted: #5c6968;
-					--global-green: #11796f;
-					--global-mint: #a2dfce;
-					--global-line: #dce5e1;
-					--global-paper: #f5f7f4;
+					--global-ink: #17345b;
+					--global-muted: #526986;
+					--global-green: #1c5b9e;
+					--global-mint: #b9dcff;
+					--global-line: #d6e2ef;
+					--global-paper: #f5f8fc;
 					color: var(--global-ink);
 					background: #fff;
 					font-family: "DM Sans", "Segoe UI", sans-serif;
@@ -392,33 +555,37 @@ function GlobalIP() {
 					height: calc(100vh - 83px);
 					height: calc(100svh - 83px);
 					color: #fff;
-					background: #183634 url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=90") center center / cover no-repeat;
+					background-color: #031333;
+					background-image: url("/images/global-ip/hero-background.png");
+					background-position: center center;
+					background-size: cover;
+					background-repeat: no-repeat;
 					overflow: hidden;
 				}
-				.global-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,30,29,.91), rgba(8,30,29,.65) 48%, rgba(8,30,29,.12)); }
+				.global-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,15,42,.78) 0%, rgba(2,15,42,.68) 36%, rgba(2,15,42,.3) 66%, rgba(2,15,42,.04) 100%); }
 				.global-hero-inner { position: relative; width: min(100% - 64px, 1180px); height: 100%; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; padding: 82px 0 78px; animation: global-rise .65s ease both; }
-				.global-hero-copy { max-width: 760px; }
+				.global-hero-copy { max-width: 690px; }
 				.global-eyebrow { display: block; margin: 0 0 15px; color: var(--global-green); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; line-height: 1.45; }
-				.global-hero .global-eyebrow { color: var(--global-mint); }
+				.global-hero .global-eyebrow { color: #91eaff; }
 				.global-hero h1, .global-intro h2, .global-section-heading h2, .global-cross-copy h2, .global-contact-inner h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; line-height: 1.13; }
-				.global-hero h1 { max-width: 740px; font-size: 60px; }
-				.global-hero-copy > p { max-width: 630px; margin: 22px 0 0; color: rgba(255,255,255,.86); font-size: 17px; line-height: 1.75; }
+				.global-hero h1 { max-width: 690px; color: #fff; font-size: 60px; }
+				.global-hero-copy > p { max-width: 590px; margin: 22px 0 0; color: rgba(255,255,255,.86); font-size: 17px; line-height: 1.75; }
 				.global-hero-action { display: inline-flex; gap: 14px; align-items: center; margin-top: 28px; color: white !important; font-size: 14px; font-weight: 700; text-decoration: none; }
-				.global-hero-action span { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid rgba(255,255,255,.56); border-radius: 50%; transition: transform .2s ease; }
+				.global-hero-action span { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid rgba(255,255,255,.64); border-radius: 50%; transition: transform .2s ease; }
 				.global-hero-action:hover span { transform: translateY(3px); }
-				.global-hero-note { position: absolute; right: 0; bottom: 30px; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.8); font-size: 10px; font-weight: 700; letter-spacing: 1px; }
-				.global-hero-note i { width: 20px; height: 1px; background: var(--global-mint); }
+				.global-hero-note { position: absolute; right: 0; bottom: 30px; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.82); font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+				.global-hero-note i { width: 20px; height: 1px; background: #53d9fa; }
 				.global-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; padding-top: 94px; padding-bottom: 82px; scroll-margin-top: 75px; }
 				.global-intro h2 { max-width: 520px; font-size: 42px; }
 				.global-intro-copy p, .global-section-heading > p, .global-cross-copy p, .global-contact-inner p { margin: 0 0 15px; color: var(--global-muted); font-size: 16px; line-height: 1.8; }
 				.global-intro-copy p:last-child, .global-cross-copy p:last-child { margin-bottom: 0; }
-				.global-overview { padding-top: 68px; padding-bottom: 92px; border-top: 1px solid var(--global-line); }
+				.global-overview { padding-top: 82px; padding-bottom: 104px; border-top: 1px solid var(--global-line); scroll-margin-top: 75px; }
 				.global-section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: end; margin-bottom: 31px; }
 				.global-section-heading h2 { max-width: 560px; font-size: 38px; }
 				.global-section-heading > p { max-width: 490px; margin: 0; }
 				.global-stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 17px; }
 				.global-stat-card { min-width: 0; background: var(--global-paper); animation: global-rise .55s ease both; animation-delay: calc(var(--card-order) * 90ms); }
-				.global-stat-image { position: relative; height: 190px; overflow: hidden; background: #dce5e1; }
+				.global-stat-image { position: relative; height: 220px; overflow: hidden; background: #dbe6f2; }
 				.global-stat-image::after { position: absolute; inset: 35% 0 0; content: ""; background: linear-gradient(transparent, rgba(8,27,26,.68)); }
 				.global-stat-image img { height: 100%; transition: transform .55s ease; }
 				.global-stat-card:hover .global-stat-image img { transform: scale(1.05); }
@@ -454,7 +621,7 @@ function GlobalIP() {
 				.global-process-step > span:first-child { color: var(--global-green); font-size: 12px; font-weight: 700; }
 				.global-process-step h3 { margin: 0; }
 				.global-process-mark { justify-self: end; color: var(--global-green); font-size: 19px; }
-				.global-contact-band { padding: 61px 0; background: #173b37; color: white; }
+				.global-contact-band { margin-top: 20px; padding: 68px 0; background: #153f77; color: white; }
 				.global-contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
 				.global-contact-inner .global-eyebrow { color: var(--global-mint); }
 				.global-contact-inner h2 { font-size: 38px; }
@@ -476,13 +643,14 @@ function GlobalIP() {
 					.global-hero h1 { font-size: 52px; }
 					.global-intro, .global-section-heading { gap: 38px; }
 					.global-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-					.global-stat-image { height: 220px; }
+					.global-stat-image { height: 240px; }
 					.global-process-step { grid-template-columns: 44px minmax(150px, .8fr) 1.2fr 20px; gap: 14px; }
 					.global-cross-copy { padding-inline: 38px; }
 				}
 				@media (max-width: 640px) {
 					.global-wrap, .global-hero-inner { width: calc(100% - 40px); }
-					.global-hero { height: auto; min-height: 470px; }
+					.global-hero { height: auto; min-height: 470px; background-position: center center; background-size: cover; }
+					.global-hero-shade { background: linear-gradient(90deg, rgba(2,15,42,.82) 0%, rgba(2,15,42,.68) 58%, rgba(2,15,42,.25) 100%); }
 					.global-hero-inner { height: auto; min-height: 470px; }
 					.global-hero-inner { padding: 65px 0 80px; }
 					.global-hero h1 { font-size: 42px; }
@@ -494,7 +662,7 @@ function GlobalIP() {
 					.global-intro h2, .global-section-heading h2, .global-cross-copy h2, .global-contact-inner h2 { font-size: 32px; }
 					.global-overview, .global-process { padding-top: 60px; padding-bottom: 66px; }
 					.global-stat-grid { gap: 12px; }
-					.global-stat-image { height: 145px; }
+					.global-stat-image { height: 175px; }
 					.global-stat-number { left: 12px; bottom: 10px; font-size: 26px; }
 					.global-stat-copy { min-height: 165px; padding: 15px 12px; }
 					.global-card-index { top: 17px; right: 12px; }
@@ -510,10 +678,11 @@ function GlobalIP() {
 					.global-process-step h3 { font-size: 17px; }
 					.global-process-step p { grid-column: 2 / 3; font-size: 14px; }
 					.global-process-mark { grid-column: 3; grid-row: 1; }
-					.global-contact-band { padding: 46px 0; }
+					.global-contact-band { margin-top: 14px; padding: 52px 0; }
 					.global-contact-inner { gap: 21px; }
 					.global-discover { gap: 27px; padding-top: 60px; padding-bottom: 70px; }
 				}
+
 				@media (prefers-reduced-motion: reduce) {
 					.global-ip-page *, .global-ip-page *::before, .global-ip-page *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 				}
