@@ -27,6 +27,8 @@ import ValueCard from "./components/Cards/ValueCard";
    Contact
 ========================= */
 import ContactForm from "./components/Contact/ContactForm";
+import Floatingchat from "./components/Floatingchat";
+import WhatsAppChat from "./components/whatsappchat";
 
 /* =========================
    CTA
@@ -179,6 +181,9 @@ function App() {
             Footer
         ========================= */}
         <Footer />
+
+        <Floatingchat />
+        <WhatsAppChat />
 
       </div>
     </BrowserRouter>

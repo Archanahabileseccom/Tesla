@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+const apiBaseUrl =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? "http://127.0.0.1:8000" : window.location.origin);
+
 const initialFormData = {
   name: "",
   email: "",
@@ -14,6 +18,7 @@ const ContactForm = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
 
   // Handle input changes
   const handleChange = (event) => {
@@ -35,6 +40,9 @@ const ContactForm = () => {
     // Hide success message when user edits the form again
     if (submitted) {
       setSubmitted(false);
+    }
+    if (submissionError) {
+      setSubmissionError("");
     }
   };
 
@@ -60,7 +68,7 @@ const ContactForm = () => {
       newErrors.email = "Please enter a valid email address.";
     }
 
-    if (phone && !/^[0-9+\-\s()]{7,20}$/.test(phone)) {
+    if (phone && (phone.length < 7 || phone.length > 25 || !/^[0-9+().\-\s]+$/.test(phone))) {
       newErrors.phone = "Please enter a valid phone number.";
     }
 
@@ -79,10 +87,12 @@ const ContactForm = () => {
   };
 
   // Submit form
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
 
     setSubmitted(false);
+    setSubmissionError("");
 
     const validationErrors = validateForm();
 
@@ -94,12 +104,55 @@ const ContactForm = () => {
     setErrors({});
     setIsSubmitting(true);
 
-    // Frontend-only submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch(`${apiBaseUrl.replace(/\/+$/, "")}/api/contact/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          company: formData.company.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          source_page: window.location.pathname,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        const fieldErrors = Object.fromEntries(
+          Object.entries(data)
+            .filter(([field]) => field in initialFormData)
+            .map(([field, messages]) => [
+              field,
+              Array.isArray(messages) ? messages.join(" ") : String(messages),
+            ]),
+        );
+        if (Object.keys(fieldErrors).length > 0) {
+          setErrors(fieldErrors);
+          throw new Error("Please correct the highlighted fields and try again.");
+        }
+        throw new Error(data.message || `Request failed (${response.status}).`);
+      }
+
+      if (data.success !== true) {
+        throw new Error("The server did not confirm your enquiry.");
+      }
+
       setSubmitted(true);
       setFormData(initialFormData);
-    }, 800);
+    } catch (error) {
+      console.error("Failed to submit contact enquiry:", error);
+      setSubmissionError(
+        error instanceof TypeError
+          ? "We couldn't connect to the contact service. Please try again later."
+          : error.message || "Your enquiry could not be submitted. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Reset form
@@ -107,6 +160,7 @@ const ContactForm = () => {
     setFormData(initialFormData);
     setErrors({});
     setSubmitted(false);
+    setSubmissionError("");
   };
 
   return (
@@ -133,6 +187,12 @@ const ContactForm = () => {
         </div>
       )}
 
+      {submissionError && (
+        <p className="contact-form-error" role="alert">
+          {submissionError}
+        </p>
+      )}
+
       {/* Form */}
 
       <form
@@ -155,6 +215,7 @@ const ContactForm = () => {
               id="contact-name"
               type="text"
               name="name"
+              maxLength={100}
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your full name"
@@ -181,6 +242,7 @@ const ContactForm = () => {
               id="contact-email"
               type="email"
               name="email"
+              maxLength={254}
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
@@ -213,6 +275,7 @@ const ContactForm = () => {
               id="contact-phone"
               type="tel"
               name="phone"
+              maxLength={25}
               value={formData.phone}
               onChange={handleChange}
               placeholder="Enter your phone number"
@@ -239,6 +302,7 @@ const ContactForm = () => {
               id="contact-company"
               type="text"
               name="company"
+              maxLength={150}
               value={formData.company}
               onChange={handleChange}
               placeholder="Enter your company"
@@ -262,6 +326,7 @@ const ContactForm = () => {
             id="contact-subject"
             type="text"
             name="subject"
+            maxLength={200}
             value={formData.subject}
             onChange={handleChange}
             placeholder="How can we help you?"
@@ -289,6 +354,7 @@ const ContactForm = () => {
             id="contact-message"
             name="message"
             value={formData.message}
+            maxLength={3000}
             onChange={handleChange}
             placeholder="Tell us about your requirements..."
             rows="7"
@@ -306,7 +372,7 @@ const ContactForm = () => {
             )}
 
             <small>
-              {formData.message.length}/1000
+              {formData.message.length}/3000
             </small>
 
           </div>

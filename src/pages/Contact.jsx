@@ -1,7 +1,68 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Mail, MapPin, Phone } from "lucide-react";
+
+const apiBaseUrl =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? "http://127.0.0.1:8000" : window.location.origin);
+const OUTLOOK_COMPOSE_URL =
+  "https://outlook.office.com/mail/deeplink/compose?to=gsnnaren%40gmail.com";
+const OFFICE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=No.532%2C%20Muniyappan%20Kovil%20Street%2C%20Chinna%20Pudhur%2C%20Salem%20-%20636007";
 
 function Contact() {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submissionMessage, setSubmissionMessage] = React.useState("");
+  const [submissionError, setSubmissionError] = React.useState("");
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    setIsSubmitting(true);
+    setSubmissionMessage("");
+    setSubmissionError("");
+
+    try {
+      const response = await fetch(`${apiBaseUrl.replace(/\/+$/, "")}/api/contact/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        const details = Object.entries(data)
+          .map(([field, errors]) => {
+            const messages = Array.isArray(errors) ? errors.join(" ") : String(errors);
+            return `${field}: ${messages}`;
+          })
+          .join(" ");
+        throw new Error(details || data.message || `Request failed (${response.status}).`);
+      }
+
+      if (data.success !== true) {
+        throw new Error("The server did not confirm your enquiry.");
+      }
+
+      setSubmissionMessage(data.message || "Your enquiry has been submitted successfully.");
+      form.reset();
+    } catch (error) {
+      console.error("Failed to submit contact enquiry:", error);
+      setSubmissionError(
+        error instanceof TypeError
+          ? "We couldn't connect to the contact service. Please try again later."
+          : error.message || "Your enquiry could not be submitted. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="contact-page">
 
@@ -119,8 +180,10 @@ function Contact() {
               </h3>
 
               <a
-                href="mailto:gsnnaren@gmail.com"
+                href={OUTLOOK_COMPOSE_URL}
                 className="contact-info-link"
+                target="_blank"
+                rel="noreferrer"
               >
                 gsnnaren@gmail.com
                 <span>↗</span>
@@ -239,30 +302,73 @@ function Contact() {
 
         <div className="contact-container contact-main-grid">
 
+          <div className="contact-details">
+
+            <span className="contact-eyebrow contact-eyebrow-dark">
+              CONTACT DETAILS
+            </span>
+
+            <h2>
+              Tesla Innovation
+            </h2>
+
+            <div className="contact-detail-item">
+              <h3>Email</h3>
+              <a
+                href={OUTLOOK_COMPOSE_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Write an email to gsnnaren@gmail.com in Outlook"
+              >
+                <Mail className="contact-detail-icon" aria-hidden="true" />
+                gsnnaren@gmail.com
+              </a>
+            </div>
+
+            <div className="contact-detail-item">
+              <h3>Phone</h3>
+              <a href="tel:+918870088429" aria-label="Call 91-8870084429">
+                <Phone className="contact-detail-icon" aria-hidden="true" />
+                91-8870084429
+              </a>
+            </div>
+
+            <div className="contact-detail-item">
+              <h3>Address</h3>
+              <a
+                href={OFFICE_MAPS_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="View the Salem office address in Google Maps"
+              >
+                <MapPin className="contact-detail-icon" aria-hidden="true" />
+                <span>
+                  No.532, Muniyappan Kovil Street,
+                  <br />
+                  Chinna Pudhur, Salem - 636007
+                </span>
+              </a>
+            </div>
+
+          </div>
+
           {/* =================================================
               FORM
           ================================================= */}
 
           <div className="contact-form-wrapper">
 
-            <span className="contact-eyebrow contact-eyebrow-dark">
-              SEND AN ENQUIRY
-            </span>
-
             <h2>
-              How Can We Help?
+              Send us a message
             </h2>
 
             <p className="contact-form-description">
-              Tell us about your requirement and we’ll get back to you.
+              Fields marked with * are required.
             </p>
 
             <form
               className="contact-form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                alert("Thank you. Your enquiry has been submitted.");
-              }}
+              onSubmit={handleContactSubmit}
             >
 
               <div className="contact-form-row">
@@ -270,7 +376,7 @@ function Contact() {
                 <div className="contact-field">
 
                   <label htmlFor="contact-name">
-                    Full Name
+                    Name *
                   </label>
 
                   <input
@@ -286,14 +392,14 @@ function Contact() {
                 <div className="contact-field">
 
                   <label htmlFor="contact-email">
-                    Email Address
+                    Email *
                   </label>
 
                   <input
                     id="contact-email"
                     type="email"
                     name="email"
-                    placeholder="you@example.com"
+                    placeholder="you@company.com"
                     required
                   />
 
@@ -306,21 +412,6 @@ function Contact() {
 
                 <div className="contact-field">
 
-                  <label htmlFor="contact-phone">
-                    Phone Number
-                  </label>
-
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    name="phone"
-                    placeholder="+91"
-                  />
-
-                </div>
-
-                <div className="contact-field">
-
                   <label htmlFor="contact-company">
                     Company
                   </label>
@@ -329,7 +420,22 @@ function Contact() {
                     id="contact-company"
                     type="text"
                     name="company"
-                    placeholder="Company name"
+                    placeholder="Your company"
+                  />
+
+                </div>
+
+                <div className="contact-field">
+
+                  <label htmlFor="contact-phone">
+                    Phone
+                  </label>
+
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    placeholder="10-digit mobile number"
                   />
 
                 </div>
@@ -340,12 +446,12 @@ function Contact() {
               <div className="contact-field">
 
                 <label htmlFor="contact-subject">
-                  Area of Interest
+                  Service interested in
                 </label>
 
                 <select
                   id="contact-subject"
-                  name="subject"
+                  name="service"
                   defaultValue=""
                   required
                 >
@@ -354,7 +460,7 @@ function Contact() {
                     value=""
                     disabled
                   >
-                    Select an area
+                    Select a service
                   </option>
 
                   <option value="intellectual-property">
@@ -389,14 +495,14 @@ function Contact() {
               <div className="contact-field">
 
                 <label htmlFor="contact-message">
-                  Message
+                  Message *
                 </label>
 
                 <textarea
                   id="contact-message"
                   name="message"
                   rows="6"
-                  placeholder="Tell us a little about your requirement..."
+                  placeholder="Tell us about your project or requirements..."
                   required
                 ></textarea>
 
@@ -406,11 +512,22 @@ function Contact() {
               <button
                 type="submit"
                 className="contact-submit"
+                disabled={isSubmitting}
               >
-                SEND MESSAGE
+                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                 <span>→</span>
               </button>
 
+              {submissionMessage && (
+                <p className="contact-form-description" role="status" aria-live="polite">
+                  {submissionMessage}
+                </p>
+              )}
+              {submissionError && (
+                <p className="contact-form-description" role="alert">
+                  {submissionError}
+                </p>
+              )}
             </form>
 
           </div>
@@ -479,7 +596,14 @@ function Contact() {
               <summary>How can I contact your team?<span>+</span></summary>
               <p>
                 Send us a message using the contact form or email
-                {" "}<a href="mailto:gsnnaren@gmail.com">gsnnaren@gmail.com</a>.
+                {" "}
+                <a
+                  href={OUTLOOK_COMPOSE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  gsnnaren@gmail.com
+                </a>.
                 Include a short overview of your enquiry so we can direct it
                 to the right team.
               </p>
@@ -510,67 +634,6 @@ function Contact() {
                 we can understand how best to assist.
               </p>
             </details>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          LOCATIONS
-      ===================================================== */}
-
-      <section className="contact-location">
-
-        <div className="contact-container contact-location-grid">
-
-          <div>
-
-            <span className="contact-eyebrow contact-eyebrow-dark">
-              OUR PRESENCE
-            </span>
-
-            <h2>
-              Connecting Ideas
-              <br />
-              Across Markets
-            </h2>
-
-          </div>
-
-          <div className="contact-location-content">
-
-            <p>
-              Our multidisciplinary approach allows us to work with
-              organizations across industries and markets, combining
-              strategic thinking with practical execution.
-            </p>
-
-            <div className="contact-location-list">
-
-              <div>
-                <span>01</span>
-                <strong>India</strong>
-              </div>
-
-              <div>
-                <span>02</span>
-                <strong>Technology</strong>
-              </div>
-
-              <div>
-                <span>03</span>
-                <strong>Innovation</strong>
-              </div>
-
-              <div>
-                <span>04</span>
-                <strong>Intellectual Property</strong>
-              </div>
-
-            </div>
 
           </div>
 
@@ -720,7 +783,7 @@ function Contact() {
 
           display: flex;
 
-          align-items: center;
+          align-items: flex-start;
 
           overflow: hidden;
 
@@ -918,7 +981,7 @@ function Contact() {
 
         .contact-intro h2,
         .contact-main h2,
-        .contact-location h2 {
+        .contact-details h2 {
 
           margin: 0;
 
@@ -1143,13 +1206,98 @@ function Contact() {
 
           display: grid;
 
-          grid-template-columns: 1fr;
+          grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
 
           gap: clamp(40px, 5vw, 72px);
 
           align-items: start;
 
-          max-width: 920px;
+        }
+
+
+        .contact-details {
+
+          padding: 28px 0;
+
+        }
+
+
+        .contact-details h2 {
+
+          margin: 16px 0 38px;
+
+          color: #101827;
+
+          font-size: clamp(32px, 3vw, 42px);
+
+        }
+
+
+        .contact-detail-item {
+
+          padding: 20px 0;
+
+          border-top: 1px solid var(--contact-line);
+
+        }
+
+
+        .contact-detail-item h3 {
+
+          margin: 0 0 8px;
+
+          color: #202b3b;
+
+          font-size: 16px;
+
+        }
+
+
+        .contact-detail-item a,
+        .contact-detail-item p {
+
+          margin: 0;
+
+          color: var(--contact-muted);
+
+          font-size: 15px;
+
+          line-height: 1.8;
+
+          text-decoration: none;
+
+        }
+
+
+        .contact-detail-item a:hover {
+
+          color: var(--contact-navy);
+
+        }
+
+
+        .contact-detail-item a {
+
+          display: inline-flex;
+
+          align-items: center;
+
+          gap: 10px;
+
+        }
+
+
+        .contact-detail-icon {
+
+          width: 18px;
+
+          height: 18px;
+
+          flex: 0 0 auto;
+
+          color: var(--contact-navy);
+
+          margin-top: 4px;
 
         }
 
@@ -1158,7 +1306,11 @@ function Contact() {
 
           width: 100%;
 
-          text-align: center;
+          padding: 35px;
+
+          border: 1px solid var(--contact-line);
+
+          background: #ffffff;
 
         }
 
@@ -1359,81 +1511,6 @@ function Contact() {
         /* =====================================================
            LOCATION
         ===================================================== */
-
-        .contact-location {
-
-          padding: 100px 0;
-
-          background: #ffffff;
-
-        }
-
-
-        .contact-location-grid {
-
-          display: grid;
-
-          grid-template-columns: 1fr 1fr;
-
-          gap: 80px;
-
-        }
-
-
-        .contact-location-content > p {
-
-          margin: 5px 0 30px;
-
-          color: var(--contact-muted);
-
-          font-size: 15px;
-
-          line-height: 1.85;
-
-        }
-
-
-        .contact-location-list {
-
-          border-top: 1px solid var(--contact-line);
-
-        }
-
-
-        .contact-location-list div {
-
-          display: flex;
-
-          align-items: center;
-
-          gap: 20px;
-
-          padding: 15px 0;
-
-          border-bottom: 1px solid var(--contact-line);
-
-        }
-
-
-        .contact-location-list span {
-
-          color: var(--contact-red);
-
-          font-size: 10px;
-
-          font-weight: 800;
-
-        }
-
-
-        .contact-location-list strong {
-
-          color: #172033;
-
-          font-size: 14px;
-
-        }
-
 
         /* =====================================================
            ENQUIRY PREPARATION
@@ -1806,8 +1883,7 @@ function Contact() {
           }
 
 
-          .contact-intro-grid,
-          .contact-location-grid {
+          .contact-intro-grid {
 
             gap: 50px;
 
@@ -1931,16 +2007,23 @@ function Contact() {
           }
 
 
-          .contact-form-row {
+          .contact-details {
 
-            grid-template-columns: 1fr;
+            padding: 0;
 
           }
 
 
-          .contact-location {
+          .contact-form-wrapper {
 
-            padding: 65px 0;
+            padding: 28px 20px;
+
+          }
+
+
+          .contact-form-row {
+
+            grid-template-columns: 1fr;
 
           }
 
@@ -2009,15 +2092,6 @@ function Contact() {
           }
 
 
-          .contact-location-grid {
-
-            grid-template-columns: 1fr;
-
-            gap: 30px;
-
-          }
-
-
           .contact-final {
 
             margin-bottom: 70px;
@@ -2068,8 +2142,7 @@ function Contact() {
 
 
           .contact-intro h2,
-          .contact-main h2,
-          .contact-location h2 {
+          .contact-main h2 {
 
             font-size: 36px;
 
