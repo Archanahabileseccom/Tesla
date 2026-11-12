@@ -4,14 +4,86 @@ from django.conf import settings
 from rest_framework import generics, permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle
+
+from contact_api.models import ContactEnquiry
 
 from .models import ChatMessage
-from .serializers import ChatMessageSerializer
+from .serializers import ChatMessageSerializer, ContactEnquirySerializer
 
 
 DEFAULT_WHATSAPP_MESSAGE = (
     "Hello Tesla Innovation, I would like to know more about your services."
 )
+
+
+class ContactEnquiryListCreateView(generics.ListCreateAPIView):
+    queryset = ContactEnquiry.objects.all()
+    serializer_class = ContactEnquirySerializer
+    throttle_classes = [AnonRateThrottle]
+
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [permissions.AllowAny()]
+        return [permissions.IsAdminUser()]
+
+    def list(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response({"success": True, "data": serializer.data})
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(
+            {
+                "success": True,
+                "message": "Contact enquiry submitted successfully.",
+                "data": serializer.data,
+            },
+            status=status.HTTP_201_CREATED,
+        )
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class ContactEnquiryDetailView(generics.RetrieveUpdateAPIView):
+    queryset = ContactEnquiry.objects.all()
+    serializer_class = ContactEnquirySerializer
+    permission_classes = [permissions.IsAdminUser]
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_object())
+        return Response({"success": True, "data": serializer.data})
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return Response(
+            {
+                "success": True,
+                "message": "Contact enquiry updated successfully.",
+                "data": response.data,
+            },
+            status=response.status_code,
+        )
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        response = super().partial_update(request, *args, **kwargs)
+        return Response(
+            {
+                "success": True,
+                "message": "Contact enquiry updated successfully.",
+                "data": response.data,
+            },
+            status=response.status_code,
+        )
 
 
 @api_view(["GET", "POST"])
@@ -58,7 +130,7 @@ def whatsapp_link(request):
     )
 
 
-@api_view(["GET"])
+@api_view(["GET","POST"])
 def chat_config(request):
     return Response(
         {

@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from contact_api.serializers import ContactEnquirySerializer
+
 from .models import ChatMessage
 
 

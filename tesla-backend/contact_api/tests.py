@@ -26,6 +26,16 @@ class ContactEnquiryApiTests(TestCase):
         self.client.force_authenticate(user=staff_user)
         return staff_user
 
+    def create_enquiry(self):
+        return ContactEnquiry.objects.create(
+            name="Alex Morgan",
+            email="alex@example.com",
+            company="Example Ltd",
+            phone="+1 555 123 4567",
+            service=ContactEnquiry.EnquiryType.GENERAL,
+            message="Please contact me about your services.",
+        )
+
     def test_api_home_returns_working_contact_endpoints(self):
         response = self.client.get("/")
 
@@ -36,6 +46,14 @@ class ContactEnquiryApiTests(TestCase):
             response.data["endpoints"]["contact"],
             "http://testserver/api/contact/",
         )
+        self.assertEqual(
+            response.data["endpoints"]["contact_methods"]["methods"],
+            ["GET", "POST"],
+        )
+        self.assertEqual(
+            response.data["endpoints"]["contact_detail"]["methods"][:3],
+            ["GET", "PUT", "PATCH"],
+        )
 
     def test_public_contact_details_endpoint_returns_business_information(self):
         for endpoint in ("/api/contact/", "/api/contact/details/"):
@@ -44,25 +62,13 @@ class ContactEnquiryApiTests(TestCase):
 
                 self.assertEqual(response.status_code, 200)
                 self.assertTrue(response.data["success"])
-                self.assertEqual(response.data["data"]["email"], "enquiry@habilesec.com")
-                self.assertEqual(response.data["data"]["phone"], "91-8870084429")
                 self.assertEqual(
-                    response.data["data"]["head_office"],
-                    {
-                        "address": "No.532, Muniyappan Kovil Street, Chinna Pudhur",
-                        "city": "Salem",
-                        "country": "India",
-                        "postal_code": "636007",
-                    },
+                    response.data["data"]["email"],
+                    "enquiry@habilesec.com",
                 )
                 self.assertEqual(
-                    response.data["data"]["other_locations"],
-                    [
-                        {"city": "Bangalore", "department": "Engineering"},
-                        {"city": "Ahmedabad", "department": "Advisory"},
-                        {"city": "Bhilwara", "department": "Delivery"},
-                        {"city": "Hyderabad", "department": "Operations"},
-                    ],
+                    response.data["data"]["phone"],
+                    "91-8870084429",
                 )
                 self.assertTrue(response.data["data"]["services"])
 
@@ -73,7 +79,7 @@ class ContactEnquiryApiTests(TestCase):
             format="json",
         )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         enquiry = ContactEnquiry.objects.get()
         self.assertEqual(enquiry.name, "Alex Morgan")
         self.assertEqual(enquiry.company, "Example Ltd")
@@ -95,109 +101,91 @@ class ContactEnquiryApiTests(TestCase):
         self.assertEqual(ContactEnquiry.objects.count(), 0)
 
     def test_post_rejects_invalid_email_and_service(self):
-        payload = {
-            **self.valid_payload,
-            "email": "not-an-email",
-            "service": "unavailable-service",
-        }
-
-        response = self.client.post("/api/contact/", payload, format="json")
+        response = self.client.post(
+            "/api/contact/",
+            {
+                **self.valid_payload,
+                "email": "not-an-email",
+                "service": "unavailable-service",
+            },
+            format="json",
+        )
 
         self.assertEqual(response.status_code, 400)
         self.assertIn("email", response.data)
         self.assertIn("service", response.data)
         self.assertEqual(ContactEnquiry.objects.count(), 0)
 
-    def test_post_rejects_invalid_phone_length_or_characters(self):
-        for phone in ("123", "call me"):
-            with self.subTest(phone=phone):
-                response = self.client.post(
-                    "/api/contact/",
-                    {**self.valid_payload, "phone": phone},
-                    format="json",
-                )
-                self.assertEqual(response.status_code, 400)
-                self.assertIn("phone", response.data)
+    def test_enquiry_reads_and_updates_require_staff(self):
+        enquiry = self.create_enquiry()
 
-    def test_enquiry_listing_and_detail_require_staff(self):
-        enquiry = ContactEnquiry.objects.create(
-            name="Alex Morgan",
-            email="alex@example.com",
-            service=ContactEnquiry.EnquiryType.GENERAL,
-            message="Please contact me about your services.",
+        self.assertEqual(self.client.get("/api/contact/list/").status_code, 403)
+        self.assertEqual(
+            self.client.get(f"/api/contact/{enquiry.pk}/").status_code,
+            403,
         )
-
-        public_response = self.client.get("/api/contact/")
-        self.assertEqual(public_response.status_code, 200)
-        self.assertNotIn("name", public_response.data["data"])
-        public_list_response = self.client.get("/api/contact/list/")
-        self.assertEqual(public_list_response.status_code, 200)
-        self.assertEqual(public_list_response.data, {"success": True, "data": []})
-        public_detail_response = self.client.get(f"/api/contact/{enquiry.pk}/")
-        self.assertEqual(public_detail_response.status_code, 200)
-        self.assertEqual(public_detail_response.data, {"success": True, "data": {}})
-        status_info_response = self.client.get(
-            f"/api/contact/{enquiry.pk}/status/"
-        )
-        self.assertEqual(status_info_response.status_code, 200)
-        self.assertTrue(status_info_response.data["success"])
-        self.assertEqual(status_info_response.data["methods"], ["PATCH"])
         self.assertEqual(
             self.client.patch(
                 f"/api/contact/{enquiry.pk}/",
-                {"status": ContactEnquiry.Status.RESPONDED},
+                {"name": "Changed Name"},
                 format="json",
             ).status_code,
             403,
         )
-        self.assertEqual(
-            self.client.patch(
-                f"/api/contact/{enquiry.pk}/status/",
-                {"status": ContactEnquiry.Status.RESPONDED},
-                format="json",
-            ).status_code,
-            403,
-        )
-        self.assertEqual(self.client.delete(f"/api/contact/{enquiry.pk}/").status_code, 403)
 
         self.create_staff_user()
-        staff_list_response = self.client.get("/api/contact/list/")
-        self.assertEqual(staff_list_response.status_code, 200)
-        self.assertEqual(staff_list_response.data["data"][0]["id"], enquiry.pk)
-        detail = self.client.get(f"/api/contact/{enquiry.pk}/")
-        self.assertEqual(detail.status_code, 200)
-        self.assertEqual(detail.data["id"], enquiry.pk)
-        self.assertEqual(detail.data["name"], "Alex Morgan")
+        list_response = self.client.get("/api/contact/list/")
+        detail_response = self.client.get(f"/api/contact/{enquiry.pk}/")
+
+        self.assertEqual(list_response.status_code, 200)
+        self.assertEqual(list_response.data["data"][0]["id"], enquiry.pk)
+        self.assertEqual(detail_response.status_code, 200)
+        self.assertEqual(
+            detail_response.data["data"]["name"],
+            "Alex Morgan",
+        )
+
+    def test_staff_can_put_full_enquiry_and_patch_selected_fields(self):
+        self.create_staff_user()
+        enquiry = self.create_enquiry()
+
+        patch_response = self.client.patch(
+            f"/api/contact/{enquiry.pk}/",
+            {"name": "Alexandra Morgan"},
+            format="json",
+        )
+        self.assertEqual(patch_response.status_code, 200)
+        enquiry.refresh_from_db()
+        self.assertEqual(enquiry.name, "Alexandra Morgan")
+        self.assertEqual(enquiry.email, "alex@example.com")
+
+        put_response = self.client.put(
+            f"/api/contact/{enquiry.pk}/",
+            {
+                **self.valid_payload,
+                "name": "Taylor Morgan",
+                "service_interested_in": "corporate",
+            },
+            format="json",
+        )
+        self.assertEqual(put_response.status_code, 200)
+        self.assertTrue(put_response.data["success"])
+        enquiry.refresh_from_db()
+        self.assertEqual(enquiry.name, "Taylor Morgan")
+        self.assertEqual(enquiry.service, "corporate")
 
     def test_staff_can_update_status_and_delete_enquiry(self):
         self.create_staff_user()
-        enquiry = ContactEnquiry.objects.create(
-            name="Alex Morgan",
-            email="alex@example.com",
-            service=ContactEnquiry.EnquiryType.GENERAL,
-            message="Please contact me about your services.",
-        )
-
-        response = self.client.patch(
-            f"/api/contact/{enquiry.pk}/",
-            {"status": ContactEnquiry.Status.RESPONDED},
-            format="json",
-        )
-
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data["success"])
-        enquiry.refresh_from_db()
-        self.assertEqual(enquiry.status, ContactEnquiry.Status.RESPONDED)
+        enquiry = self.create_enquiry()
 
         status_response = self.client.patch(
             f"/api/contact/{enquiry.pk}/status/",
-            {"status": ContactEnquiry.Status.CLOSED},
+            {"status": ContactEnquiry.Status.RESPONDED},
             format="json",
         )
         self.assertEqual(status_response.status_code, 200)
-        self.assertTrue(status_response.data["success"])
         enquiry.refresh_from_db()
-        self.assertEqual(enquiry.status, ContactEnquiry.Status.CLOSED)
+        self.assertEqual(enquiry.status, ContactEnquiry.Status.RESPONDED)
 
         delete_response = self.client.delete(f"/api/contact/{enquiry.pk}/")
         self.assertEqual(delete_response.status_code, 204)

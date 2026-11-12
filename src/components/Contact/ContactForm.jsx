@@ -114,6 +114,7 @@ const ContactForm = () => {
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           company: formData.company.trim(),
+          service_interested_in: "general",
           subject: formData.subject.trim(),
           message: formData.message.trim(),
           source_page: window.location.pathname,
@@ -123,7 +124,7 @@ const ContactForm = () => {
       const data = await response.json();
       if (!response.ok) {
         const fieldErrors = Object.fromEntries(
-          Object.entries(data)
+          Object.entries(data.errors || data)
             .filter(([field]) => field in initialFormData)
             .map(([field, messages]) => [
               field,

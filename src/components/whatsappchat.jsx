@@ -4,69 +4,11 @@ import { QRCodeSVG } from "qrcode.react";
 const businessCardUrl = "http://mikivcard.com/tesla-innovation";
 const defaultMessage =
 	`Hi Tesla Innovation, I'd like to discuss how you can help my organization. Here's my card: ${businessCardUrl}`;
-const apiBaseUrl =
-	import.meta.env.VITE_API_BASE_URL ||
-	(import.meta.env.DEV ? "http://127.0.0.1:8000" : window.location.origin);
+const whatsappUrl =
+	`https://wa.me/918870084429?text=${encodeURIComponent(defaultMessage)}`;
 
 function WhatsAppChat() {
 	const [isQrOpen, setIsQrOpen] = useState(false);
-	const [isOpeningWhatsApp, setIsOpeningWhatsApp] = useState(false);
-	const [whatsappError, setWhatsAppError] = useState("");
-
-	const openWhatsApp = async (event) => {
-		event.preventDefault();
-		if (isOpeningWhatsApp) return;
-
-		const whatsappWindow = window.open("about:blank", "_blank");
-		if (!whatsappWindow) {
-			setWhatsAppError("Allow pop-ups to open WhatsApp.");
-			return;
-		}
-
-		whatsappWindow.opener = null;
-		setIsOpeningWhatsApp(true);
-		setWhatsAppError("");
-
-		try {
-			const response = await fetch(
-				`${apiBaseUrl.replace(/\/+$/, "")}/api/integrations/whatsapp/`,
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ message: defaultMessage }),
-				},
-			);
-			const data = await response.json();
-
-			if (!response.ok) {
-				throw new Error(data.message || `Request failed (${response.status}).`);
-			}
-			if (data.success !== true || typeof data.url !== "string") {
-				throw new Error("The server did not return a WhatsApp link.");
-			}
-
-			const whatsappUrl = new URL(data.url);
-			if (
-				whatsappUrl.protocol !== "https:" ||
-				whatsappUrl.hostname !== "wa.me" ||
-				!/^\/\d+$/.test(whatsappUrl.pathname)
-			) {
-				throw new Error("The server returned an invalid WhatsApp link.");
-			}
-
-			whatsappWindow.location.replace(whatsappUrl.toString());
-		} catch (error) {
-			whatsappWindow.close();
-			console.error("Failed to get the WhatsApp link:", error);
-			setWhatsAppError(
-				error instanceof TypeError
-					? "We couldn't connect to the WhatsApp service. Please try again later."
-					: error.message || "WhatsApp couldn't be opened. Please try again.",
-			);
-		} finally {
-			setIsOpeningWhatsApp(false);
-		}
-	};
 
 	useEffect(() => {
 		if (!isQrOpen) return undefined;
@@ -161,27 +103,9 @@ function WhatsAppChat() {
 					padding: 0;
 					cursor: pointer;
 					isolation: isolate;
+					text-decoration: none;
 					animation: tesla-whatsapp-pulse 2s ease-out infinite;
 					transition: transform 160ms ease, background 160ms ease;
-				}
-
-				.tesla-whatsapp-button:disabled {
-					cursor: wait;
-					opacity: 0.8;
-				}
-
-				.tesla-whatsapp-error {
-					position: fixed;
-					right: 28px;
-					bottom: 102px;
-					z-index: 82;
-					max-width: min(320px, calc(100vw - 40px));
-					padding: 10px 14px;
-					border-radius: 8px;
-					background: #8b1e1e;
-					color: #fff;
-					font: 14px/1.4 "DM Sans", "Segoe UI", sans-serif;
-					box-shadow: 0 5px 16px rgba(20, 50, 35, 0.2);
 				}
 
 				.tesla-whatsapp-label {
@@ -278,12 +202,11 @@ function WhatsAppChat() {
 			>
 				QR
 			</button>
-			<button
+			<a
 				className="tesla-whatsapp-button"
-				type="button"
-				onClick={openWhatsApp}
-				disabled={isOpeningWhatsApp}
-				aria-busy={isOpeningWhatsApp}
+				href={whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
 				aria-label="Chat with Tesla Innovation on WhatsApp"
 				title="Chat with us on WhatsApp"
 			>
@@ -291,12 +214,7 @@ function WhatsAppChat() {
 				<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d="M12.04 2a9.94 9.94 0 0 0-8.52 15.05L2 22l5.08-1.33A9.94 9.94 0 1 0 12.04 2Zm0 18.1a8.14 8.14 0 0 1-4.15-1.13l-.3-.18-3.02.79.81-2.94-.2-.31A8.15 8.15 0 1 1 12.04 20.1Zm4.47-6.1c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.39-.4-.54-.41l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.16 1.5.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z" />
 				</svg>
-			</button>
-			{whatsappError && (
-				<p className="tesla-whatsapp-error" role="alert">
-					{whatsappError}
-				</p>
-			)}
+			</a>
 			{isQrOpen && (
 				<div
 					className="tesla-qr-overlay"

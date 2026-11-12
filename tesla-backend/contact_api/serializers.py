@@ -10,14 +10,24 @@ class ContactEnquirySerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100, trim_whitespace=True)
     email = serializers.EmailField(max_length=254, trim_whitespace=True)
     company = serializers.CharField(
-        max_length=150, required=False, allow_blank=True, trim_whitespace=True
+        max_length=150,
+        required=False,
+        allow_blank=True,
+        trim_whitespace=True,
     )
     phone = serializers.CharField(
-        max_length=25, required=False, allow_blank=True, trim_whitespace=True
+        max_length=25,
+        required=False,
+        allow_blank=True,
+        trim_whitespace=True,
     )
     service = serializers.ChoiceField(
         choices=ContactEnquiry.EnquiryType.choices,
         default=ContactEnquiry.EnquiryType.GENERAL,
+    )
+    service_interested_in = serializers.CharField(
+        source="service",
+        read_only=True,
     )
     message = serializers.CharField(max_length=3000, trim_whitespace=True)
 
@@ -30,6 +40,7 @@ class ContactEnquirySerializer(serializers.ModelSerializer):
             "company",
             "phone",
             "service",
+            "service_interested_in",
             "message",
             "subject",
             "status",
@@ -52,16 +63,16 @@ class ContactEnquirySerializer(serializers.ModelSerializer):
             ("full_name", "name"),
             ("company_name", "company"),
             ("enquiry_type", "service"),
+            ("service_interested_in", "service"),
         )
         for alias, field_name in aliases:
             if alias in data:
-                alias_value = data[alias]
+                alias_value = data.pop(alias)
                 if field_name in data and data[field_name] != alias_value:
                     raise serializers.ValidationError(
                         {alias: f"Provide either {alias} or {field_name}, not both."}
                     )
                 data[field_name] = alias_value
-                del data[alias]
         return super().to_internal_value(data)
 
     def validate_name(self, value):

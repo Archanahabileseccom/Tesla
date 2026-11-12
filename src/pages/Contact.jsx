@@ -36,7 +36,7 @@ function Contact() {
       const data = await response.json();
 
       if (!response.ok) {
-        const details = Object.entries(data)
+        const details = Object.entries(data.errors || data)
           .map(([field, errors]) => {
             const messages = Array.isArray(errors) ? errors.join(" ") : String(errors);
             return `${field}: ${messages}`;
