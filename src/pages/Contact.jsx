@@ -22,6 +22,24 @@ function Contact() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+    const composeUrl = new URL(OUTLOOK_COMPOSE_URL);
+    const service = payload.service;
+    composeUrl.searchParams.set("subject", `Website enquiry - ${service}`);
+    composeUrl.searchParams.set(
+      "body",
+      [
+        `Name: ${payload.name}`,
+        `Email: ${payload.email}`,
+        `Company: ${payload.company || "Not provided"}`,
+        `Phone: ${payload.phone || "Not provided"}`,
+        `Service interested in: ${service}`,
+        "",
+        "Message:",
+        payload.message,
+      ].join("\n"),
+    );
+
+    window.open(composeUrl.toString(), "_blank", "noopener,noreferrer");
 
     setIsSubmitting(true);
     setSubmissionMessage("");
@@ -49,7 +67,9 @@ function Contact() {
         throw new Error("The server did not confirm your enquiry.");
       }
 
-      setSubmissionMessage(data.message || "Your enquiry has been submitted successfully.");
+      setSubmissionMessage(
+        "Your enquiry was saved. Review the Outlook draft and select Send to email gsnnaren@gmail.com.",
+      );
       form.reset();
     } catch (error) {
       console.error("Failed to submit contact enquiry:", error);

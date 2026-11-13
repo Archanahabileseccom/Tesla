@@ -9,9 +9,9 @@ from pymongo import MongoClient
 BACKEND_DIR = Path(__file__).resolve().parent
 load_dotenv(BACKEND_DIR / ".env")
 
-MONGODB_URI = os.getenv("mongodb+srv://archanaaiswarya76_db_user:Archu@0123@cluster0.tb5sxht.mongodb.net/tesla?retrywrites=true&w=majority")
+MONGODB_URI = os.getenv("MONGODB_URI")
 if not MONGODB_URI:
-    raise ValueError("Set MONGODB_URI in the backend .env file.")
+    raise ValueError("MONGODB_URI is not set")
 
 MONGODB_NAME = os.getenv("MONGODB_NAME", "Tesla").strip()
 if not MONGODB_NAME:

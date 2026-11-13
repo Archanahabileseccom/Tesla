@@ -99,6 +99,18 @@
 	justify-content: flex-end;
 }
 
+.tesla-chat-content {
+	max-width: min(410px, 83%);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.tesla-chat-row-visitor .tesla-chat-content {
+	align-items: flex-end;
+}
+
 .tesla-chat-avatar {
 	width: 42px;
 	height: 42px;
@@ -112,7 +124,7 @@
 }
 
 .tesla-chat-bubble {
-	max-width: min(410px, 83%);
+	max-width: 100%;
 	padding: 16px 20px;
 	border: 1px solid #dbe3f2;
 	border-radius: 23px;
@@ -123,6 +135,22 @@
 	line-height: 1.55;
 	white-space: pre-wrap;
 	word-break: break-word;
+}
+
+.tesla-chat-page-link {
+	padding: 0 4px;
+	color: #1747df;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.tesla-chat-page-link:focus-visible {
+	border-radius: 3px;
+	outline: 2px solid #1747df;
+	outline-offset: 3px;
 }
 
 .tesla-chat-row-visitor .tesla-chat-bubble {

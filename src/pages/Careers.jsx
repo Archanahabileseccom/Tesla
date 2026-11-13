@@ -135,9 +135,12 @@ const initialFormData = {
   resume: null,
 };
 
+const APPLICATION_EMAIL = "gsnnaren@gmail.com";
+
 function Careers() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [formData, setFormData] = useState(initialFormData);
+  const [applicationComposeUrl, setApplicationComposeUrl] = useState("");
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({
@@ -167,6 +170,7 @@ function Careers() {
       ...previous,
       [name]: files ? files[0] : value,
     }));
+    setApplicationComposeUrl("");
   };
 
   const handleApplyClick = () => {
@@ -176,15 +180,38 @@ function Careers() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    window.alert("Application submitted successfully!");
+    const composeUrl = new URL(
+      "https://outlook.office.com/mail/deeplink/compose",
+    );
+    composeUrl.searchParams.set("to", APPLICATION_EMAIL);
+    composeUrl.searchParams.set(
+      "subject",
+      `Job application - ${formData.position}`,
+    );
+    composeUrl.searchParams.set(
+      "body",
+      [
+        `Name: ${formData.name}`,
+        `Email: ${formData.email}`,
+        `Phone: ${formData.phone}`,
+        `Position: ${formData.position}`,
+        `Experience: ${formData.experience}`,
+        "",
+        "Message:",
+        formData.message,
+        ...(formData.resume
+          ? [
+              "",
+              `Resume selected: ${formData.resume.name}`,
+              "Please attach this file to the email before sending.",
+            ]
+          : []),
+      ].join("\n"),
+    );
 
-    setFormData(initialFormData);
-
-    const resumeInput = document.getElementById("resume");
-
-    if (resumeInput) {
-      resumeInput.value = "";
-    }
+    const url = composeUrl.toString();
+    window.open(url, "_blank", "noopener,noreferrer");
+    setApplicationComposeUrl(url);
   };
 
   return (
@@ -816,6 +843,21 @@ function Careers() {
               SUBMIT APPLICATION
               <span>→</span>
             </button>
+
+            {applicationComposeUrl && (
+              <p className="careers-application-status" role="status">
+                An Outlook draft is ready. Review it, attach your resume if
+                needed, and select Send.{" "}
+                <a
+                  href={applicationComposeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open the draft
+                </a>
+                .
+              </p>
+            )}
 
           </form>
 
@@ -1927,6 +1969,17 @@ function Careers() {
 
         .careers-submit {
           margin-top: 20px;
+        }
+
+        .careers-application-status {
+          margin-top: 16px;
+          color: #ffffff;
+          font-size: 14px;
+        }
+
+        .careers-application-status a {
+          color: #ffffff;
+          text-decoration: underline;
         }
 
         /* =====================================================
