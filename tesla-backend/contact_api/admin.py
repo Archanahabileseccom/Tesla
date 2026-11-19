@@ -9,7 +9,9 @@ class ContactEnquiryAdmin(admin.ModelAdmin):
         "name",
         "email",
         "company",
+        "phone",
         "service",
+        "subject",
         "status",
         "created_at",
     )

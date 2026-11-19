@@ -29,10 +29,16 @@ class IntegrationEndpointTests(TestCase):
 
     def test_chat_get_is_available_to_staff(self):
         ChatMessage.objects.create(name="Alex", message="Staff-only message")
-        self.assertEqual(
-            self.client.get("/api/integrations/chat-messages/").status_code,
-            200,
+        admin = get_user_model().objects.create_user(
+            username="integration-chat-admin",
+            password="test-password",
+            is_staff=True,
         )
+        self.client.force_authenticate(user=admin)
+        response = self.client.get("/api/integrations/chat-messages/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["data"][0]["message"], "Staff-only message")
 
     def test_chat_messages_list_returns_empty_data_without_authentication(self):
         ChatMessage.objects.create(name="Alex", message="Private enquiry")
@@ -45,7 +51,7 @@ class IntegrationEndpointTests(TestCase):
         ChatMessage.objects.create(name="Alex", message="Staff-only message")
         admin = get_user_model().objects.create_user(
             username="integration-list-admin",
-            ******,
+            password="test-password",
             is_staff=True,
         )
         self.client.force_authenticate(user=admin)
@@ -54,20 +60,9 @@ class IntegrationEndpointTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data["data"][0]["message"], "Staff-only message")
 
-        admin = get_user_model().objects.create_user(
-            username="integration-admin",
-            password="test-password",
-            is_staff=True,
-        )
-        self.client.force_authenticate(user=admin)
-        self.assertEqual(
-            self.client.get("/api/integrations/chat-messages/").status_code,
-            200,
-        )
-
     @override_settings(WHATSAPP_NUMBER="15551234567")
     def test_whatsapp_get_and_post_return_links(self):
-        get_response = self.client.get("/api/integations/whatsapp/")
+        get_response = self.client.get("/api/integrations/whatsapp/")
         post_response = self.client.post(
             "/api/integrations/whatsapp/",
             {"message": "Hello there"},

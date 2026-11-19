@@ -23,7 +23,7 @@ class ContactEnquirySerializer(serializers.ModelSerializer):
     )
     service = serializers.ChoiceField(
         choices=ContactEnquiry.EnquiryType.choices,
-        default=ContactEnquiry.EnquiryType.GENERAL,
+        required=True,
     )
     service_interested_in = serializers.CharField(
         source="service",

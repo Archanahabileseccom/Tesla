@@ -460,6 +460,15 @@ const Footer = () => {
 
                 <li>
                   <Link
+                    to="/payment"
+                    className="footer-link"
+                  >
+                    Make a payment
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
                     to="/privacy-policy"
                     className="footer-link"
                   >

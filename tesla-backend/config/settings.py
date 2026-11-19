@@ -13,20 +13,32 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4!_$$8_e*_ka6hq*u02u2)h-k81tn!ttuprrr1_og$okga=wy5'
+DEBUG = os.getenv("DEBUG", "True").strip().lower() in {"1", "true", "yes"}
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY") or os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    if not DEBUG:
+        raise ImproperlyConfigured(
+            "Set DJANGO_SECRET_KEY in the backend environment when DEBUG is disabled."
+        )
+    SECRET_KEY = "local-development-only-do-not-use-in-production"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+    if host.strip()
+]
 
 
 # Application definition
@@ -82,7 +94,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.getenv("SQLITE_DATABASE_PATH", str(BASE_DIR / 'db.sqlite3')),
     }
 }
 
@@ -133,19 +145,14 @@ MAILERS = {
         
     },
 }
-import os
-from dotenv import load_dotenv
-
-load_dotenv(BASE_DIR / ".env")
-
 frontend_origins = {
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 }
 if os.getenv("FRONTEND_URL"):
-    frontend_origins.add(os.environ["FRONTEND_URL"].strip())
+    frontend_origins.add(os.environ["FRONTEND_URL"].strip().rstrip("/"))
 frontend_origins.update(
-    origin.strip()
+    origin.strip().rstrip("/")
     for origin in os.getenv("FRONTEND_URLS", "").split(",")
     if origin.strip()
 )

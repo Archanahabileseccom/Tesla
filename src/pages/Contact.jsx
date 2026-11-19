@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-const apiBaseUrl =
-  import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.DEV ? "http://127.0.0.1:8000" : window.location.origin);
 const OUTLOOK_COMPOSE_URL =
-  "https://outlook.office.com/mail/deeplink/compose?to=gsnnaren%40gmail.com";
+  "https://outlook.office.com/mail/deeplink/compose?to=archanaaiswarya76%40gmail.com";
+const CONTACT_EMAIL = "archanaaiswarya76@gmail.com";
+const OUTLOOK_DRAFT_MESSAGE =
+  "Your enquiry is ready in Outlook. Review the email and click Send to submit it.";
 const OFFICE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=No.532%2C%20Muniyappan%20Kovil%20Street%2C%20Chinna%20Pudhur%2C%20Salem%20-%20636007";
 
@@ -14,72 +14,82 @@ function Contact() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submissionMessage, setSubmissionMessage] = React.useState("");
   const [submissionError, setSubmissionError] = React.useState("");
+  const submissionLock = React.useRef(false);
 
-  const handleContactSubmit = async (event) => {
+  const handleContactSubmit = (event) => {
     event.preventDefault();
-    if (isSubmitting) return;
+    if (submissionLock.current) return;
 
     const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+
     const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
-    const composeUrl = new URL(OUTLOOK_COMPOSE_URL);
-    const service = payload.service;
-    composeUrl.searchParams.set("subject", `Website enquiry - ${service}`);
-    composeUrl.searchParams.set(
-      "body",
-      [
-        `Name: ${payload.name}`,
-        `Email: ${payload.email}`,
-        `Company: ${payload.company || "Not provided"}`,
-        `Phone: ${payload.phone || "Not provided"}`,
-        `Service interested in: ${service}`,
-        "",
-        "Message:",
-        payload.message,
-      ].join("\n"),
+    const payload = Object.fromEntries(
+      Array.from(formData.entries(), ([field, value]) => [
+        field,
+        typeof value === "string" ? value.trim() : value,
+      ]),
     );
+    if (payload.name.length < 2 || payload.message.length < 10) {
+      setSubmissionError(
+        "Enter a name with at least 2 characters and a message with at least 10 characters.",
+      );
+      return;
+    }
 
-    window.open(composeUrl.toString(), "_blank", "noopener,noreferrer");
-
+    submissionLock.current = true;
     setIsSubmitting(true);
     setSubmissionMessage("");
     setSubmissionError("");
 
     try {
-      const response = await fetch(`${apiBaseUrl.replace(/\/+$/, "")}/api/contact/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await response.json();
+      const serviceLabels = {
+        "intellectual-property": "Intellectual Property",
+        technology: "Technology & Innovation",
+        corporate: "Corporate Advisory",
+        litigation: "Litigation",
+        transactions: "Transactions",
+        other: "Other",
+      };
+      const body = [
+        "New enquiry from the Tesla Innovation website",
+        "",
+        `Full name: ${payload.name}`,
+        `Email: ${payload.email}`,
+        `Company: ${payload.company || "Not provided"}`,
+        `Phone: ${payload.phone || "Not provided"}`,
+        `Service interested in: ${serviceLabels[payload.service] || payload.service}`,
+        "",
+        "Message:",
+        payload.message,
+      ].join("\n");
+      const composeUrl = new URL("https://outlook.office.com/mail/deeplink/compose");
+      composeUrl.search = new URLSearchParams({
+        to: CONTACT_EMAIL,
+        subject: `Website enquiry from ${payload.name}`,
+        body,
+      }).toString();
 
-      if (!response.ok) {
-        const details = Object.entries(data.errors || data)
-          .map(([field, errors]) => {
-            const messages = Array.isArray(errors) ? errors.join(" ") : String(errors);
-            return `${field}: ${messages}`;
-          })
-          .join(" ");
-        throw new Error(details || data.message || `Request failed (${response.status}).`);
+      const outlookWindow = window.open(composeUrl.toString(), "_blank");
+      if (!outlookWindow) {
+        setSubmissionError(
+          "Outlook could not be opened. Allow pop-ups for this site, then try again.",
+        );
+        return;
       }
 
-      if (data.success !== true) {
-        throw new Error("The server did not confirm your enquiry.");
-      }
-
-      setSubmissionMessage(
-        "Your enquiry was saved. Review the Outlook draft and select Send to email gsnnaren@gmail.com.",
-      );
-      form.reset();
+      outlookWindow.opener = null;
+      setSubmissionMessage(OUTLOOK_DRAFT_MESSAGE);
     } catch (error) {
-      console.error("Failed to submit contact enquiry:", error);
+      console.error("Failed to open Outlook enquiry draft:", error);
       setSubmissionError(
-        error instanceof TypeError
-          ? "We couldn't connect to the contact service. Please try again later."
-          : error.message || "Your enquiry could not be submitted. Please try again.",
+        "The Outlook draft could not be prepared. Please try again or email us directly.",
       );
     } finally {
       setIsSubmitting(false);
+      window.setTimeout(() => {
+        submissionLock.current = false;
+      }, 500);
     }
   };
 
@@ -205,7 +215,7 @@ function Contact() {
                 target="_blank"
                 rel="noreferrer"
               >
-                gsnnaren@gmail.com
+                {CONTACT_EMAIL}
                 <span>↗</span>
               </a>
 
@@ -338,10 +348,10 @@ function Contact() {
                 href={OUTLOOK_COMPOSE_URL}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Write an email to gsnnaren@gmail.com in Outlook"
+                aria-label={`Write an email to ${CONTACT_EMAIL} in Outlook`}
               >
                 <Mail className="contact-detail-icon" aria-hidden="true" />
-                gsnnaren@gmail.com
+                {CONTACT_EMAIL}
               </a>
             </div>
 
@@ -404,6 +414,8 @@ function Contact() {
                     type="text"
                     name="name"
                     placeholder="Your name"
+                    minLength={2}
+                    maxLength={100}
                     required
                   />
 
@@ -420,6 +432,7 @@ function Contact() {
                     type="email"
                     name="email"
                     placeholder="you@company.com"
+                    maxLength={254}
                     required
                   />
 
@@ -441,6 +454,7 @@ function Contact() {
                     type="text"
                     name="company"
                     placeholder="Your company"
+                    maxLength={150}
                   />
 
                 </div>
@@ -456,6 +470,8 @@ function Contact() {
                     type="tel"
                     name="phone"
                     placeholder="10-digit mobile number"
+                    maxLength={25}
+                    pattern="[0-9+().\\s-]{7,25}"
                   />
 
                 </div>
@@ -523,6 +539,8 @@ function Contact() {
                   name="message"
                   rows="6"
                   placeholder="Tell us about your project or requirements..."
+                  minLength={10}
+                  maxLength={3000}
                   required
                 ></textarea>
 
@@ -534,17 +552,17 @@ function Contact() {
                 className="contact-submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                {isSubmitting ? "OPENING OUTLOOK..." : "SEND MESSAGE"}
                 <span>→</span>
               </button>
 
               {submissionMessage && (
-                <p className="contact-form-description" role="status" aria-live="polite">
+                <p className="contact-form-info" role="status" aria-live="polite">
                   {submissionMessage}
                 </p>
               )}
               {submissionError && (
-                <p className="contact-form-description" role="alert">
+                <p className="contact-form-error" role="alert">
                   {submissionError}
                 </p>
               )}
@@ -622,7 +640,7 @@ function Contact() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  gsnnaren@gmail.com
+                  {CONTACT_EMAIL}
                 </a>.
                 Include a short overview of your enquiry so we can direct it
                 to the right team.
@@ -1352,6 +1370,32 @@ function Contact() {
 
           font-size: 15px;
 
+        }
+
+        .contact-form-success,
+        .contact-form-info,
+        .contact-form-error {
+          margin: 14px 0 0;
+          font-size: 15px;
+          font-weight: 600;
+        }
+
+        .contact-form-success {
+          padding: 14px 16px;
+          border: 1px solid #a7f3d0;
+          background: #ecfdf5;
+          color: #166534;
+        }
+
+        .contact-form-info {
+          padding: 14px 16px;
+          border: 1px solid #bfdbfe;
+          background: #eff6ff;
+          color: #1d4ed8;
+        }
+
+        .contact-form-error {
+          color: #b91c1c;
         }
 
 

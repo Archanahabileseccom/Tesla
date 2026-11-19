@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const tabs = [
 	{ id: "about", label: "About" },
+	{ id: "mission-vision", label: "Mission & Vision" },
 	{ id: "approach", label: "Our Approach" },
 	{ id: "industries", label: "Industries" },
 	{ id: "values", label: "Values" },
@@ -117,6 +118,80 @@ const values = [
 	},
 ];
 
+const missionItems = [
+	{
+		number: "01",
+		title: "Democratize Patenting",
+		text: "Make patent filing fast, affordable and jargon-free for startups, students and R&D teams.",
+	},
+	{
+		number: "02",
+		title: "Engineer Strong IP",
+		text: "Combine deep technical insight with legal precision to prepare patent applications for rigorous examination and potential enforcement.",
+	},
+	{
+		number: "03",
+		title: "Build Innovation Moats",
+		text: "Go beyond filing with landscape analysis, freedom-to-operate (FTO) reviews and IP strategy, helping clients compete with insight—not just comply.",
+	},
+	{
+		number: "04",
+		title: "Accelerate Impact",
+		text: "Aim to move from disclosure to filing in days rather than months when the invention information and instructions are ready. In deep tech, speed is a strategic advantage.",
+	},
+];
+
+const innovaValues = [
+	{
+		number: "I",
+		title: "Inventor First",
+		text: "Your technology, goals and language come first. We explain the work clearly and avoid unnecessary legal jargon.",
+		image:
+			"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=85",
+		alt: "Inventor working through a technical prototype",
+	},
+	{
+		number: "N",
+		title: "Novel Thinking",
+		text: "We use first-principles analysis to understand each invention and the problem it is designed to solve.",
+		image:
+			"https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85",
+		alt: "Research equipment used to examine a technical question",
+	},
+	{
+		number: "N",
+		title: "No Delays",
+		text: "We target provisional filing within 48 hours once the disclosure and instructions are complete, and keep clients updated at each step.",
+		image:
+			"https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85",
+		alt: "Calendar and planning materials arranged on a desk",
+	},
+	{
+		number: "O",
+		title: "Ownership",
+		text: "We treat your patent like our own and stay engaged through examination and prosecution toward grant or a clear decision.",
+		image:
+			"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85",
+		alt: "Team reviewing a patent project and next steps",
+	},
+	{
+		number: "V",
+		title: "Value-Driven",
+		text: "We aim for transparent, fixed-fee options where scope allows, explain potential startup rebates and avoid surprise costs.",
+		image:
+			"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85",
+		alt: "Business information organized in a digital dashboard",
+	},
+	{
+		number: "A",
+		title: "All The Way",
+		text: "One partner for the journey from idea assessment and filing through prosecution and licensing.",
+		image:
+			"https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85",
+		alt: "Team collaborating to move an idea forward",
+	},
+];
+
 const heroContent = {
 	about: {
 		title: "Protecting ideas. Enabling innovation.",
@@ -131,6 +206,29 @@ const heroContent = {
 			"We combine careful analysis with clear, business-minded advice to help turn difficult questions into confident next steps.",
 		image:
 			"https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=90",
+	},
+	"mission-vision": {
+		title: "Turning bold ideas into protected, world-class assets.",
+		description:
+			"Our vision and mission put inventors first—combining clear guidance, technical insight and purposeful IP strategy.",
+		heroSlides: [
+			{
+				image:
+					"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90",
+				alt: "Technology components representing an innovative idea",
+			},
+			{
+				image:
+					"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=90",
+				alt: "Team collaborating to develop new ideas",
+			},
+			{
+				image:
+					"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=90",
+				alt: "Business team planning a path for innovation",
+			},
+		],
+		indicator: "02 — 06",
 	},
 	industries: {
 		title: "Knowledge across industries.",
@@ -157,14 +255,18 @@ const heroContent = {
 
 function About() {
 	const [activeTab, setActiveTab] = useState("approach");
+	const [heroSlideIndex, setHeroSlideIndex] = useState(0);
 	const location = useLocation();
 	const navigate = useNavigate();
 	const hero = heroContent[activeTab];
+	const heroSlides = hero.heroSlides || [{ image: hero.image, alt: hero.title }];
+	const activeHeroSlide = heroSlides[heroSlideIndex] || heroSlides[0];
 
 	useEffect(() => {
 		const hash = location.hash.slice(1);
 		const nextTab = tabs.some((tab) => tab.id === hash) ? hash : "approach";
 		setActiveTab(nextTab);
+		setHeroSlideIndex(0);
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [location.hash, location.pathname]);
 
@@ -173,11 +275,15 @@ function About() {
 		navigate(tabId === "about" || tabId === "approach" ? "/about" : `/about#${tabId}`);
 	};
 
+	const changeHeroSlide = (direction) => {
+		setHeroSlideIndex((current) => (current + direction + heroSlides.length) % heroSlides.length);
+	};
+
 	return (
 		<div className="about-page">
 			<section
 				className="about-hero"
-				style={{ backgroundImage: `url("${hero.image}")` }}
+				style={{ backgroundImage: `url("${activeHeroSlide.image}")` }}
 				aria-labelledby="about-hero-title"
 			>
 				<div className="hero-shade" />
@@ -187,8 +293,15 @@ function About() {
 					<p>{hero.description}</p>
 				</div>
 				<span className="hero-index" aria-hidden="true">
-					01 — 05
+					{hero.indicator || "01 — 05"}
 				</span>
+				{heroSlides.length > 1 && (
+					<div className="about-hero-slides" aria-label="Hero image slides">
+						<button type="button" aria-label="Previous hero image" onClick={() => changeHeroSlide(-1)}>←</button>
+						<span>{heroSlideIndex + 1} / {heroSlides.length}</span>
+						<button type="button" aria-label="Next hero image" onClick={() => changeHeroSlide(1)}>→</button>
+					</div>
+				)}
 			</section>
 
 			<main className="about-content">
@@ -283,6 +396,86 @@ function About() {
 										<strong>{tab.label}</strong>
 										<span aria-hidden="true">↗</span>
 									</button>
+								))}
+							</div>
+						</section>
+					</>
+				)}
+
+				{activeTab === "mission-vision" && (
+					<>
+						<section className="section-wrap content-panel mission-vision-panel">
+							<div className="vision-block">
+								<div>
+									<span className="eyebrow">OUR VISION</span>
+									<h2>India’s most trusted IP partner.</h2>
+									<p>
+										To become India’s most trusted IP partner, empowering every
+										innovator to transform bold ideas into protected, world-class
+										assets through first-principles strategy and fearless execution.
+									</p>
+								</div>
+								<aside className="vision-short">
+									<span className="eyebrow">FOR BROCHURES</span>
+									<p>Making every Indian invention globally defensible.</p>
+								</aside>
+							</div>
+
+							<div className="mission-block">
+								<div className="section-heading">
+									<div>
+										<span className="eyebrow">OUR MISSION</span>
+										<h2>Helping innovators protect and build on what they create.</h2>
+									</div>
+									<p>
+										At Tesla Innova IPR, our mission is to make intellectual
+										property practical, purposeful and connected to the business
+										behind every idea.
+									</p>
+								</div>
+								<div className="mission-grid">
+									{missionItems.map((item) => (
+										<article className="mission-item" key={item.number}>
+											<span>{item.number}</span>
+											<h3>{item.title}</h3>
+											<p>{item.text}</p>
+										</article>
+									))}
+								</div>
+								<div className="mission-one-line">
+									<span className="eyebrow">ONE-LINE MISSION</span>
+									<p>To turn breakthrough ideas into “unbreakable” IP, so innovators can build without fear.</p>
+								</div>
+								<p className="mission-note">
+									Filing timelines depend on complete technical information,
+										instructions and jurisdiction. Patent grant and court outcomes
+										are determined by the relevant authorities and cannot be guaranteed.
+										“Unbreakable IP” is an aspirational brand statement; no IP right
+										can eliminate every risk or guarantee an outcome.
+								</p>
+							</div>
+						</section>
+
+						<section className="stats-section section-wrap mission-values-section" aria-label="The INNOVA Way core values">
+							<div className="stats-heading">
+								<div>
+									<span className="eyebrow">CORE VALUES / THE INNOVA WAY</span>
+									<h2>Six principles behind how we work with clients.</h2>
+								</div>
+							</div>
+							<div className="stats-grid mission-values-grid">
+								{innovaValues.map((value, index) => (
+									<article className="stat-card" key={value.title}>
+										<div className="stat-image">
+											<img src={value.image} alt={value.alt} loading="lazy" />
+											<span className="stat-count">{value.number}</span>
+										</div>
+										<div className="stat-copy">
+											<span className="stat-index">0{index + 1}</span>
+											<h3>{value.title}</h3>
+											<p>{value.text}</p>
+										</div>
+									</article>
 								))}
 							</div>
 						</section>
@@ -493,6 +686,9 @@ function About() {
 					font-weight: 600;
 					letter-spacing: 1px;
 				}
+				.about-hero-slides { position: absolute; z-index: 1; bottom: 23px; left: max(32px, calc((100vw - 1180px) / 2)); display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.84); font-size: 12px; font-weight: 700; }
+				.about-hero-slides button { display: grid; width: 35px; height: 35px; place-items: center; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; background: rgba(14,32,31,.18); color: #fff; font-size: 18px; transition: background .2s ease; }
+				.about-hero-slides button:hover, .about-hero-slides button:focus-visible { background: rgba(255,255,255,.2); }
 				.section-wrap { width: min(100% - 64px, 1180px); margin: 0 auto; }
 				.intro-section, .feature-section, .stats-section, .content-panel, .next-section { background: rgba(255,255,255,0.5); }
 				.intro-section, .section-heading {
@@ -585,6 +781,24 @@ function About() {
 				.section-heading { margin-bottom: 54px; }
 				.section-heading h2 { font-size: 40px; }
 				.section-heading > p { max-width: 490px; margin: 0; }
+				.vision-block { display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px; align-items: center; padding: 38px; background: #f7f8f5; }
+				.vision-block h2 { max-width: 620px; margin: 0 0 19px; font-family: Georgia, "Times New Roman", serif; font-size: 38px; font-weight: 400; line-height: 1.2; }
+				.vision-block > div > p { max-width: 690px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
+				.vision-short { padding: 20px 0 20px 27px; border-left: 2px solid var(--accent); }
+				.vision-short .eyebrow { margin-bottom: 12px; }
+				.vision-short p { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 25px; line-height: 1.35; }
+				.mission-block { margin-top: 76px; }
+				.mission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 34px; border-top: 1px solid var(--line); }
+				.mission-item { position: relative; min-height: 180px; padding: 24px 12px 25px 0; border-bottom: 1px solid var(--line); }
+				.mission-item > span { color: var(--accent); font-size: 12px; font-weight: 700; }
+				.mission-item h3 { margin: 10px 0 7px; font-size: 19px; font-weight: 650; }
+				.mission-item p { max-width: 500px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+				.mission-one-line { margin-top: 30px; padding: 23px 26px; border-left: 2px solid var(--accent); background: #f7f8f5; }
+				.mission-one-line .eyebrow { margin-bottom: 8px; }
+				.mission-one-line p { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 23px; line-height: 1.4; }
+				.mission-note { margin: 20px 0 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+				.mission-values-section { border-top: 1px solid var(--line); }
+				.stats-grid.mission-values-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 				.approach-list { border-top: 1px solid var(--line); }
 				.approach-step { display: grid; grid-template-columns: 70px minmax(150px, .7fr) 1.3fr 24px; gap: 22px; align-items: center; padding: 27px 0; border-bottom: 1px solid var(--line); }
 				.approach-number, .industry-photo > span { color: var(--accent); font-size: 13px; font-weight: 700; }
@@ -621,8 +835,10 @@ function About() {
 					.intro-section, .section-heading { gap: 36px; }
 					.feature-section { gap: 42px; }
 					.stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+					.stats-grid.mission-values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 					.stat-image { height: 220px; }
 					.approach-step { grid-template-columns: 48px minmax(130px, .7fr) 1.3fr 20px; gap: 14px; }
+					.vision-block { gap: 32px; padding: 30px; }
 				}
 				@media (max-width: 640px) {
 					.about-page { font-size: 16px; }
@@ -632,6 +848,8 @@ function About() {
 					.hero-content h1 { font-size: 42px; }
 					.hero-content p { font-size: 16px; }
 					.hero-index { right: 20px; bottom: 22px; }
+					.about-hero-slides { left: 20px; bottom: 14px; gap: 8px; }
+					.about-hero-slides button { width: 32px; height: 32px; }
 					.intro-section, .section-heading, .feature-section, .next-section, .values-layout { grid-template-columns: 1fr; gap: 25px; }
 					.intro-section { padding-top: 64px; padding-bottom: 52px; }
 					.intro-section h2, .section-heading h2, .feature-copy h2 { font-size: 32px; }
@@ -642,6 +860,7 @@ function About() {
 					.stats-heading { display: block; margin-bottom: 22px; }
 					.stats-heading h2, .next-section h2 { font-size: 29px; }
 					.stats-grid { gap: 12px; }
+					.stats-grid.mission-values-grid { grid-template-columns: 1fr; }
 					.stat-image { height: 145px; }
 					.stat-count { left: 12px; bottom: 11px; font-size: 32px; }
 					.stat-copy { min-height: 150px; padding: 15px 12px; }
@@ -650,6 +869,15 @@ function About() {
 					.stat-copy p { font-size: 12px; }
 					.next-section, .content-panel { padding-top: 60px; padding-bottom: 68px; }
 					.next-section { gap: 28px; }
+					.vision-block { grid-template-columns: 1fr; gap: 25px; padding: 25px 21px; }
+					.vision-block h2 { font-size: 32px; }
+					.vision-short { padding: 16px 0 8px 18px; }
+					.vision-short p { font-size: 22px; }
+					.mission-block { margin-top: 55px; }
+					.mission-grid { grid-template-columns: 1fr; }
+					.mission-item { min-height: 0; padding: 20px 0; }
+					.mission-one-line { padding: 20px 19px; }
+					.mission-one-line p { font-size: 20px; }
 					.approach-step { grid-template-columns: 36px 1fr 20px; gap: 10px; align-items: start; padding: 20px 0; }
 					.approach-step h3 { font-size: 18px; }
 					.approach-step p { grid-column: 2 / 3; font-size: 14px; }

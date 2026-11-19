@@ -36,53 +36,53 @@ const welcomeMessage = {
 const topicPages = [
 	{
 		page: PAGE_LINKS.contact,
-		keywords: ["contact", "reach", "team", "phone", "email", "address", "location"],
-		text: "Use the Contact page to share an enquiry with Tesla Innovation. The page includes a contact form.",
+		keywords: ["contact", "reach", "team", "phone", "email", "address", "location", "enquiry", "inquiry"],
+		text: "Contact Tesla Innovation using the enquiry form or email archanaaiswarya76@gmail.com.",
 	},
 	{
 		page: PAGE_LINKS.careers,
 		keywords: ["career", "careers", "job", "jobs", "vacancy", "vacancies", "recruitment", "hiring"],
-		text: "The Careers page provides information about opportunities at Tesla Innovation. Please review that page for role and application details.",
+		text: "The Careers page lists roles including IP Associate, Technology Analyst, Legal Research Associate, and Corporate Advisory Associate. Check the page for role requirements and application details.",
 	},
 	{
 		page: PAGE_LINKS.globalIp,
 		keywords: ["global ip", "international ip", "cross-border", "international patent", "international trademark"],
-		text: "The Global IP page describes international IP strategy, cross-border protection, portfolio management, international filing, and global enforcement.",
+		text: "Global IP information covers international strategy, cross-border protection, portfolio management, international filing, and global enforcement, taking local procedures and market plans into account.",
 	},
 	{
 		page: PAGE_LINKS.ip,
-		keywords: ["intellectual property", "patent", "trademark", "copyright", "design protection", "geographical indication", "domain name", "ip"],
-		text: "The Intellectual Property page covers IP strategy and the protection and management of patents, trademarks, designs, copyright, and other IP assets.",
+		keywords: ["intellectual property", "patent", "trademark", "copyright", "design", "geographical indication", "domain name", "portfolio management", "ip commercialization", "ip enforcement", "ip"],
+		text: "The Intellectual Property page covers IP strategy and the protection and management of patents, trademarks, designs, copyright, geographical indications, and domain names. It also covers portfolio management, commercialization, and enforcement.",
 	},
 	{
 		page: PAGE_LINKS.litigation,
 		keywords: ["litigation", "dispute", "arbitration", "mediation", "infringement", "trade secret"],
-		text: "The Litigation page covers dispute strategy, commercial disputes, arbitration, mediation, and IP litigation.",
+		text: "The Litigation page covers dispute strategy, commercial disputes, arbitration, mediation, and IP litigation, including issues involving enforcement, trade secrets, and licensing.",
 	},
 	{
 		page: PAGE_LINKS.corporate,
 		keywords: ["corporate", "governance", "compliance", "risk management", "corporate structure", "business advisory"],
-		text: "The Corporate page covers corporate advisory, governance, compliance, risk management, and corporate structuring.",
+		text: "Corporate information covers advisory, governance, compliance, risk management, operations, and corporate structuring.",
 	},
 	{
 		page: PAGE_LINKS.transactions,
 		keywords: ["transaction", "transactions", "merger", "acquisition", "due diligence", "joint venture", "investment", "contract", "licensing"],
-		text: "The Transactions page covers transaction strategy, mergers and acquisitions, due diligence, joint ventures, investments, and contracts.",
+		text: "The Transactions page covers transaction strategy, mergers and acquisitions, due diligence, joint ventures, investments, and transaction contracts.",
 	},
 	{
 		page: PAGE_LINKS.insights,
 		keywords: ["insight", "insights", "article", "articles", "news", "publication", "publications", "case study", "case studies", "event", "events"],
-		text: "The Insights page includes articles, news, publications, case studies, and events about topics such as intellectual property, technology, and innovation.",
+		text: "The Insights page includes articles, news, publications, case studies, and events covering topics such as intellectual property, technology, and innovation.",
 	},
 	{
 		page: PAGE_LINKS.about,
 		keywords: ["about", "company", "who are you", "tesla innovation", "innovation"],
-		text: "The About page describes Tesla Innovation's practical, business-minded approach to intellectual property, corporate, and innovation-led challenges.",
+		text: "Tesla Innovation describes its work as helping organizations protect ideas, navigate regulation, and make business decisions. The About page explains its practical, business-minded approach to intellectual property, corporate, and innovation-led challenges.",
 	},
 	{
 		page: PAGE_LINKS.home,
 		keywords: ["home", "website", "services", "what do you do"],
-		text: "The Home page introduces Tesla Innovation and links to its company information and service areas.",
+		text: "The Home page introduces Tesla Innovation and provides links to its company information and service areas, including intellectual property, corporate advisory, transactions, and dispute resolution.",
 	},
 ];
 
@@ -102,7 +102,7 @@ function getAssistantReply(message) {
 	);
 
 	if (match) {
-		return { text: match.text, page: match.page };
+		return { heading: match.page.label, text: match.text, page: match.page };
 	}
 
 	const isTeslaRelated = ["tesla", "our company", "our website", "your company", "your services"].some(
@@ -158,6 +158,7 @@ function Floatingchat() {
 							<div className={`tesla-chat-row tesla-chat-row-${message.from}`} key={message.id}>
 								{message.from === "assistant" && <span className="tesla-chat-avatar" aria-hidden="true"><Bot size={19} /></span>}
 								<div className="tesla-chat-content">
+									{message.heading && <strong className="tesla-chat-page-title">{message.heading}</strong>}
 									<p className="tesla-chat-bubble">{message.text}</p>
 									{message.page && (
 										<a

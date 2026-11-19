@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-
-const apiBaseUrl =
-  import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.DEV ? "http://127.0.0.1:8000" : window.location.origin);
+import React, { useRef, useState } from "react";
+import { getContactApiUrl } from "../../api/contact";
 
 const initialFormData = {
   name: "",
   email: "",
   phone: "",
   company: "",
+  service: "",
   subject: "",
   message: "",
 };
+const submissionSuccessMessage =
+  "Thank you for contacting Tesla Innovation Private Limited! Your enquiry has been submitted successfully. Our team will contact you soon.";
+const submissionErrorMessage =
+  "Unable to submit your enquiry right now. Please try again later.";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState(initialFormData);
@@ -19,6 +21,7 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
+  const submissionLock = useRef(false);
 
   // Handle input changes
   const handleChange = (event) => {
@@ -53,6 +56,7 @@ const ContactForm = () => {
     const name = formData.name.trim();
     const email = formData.email.trim();
     const phone = formData.phone.trim();
+    const service = formData.service.trim();
     const subject = formData.subject.trim();
     const message = formData.message.trim();
 
@@ -72,6 +76,10 @@ const ContactForm = () => {
       newErrors.phone = "Please enter a valid phone number.";
     }
 
+    if (!service) {
+      newErrors.service = "Please select a service.";
+    }
+
     if (!subject) {
       newErrors.subject = "Please enter a subject.";
     }
@@ -89,7 +97,7 @@ const ContactForm = () => {
   // Submit form
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (isSubmitting) return;
+    if (submissionLock.current) return;
 
     setSubmitted(false);
     setSubmissionError("");
@@ -102,10 +110,16 @@ const ContactForm = () => {
     }
 
     setErrors({});
+    submissionLock.current = true;
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${apiBaseUrl.replace(/\/+$/, "")}/api/contact/`, {
+      const contactApiUrl = getContactApiUrl();
+      if (!contactApiUrl) {
+        throw new Error(submissionErrorMessage);
+      }
+
+      const response = await fetch(contactApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -114,17 +128,26 @@ const ContactForm = () => {
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           company: formData.company.trim(),
-          service_interested_in: "general",
+          service: formData.service,
           subject: formData.subject.trim(),
           message: formData.message.trim(),
           source_page: window.location.pathname,
         }),
       });
 
-      const data = await response.json();
+      const responseBody = await response.text();
+      let data;
+      try {
+        data = responseBody.trim() ? JSON.parse(responseBody) : null;
+      } catch {
+        throw new Error(submissionErrorMessage);
+      }
+
       if (!response.ok) {
+        const errorData =
+          data && typeof data === "object" && !Array.isArray(data) ? data : {};
         const fieldErrors = Object.fromEntries(
-          Object.entries(data.errors || data)
+          Object.entries(errorData.errors || errorData)
             .filter(([field]) => field in initialFormData)
             .map(([field, messages]) => [
               field,
@@ -135,11 +158,18 @@ const ContactForm = () => {
           setErrors(fieldErrors);
           throw new Error("Please correct the highlighted fields and try again.");
         }
-        throw new Error(data.message || `Request failed (${response.status}).`);
+        throw new Error(submissionErrorMessage);
       }
 
-      if (data.success !== true) {
-        throw new Error("The server did not confirm your enquiry.");
+      if (
+        !data ||
+        typeof data !== "object" ||
+        Array.isArray(data) ||
+        data.success !== true ||
+        !data.data ||
+        data.data.id == null
+      ) {
+        throw new Error(submissionErrorMessage);
       }
 
       setSubmitted(true);
@@ -148,10 +178,13 @@ const ContactForm = () => {
       console.error("Failed to submit contact enquiry:", error);
       setSubmissionError(
         error instanceof TypeError
-          ? "We couldn't connect to the contact service. Please try again later."
-          : error.message || "Your enquiry could not be submitted. Please try again.",
+          ? submissionErrorMessage
+          : error instanceof Error
+            ? error.message
+            : submissionErrorMessage,
       );
     } finally {
+      submissionLock.current = false;
       setIsSubmitting(false);
     }
   };
@@ -174,22 +207,31 @@ const ContactForm = () => {
           className="contact-form-success"
           role="status"
           aria-live="polite"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            margin: "14px 0 0",
+            padding: "14px 16px",
+            border: "1px solid #a7f3d0",
+            backgroundColor: "#ecfdf5",
+            color: "#166534",
+          }}
         >
           <div className="success-icon">✓</div>
 
           <div>
-            <strong>Message sent successfully.</strong>
-
-            <p>
-              Thank you for contacting us. Our team will
-              get back to you shortly.
-            </p>
+            <strong>{submissionSuccessMessage}</strong>
           </div>
         </div>
       )}
 
       {submissionError && (
-        <p className="contact-form-error" role="alert">
+        <p
+          className="contact-form-error"
+          role="alert"
+          style={{ margin: "14px 0 0", color: "#b91c1c" }}
+        >
           {submissionError}
         </p>
       )}
@@ -311,6 +353,43 @@ const ContactForm = () => {
             />
 
           </div>
+
+        </div>
+
+
+        {/* Service */}
+
+        <div className="form-group">
+
+          <label htmlFor="contact-service">
+            Service Interested In <span>*</span>
+          </label>
+
+          <select
+            id="contact-service"
+            name="service"
+            value={formData.service}
+            onChange={handleChange}
+            aria-invalid={Boolean(errors.service)}
+          >
+            <option value="">Select a service</option>
+            <option value="intellectual-property">Intellectual Property</option>
+            <option value="patents">Patents</option>
+            <option value="trademarks">Trademarks</option>
+            <option value="industrial-designs">Industrial Designs</option>
+            <option value="global-ip">Global Intellectual Property</option>
+            <option value="technology">Technology &amp; Innovation</option>
+            <option value="corporate">Corporate Advisory</option>
+            <option value="litigation">Litigation</option>
+            <option value="transactions">Transactions</option>
+            <option value="other">Other</option>
+          </select>
+
+          {errors.service && (
+            <small className="form-error">
+              {errors.service}
+            </small>
+          )}
 
         </div>
 

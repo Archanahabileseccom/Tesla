@@ -1,244 +1,532 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
+import patentServices from "../../Data/patentServices";
+import patentTypes from "../../Data/patentTypes";
 
 const navigation = [
-	{
-		label: "Intellectual Property",
-		path: "/intellectual-property",
-		dropdownTitle: "INTELLECTUAL PROPERTY",
-		items: [
-			{ label: "IP Strategy", path: "/intellectual-property" },
-			{ label: "Patents", path: "/intellectual-property#patents" },
-			{ label: "Trademarks", path: "/intellectual-property#trademarks" },
-			{ label: "Copyright", path: "/intellectual-property#copyright" },
-			{ label: "IP Portfolio", path: "/intellectual-property#portfolio" },
-			{ label: "IP Commercialization", path: "/intellectual-property#commercialization" },
-			{ label: "IP Enforcement", path: "/intellectual-property#enforcement" },
-		],
-	},
-	{
-		label: "Global IP",
-		path: "/global-ip",
-		dropdownTitle: "GLOBAL IP",
-		items: [
-			{ label: "Global IP Strategy", path: "/global-ip" },
-			{ label: "Cross-Border Protection", path: "/global-ip#cross-border" },
-			{ label: "Portfolio Management", path: "/global-ip#portfolio" },
-			{ label: "International Filing", path: "/global-ip#filing" },
-			{ label: "Global Enforcement", path: "/global-ip#enforcement" },
-		],
-	},
-	{
-		label: "Litigation",
-		path: "/litigation",
-		dropdownTitle: "LITIGATION",
-		items: [
-			{ label: "Dispute Strategy", path: "/litigation" },
-			{ label: "Commercial Disputes", path: "/litigation#commercial" },
-			{ label: "Arbitration", path: "/litigation#arbitration" },
-			{ label: "Mediation", path: "/litigation#mediation" },
-			{ label: "IP Litigation", path: "/litigation#ip-litigation" },
-		],
-	},
-	{
-		label: "Corporate",
-		path: "/corporate",
-		dropdownTitle: "CORPORATE",
-		items: [
-			{ label: "Corporate Advisory", path: "/corporate" },
-			{ label: "Governance", path: "/corporate#governance" },
-			{ label: "Compliance", path: "/corporate#compliance" },
-			{ label: "Risk Management", path: "/corporate#risk" },
-			{ label: "Corporate Structuring", path: "/corporate#structuring" },
-		],
-	},
-	{
-		label: "Transactions",
-		path: "/transactions",
-		dropdownTitle: "TRANSACTIONS",
-		items: [
-			{ label: "Transaction Strategy", path: "/transactions" },
-			{ label: "Mergers & Acquisitions", path: "/transactions#mergers" },
-			{ label: "Investments", path: "/transactions#investments" },
-			{ label: "Joint Ventures", path: "/transactions#joint-ventures" },
-			{ label: "Strategic Transactions", path: "/transactions#strategic" },
-		],
-	},
-	{
-		label: "Insights",
-		path: "/insights",
-		dropdownTitle: "EXPLORE INSIGHTS",
-		items: [
-			{ label: "Articles", path: "/insights#articles" },
-			{ label: "News", path: "/insights#news" },
-			{ label: "Publications", path: "/insights#publications" },
-			{ label: "Case Studies", path: "/insights#case-studies" },
-			{ label: "Events", path: "/insights#events" },
-		],
-	},
-	{ label: "Careers", path: "/careers" },
-	{ label: "Contact", path: "/contact" },
-	{
-		label: "About",
-		path: "/about",
-		dropdownTitle: "EXPLORE ABOUT",
-		items: [
-			{ label: "About Us", path: "/about#about" },
-			{ label: "Our Approach", path: "/about#approach" },
-			{ label: "Industries", path: "/about#industries" },
-			{ label: "Values", path: "/about#values" },
-			{ label: "Careers", path: "/about#careers" },
-		],
-	},
+    {
+        label: "Intellectual Property",
+        path: "/intellectual-property",
+        dropdownTitle: "INTELLECTUAL PROPERTY",
+        items: [
+            { label: "IP Strategy", path: "/intellectual-property" },
+            {
+                label: "Patents",
+                path: "/intellectual-property#patents",
+                subItems: patentTypes.map(({ id, label }) => ({
+                    label,
+                    path: `/intellectual-property#${id}`,
+                })),
+            },
+            {
+                label: "Patent Services",
+                path: "/intellectual-property#patent-services",
+                subItems: patentServices.map(({ id, label }) => ({
+                    label,
+                    path: `/intellectual-property#patent-service-${id}`,
+                })),
+            },
+            { label: "IP Services", path: "/intellectual-property#ip-services" },
+            { label: "Trademarks", path: "/intellectual-property#trademarks" },
+            { label: "Copyright", path: "/intellectual-property#copyright" },
+            { label: "IP Portfolio", path: "/intellectual-property#portfolio" },
+            { label: "IP Commercialization", path: "/intellectual-property#commercialization" },
+            { label: "IP Enforcement", path: "/intellectual-property#enforcement" },
+        ],
+    },
+    {
+        label: "Global IP",
+        path: "/global-ip",
+        dropdownTitle: "GLOBAL IP",
+        items: [
+            { label: "Global IP Strategy", path: "/global-ip" },
+            { label: "Cross-Border Protection", path: "/global-ip#cross-border" },
+            { label: "Portfolio Management", path: "/global-ip#portfolio" },
+            { label: "International Filing", path: "/global-ip#filing" },
+            { label: "Global Enforcement", path: "/global-ip#enforcement" },
+        ],
+    },
+    {
+        label: "Litigation",
+        path: "/litigation",
+        dropdownTitle: "LITIGATION",
+        items: [
+            { label: "Dispute Strategy", path: "/litigation" },
+            { label: "Commercial Disputes", path: "/litigation#commercial" },
+            { label: "Arbitration", path: "/litigation#arbitration" },
+            { label: "Mediation", path: "/litigation#mediation" },
+            { label: "IP Litigation", path: "/litigation#ip-litigation" },
+        ],
+    },
+    {
+        label: "Corporate",
+        path: "/corporate",
+        dropdownTitle: "CORPORATE",
+        items: [
+            { label: "Corporate Advisory", path: "/corporate" },
+            { label: "Governance", path: "/corporate#governance" },
+            { label: "Compliance", path: "/corporate#compliance" },
+            { label: "Risk Management", path: "/corporate#risk" },
+            { label: "Corporate Structuring", path: "/corporate#structuring" },
+        ],
+    },
+    {
+        label: "Transactions",
+        path: "/transactions",
+        dropdownTitle: "TRANSACTIONS",
+        items: [
+            { label: "Transaction Strategy", path: "/transactions" },
+            { label: "Mergers & Acquisitions", path: "/transactions#mergers" },
+            { label: "Investments", path: "/transactions#investments" },
+            { label: "Joint Ventures", path: "/transactions#joint-ventures" },
+            { label: "Strategic Transactions", path: "/transactions#strategic" },
+        ],
+    },
+    {
+        label: "Insights",
+        path: "/insights",
+        dropdownTitle: "EXPLORE INSIGHTS",
+        items: [
+            { label: "Articles", path: "/insights#articles" },
+            { label: "News", path: "/insights#news" },
+            { label: "Publications", path: "/insights#publications" },
+            { label: "Case Studies", path: "/insights#case-studies" },
+            { label: "Events", path: "/insights#events" },
+        ],
+    },
+    { label: "Careers", path: "/careers" },
+    { label: "Contact", path: "/contact" },
+    {
+        label: "About",
+        path: "/about",
+        dropdownTitle: "EXPLORE ABOUT",
+        items: [
+            { label: "About Us", path: "/about#about" },
+            { label: "Mission & Vision", path: "/about#mission-vision" },
+            { label: "Our Approach", path: "/about#approach" },
+            { label: "Industries", path: "/about#industries" },
+            { label: "Values", path: "/about#values" },
+            { label: "Careers", path: "/about#careers" },
+        ],
+    },
 ];
 
 function Navbar() {
-	const [activeDropdown, setActiveDropdown] = useState(null);
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [searchOpen, setSearchOpen] = useState(false);
-	const location = useLocation();
+    const [activeDropdown, setActiveDropdown] = useState(null);
+    const [expandedPatentTypes, setExpandedPatentTypes] = useState(false);
+    const [expandedPatentServices, setExpandedPatentServices] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const location = useLocation();
+    const desktopNavRef = useRef(null);
+    const patentMenuHovered = useRef(false);
+    const patentMenuDismissed = useRef(false);
 
-	const toggleDropdown = (name) => {
-		setActiveDropdown((previous) => (previous === name ? null : name));
-	};
+    const toggleDropdown = (name) => {
+        setActiveDropdown((previous) => (previous === name ? null : name));
+    };
 
-	const closeMenu = () => {
-		setActiveDropdown(null);
-		setMobileMenuOpen(false);
-		setSearchOpen(false);
-	};
+    const closeMenu = () => {
+        setActiveDropdown(null);
+        setExpandedPatentTypes(false);
+        setExpandedPatentServices(false);
+        setMobileMenuOpen(false);
+        setSearchOpen(false);
+    };
 
-	useEffect(() => {
-		closeMenu();
-	}, [location.pathname, location.hash]);
+    useEffect(() => {
+        closeMenu();
+    }, [location.pathname, location.hash]);
 
-	return (
-		<header className="site-header">
-			<style>{`
-				.site-header { position: sticky; top: 0; z-index: 50; width: 100%; border-bottom: 1px solid #e7e9ed; background: #fff; color: #202938; font-family: "DM Sans", "Segoe UI", sans-serif; }
-				.site-header *, .site-header *::before, .site-header *::after { box-sizing: border-box; }
-				.navbar-shell { max-width: 1400px; width: calc(100% - 64px); min-height: 82px; margin: 0 auto; padding: 0 14px; display: flex; align-items: center; gap: 24px; }
-				.logo-wrapper { width: 155px; height: 70px; display: flex; align-items: center; justify-content: flex-start; background: transparent; flex-shrink: 0; }
-				.navbar-logo { width: 145px; height: 62px; display: block; object-fit: contain; object-position: center; background: transparent; flex-shrink: 0; }
-				.brand-mark { display: flex; align-items: center; justify-content: flex-start; margin-right: 8px; color: #061d66; text-decoration: none; white-space: nowrap; }
-				.navbar-desktop { display: flex; flex: 1; align-items: center; justify-content: center; gap: clamp(8px, 1.15vw, 20px); }
-				.navbar-group { position: relative; display: flex; align-items: center; gap: 3px; }
-				.navbar-link, .navbar-dropdown-trigger { min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 0 4px; border: 0; background: transparent; color: #252d3a; font: inherit; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; cursor: pointer; transition: color .2s ease; }
-				.navbar-link:hover, .navbar-dropdown-trigger:hover, .navbar-link:focus-visible, .navbar-dropdown-trigger:focus-visible { color: #315ba8; }
-				.navbar-dropdown-trigger { width: 22px; padding: 0; }
-				.navbar-chevron { transition: transform .2s ease; }
-				.navbar-chevron.is-open { transform: rotate(180deg); }
-				.navbar-dropdown { position: absolute; top: calc(100% + 8px); left: -14px; z-index: 20; width: 250px; padding: 18px 0 9px; border: 1px solid #e5e8ee; background: #fff; box-shadow: 0 14px 32px rgba(21, 35, 58, .13); animation: navbar-drop-in .18s ease both; }
-				.navbar-dropdown-title { display: block; padding: 0 20px 11px; color: #315ba8; font-size: 10px; font-weight: 700; letter-spacing: 1.25px; }
-				.navbar-dropdown-link { display: block; padding: 9px 20px; color: #394250; font-size: 13px; line-height: 1.3; text-decoration: none; transition: color .18s ease, background .18s ease; }
-				.navbar-dropdown-link:hover, .navbar-dropdown-link:focus-visible { background: #f5f7fb; color: #315ba8; }
-				.navbar-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 13px; }
-				.navbar-search-wrap { position: relative; }
-				.navbar-search-button, .navbar-mobile-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 0; background: transparent; color: #26313e; cursor: pointer; }
-				.navbar-search-button:hover, .navbar-mobile-toggle:hover { color: #315ba8; }
-				.navbar-search-input { position: absolute; top: calc(100% + 13px); right: 0; width: 230px; height: 42px; padding: 0 12px; border: 1px solid #d9dee8; outline: none; background: #fff; box-shadow: 0 10px 24px rgba(21,35,58,.12); color: #202938; font: inherit; font-size: 14px; }
-				.navbar-search-input:focus { border-color: #315ba8; }
-				.navbar-contact { min-height: 43px; display: inline-flex; align-items: center; justify-content: center; padding: 0 17px; background: #315ba8; color: #fff; font-size: 12px; font-weight: 650; text-decoration: none; white-space: nowrap; transition: background .2s ease; }
-				.navbar-contact:hover { background: #263d73; }
-				.navbar-sticky-contact { display: none; }
-				.navbar-mobile-toggle, .navbar-mobile-panel { display: none; }
-				@keyframes navbar-drop-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-				@media (max-width: 1250px) { .navbar-shell { width: calc(100% - 48px); gap: 14px; } .navbar-desktop { gap: 7px; } .navbar-link, .navbar-dropdown-trigger { font-size: 12px; } .navbar-actions { gap: 7px; } .navbar-contact { padding-inline: 12px; } }
-				@media (max-width: 900px) { .navbar-shell { width: calc(100% - 32px); } }
-				@media (max-width: 500px) { .navbar-shell { width: calc(100% - 24px); } .logo-wrapper { width: 130px; height: 60px; } .navbar-logo { width: 120px; height: 52px; } }
-				@media (max-width: 900px) {
-					.navbar-shell { width: calc(100% - 36px); min-height: 72px; justify-content: space-between; gap: 10px; }
-					.navbar-desktop { display: none; }
-					.navbar-actions { margin-left: auto; }
-					.navbar-actions > .navbar-contact { display: none; }
-					.navbar-sticky-contact { position: fixed; right: 18px; bottom: max(18px, env(safe-area-inset-bottom)); z-index: 51; display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 18px; background: #315ba8; box-shadow: 0 6px 20px rgba(21, 35, 58, .24); color: #fff; font-size: 14px; font-weight: 650; text-decoration: none; white-space: nowrap; }
-					.navbar-sticky-contact:hover, .navbar-sticky-contact:focus-visible { background: #263d73; }
-					.navbar-sticky-contact:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-					.navbar-mobile-toggle { display: grid; }
-					.navbar-mobile-panel { position: absolute; top: 100%; right: 0; left: 0; display: block; max-height: calc(100vh - 72px); overflow-y: auto; border-top: 1px solid #edf0f4; border-bottom: 1px solid #e1e5eb; background: #fff; box-shadow: 0 16px 28px rgba(21,35,58,.12); }
-					.navbar-mobile-inner { width: min(100% - 36px, 720px); margin: 0 auto; padding: 12px 0 20px; }
-					.navbar-mobile-group { border-bottom: 1px solid #edf0f4; }
-					.navbar-mobile-row { min-height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-					.navbar-mobile-link { flex: 1; padding: 13px 0; color: #252d3a; font-size: 15px; font-weight: 600; text-decoration: none; }
-					.navbar-mobile-link:hover { color: #315ba8; }
-					.navbar-mobile-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 0; background: transparent; color: #26313e; cursor: pointer; }
-					.navbar-mobile-submenu { display: grid; padding: 0 0 10px 15px; }
-					.navbar-mobile-submenu a { padding: 9px 10px; color: #505b6a; font-size: 14px; text-decoration: none; }
-					.navbar-mobile-submenu a:hover { color: #315ba8; }
-					.navbar-mobile-contact { display: flex; min-height: 45px; align-items: center; justify-content: center; margin-top: 18px; background: #315ba8; color: #fff; font-size: 14px; font-weight: 650; text-decoration: none; }
-				}
-				@media (max-width: 500px) { .navbar-shell { width: calc(100% - 28px); min-height: 64px; } .navbar-actions { gap: 1px; } .navbar-search-button, .navbar-mobile-toggle { width: 34px; height: 38px; } .navbar-mobile-panel { max-height: calc(100vh - 64px); } .navbar-mobile-inner { width: calc(100% - 28px); } }
-				@media (prefers-reduced-motion: reduce) { .site-header *, .site-header *::before, .site-header *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
-			`}</style>
+    useEffect(() => {
+        const handlePointerDown = (event) => {
+            const desktopNav = desktopNavRef.current;
+            if (desktopNav?.getClientRects().length && !desktopNav.contains(event.target)) {
+                setActiveDropdown(null);
+                setExpandedPatentTypes(false);
+                setExpandedPatentServices(false);
+            }
+        };
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                const expandedTrigger = Array.from(
+                    document.querySelectorAll(".site-header [aria-expanded='true']"),
+                ).find((trigger) => trigger.getClientRects().length);
+                setActiveDropdown(null);
+                setExpandedPatentTypes(false);
+                setExpandedPatentServices(false);
+                expandedTrigger?.focus();
+            }
+        };
 
-			<div className="navbar-shell">
-				<Link to="/" className="brand-mark" aria-label="This Innovation Private Limited home" onClick={closeMenu}>
-					<div className="logo-wrapper">
-						<img
-							src="https://lucid-wave-craft.lovable.app/assets/tesla-logo-Ca0GV0eq.png"
-							alt="Tesla Innovation Private Limited"
-							className="navbar-logo"
-							draggable="false"
-						/>
-					</div>
-				</Link>
+        document.addEventListener("pointerdown", handlePointerDown);
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("pointerdown", handlePointerDown);
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
 
-				<nav className="navbar-desktop" aria-label="Main navigation">
-					{navigation.map((item) => (
-						<div className="navbar-group" key={item.label}>
-							<Link className="navbar-link" to={item.path} onClick={closeMenu}>{item.label}</Link>
-							{item.items && (
-								<>
-									<button className="navbar-dropdown-trigger" type="button" aria-label={`Toggle ${item.label} menu`} aria-expanded={activeDropdown === item.label} onClick={() => toggleDropdown(item.label)}>
-										<ChevronDown size={15} className={`navbar-chevron ${activeDropdown === item.label ? "is-open" : ""}`} />
-									</button>
-									{activeDropdown === item.label && (
-										<div className="navbar-dropdown">
-											<span className="navbar-dropdown-title">{item.dropdownTitle}</span>
-											{item.items.map((subItem) => <Link className="navbar-dropdown-link" key={subItem.path} to={subItem.path} onClick={closeMenu}>{subItem.label}</Link>)}
-										</div>
-									)}
-								</>
-							)}
-						</div>
-					))}
-				</nav>
+    return (
+        <header className="site-header">
+            <style>{`
+                .site-header { position: sticky; top: 0; z-index: 50; width: 100%; border-bottom: 1px solid #e7e9ed; background: #fff; color: #202938; font-family: "DM Sans", "Segoe UI", sans-serif; }
+                .site-header *, .site-header *::before, .site-header *::after { box-sizing: border-box; }
+                .navbar-shell { max-width: 1400px; width: calc(100% - 64px); min-height: 82px; margin: 0 auto; padding: 0 14px; display: flex; align-items: center; gap: 24px; }
+                .logo-wrapper { width: 155px; height: 70px; display: flex; align-items: center; justify-content: flex-start; background: transparent; flex-shrink: 0; }
+                .navbar-logo { width: 145px; height: 62px; display: block; object-fit: contain; object-position: center; background: transparent; flex-shrink: 0; }
+                .brand-mark { display: flex; align-items: center; justify-content: flex-start; margin-right: 8px; color: #061d66; text-decoration: none; white-space: nowrap; }
+                .navbar-desktop { display: flex; flex: 1; align-items: center; justify-content: center; gap: clamp(8px, 1.15vw, 20px); }
+                .navbar-group { position: relative; display: flex; align-items: center; gap: 3px; }
+                .navbar-link, .navbar-dropdown-trigger { min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 0 4px; border: 0; background: transparent; color: #252d3a; font: inherit; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; cursor: pointer; transition: color .2s ease; }
+                .navbar-link:hover, .navbar-dropdown-trigger:hover, .navbar-link:focus-visible, .navbar-dropdown-trigger:focus-visible { color: #315ba8; }
+                .navbar-dropdown-trigger { width: 22px; padding: 0; }
+                .navbar-chevron { transition: transform .2s ease; }
+                .navbar-chevron.is-open { transform: rotate(180deg); }
+                .navbar-dropdown { position: absolute; top: calc(100% + 8px); left: -14px; z-index: 20; width: 250px; padding: 18px 0 9px; border: 1px solid #e5e8ee; background: #fff; box-shadow: 0 14px 32px rgba(21, 35, 58, .13); animation: navbar-drop-in .18s ease both; }
+                .navbar-dropdown-ip { top: 100%; left: 0; width: min(390px, calc(100vw - 32px)); max-height: min(75vh, 650px); overflow-y: auto; padding: 18px 0 9px; animation-name: navbar-ip-menu-in; }
+                .navbar-dropdown-title { display: block; padding: 0 20px 11px; color: #315ba8; font-size: 10px; font-weight: 700; letter-spacing: 1.25px; }
+                .navbar-dropdown-link { display: block; padding: 9px 20px; color: #394250; font-size: 13px; line-height: 1.3; text-decoration: none; transition: color .18s ease, background .18s ease; }
+                .navbar-dropdown-link:hover, .navbar-dropdown-link:focus-visible { background: #f5f7fb; color: #315ba8; }
+                .navbar-dropdown-ip .navbar-dropdown-link { padding: 9px 20px; font-size: 13px; font-weight: 400; }
+                .navbar-dropdown-ip .navbar-dropdown-nested .navbar-dropdown-link { padding: 7px 11px; color: #626d7a; font-size: 13px; font-weight: 400; }
+                .navbar-dropdown-ip .navbar-dropdown-link.is-active { background: #edf4ff; color: #204b91; }
+                .navbar-dropdown-ip .navbar-dropdown-parent-row { display: flex; align-items: center; }
+                .navbar-dropdown-ip .navbar-dropdown-parent-row > .navbar-dropdown-link { flex: 1; }
+                .navbar-dropdown-ip .navbar-dropdown-parent { font-weight: 400; }
+                .navbar-dropdown-ip .navbar-dropdown-parent-normal { font-weight: 400; }
+                .navbar-submenu-toggle { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border: 0; background: transparent; color: #46546a; cursor: pointer; }
+                .navbar-submenu-toggle:hover, .navbar-submenu-toggle:focus-visible { background: #f5f7fb; color: #315ba8; }
+                .navbar-dropdown-parent { font-weight: 700; }
+                .navbar-dropdown-nested { margin: 0 0 8px 20px; padding-left: 9px; border-left: 1px solid #dfe5ef; }
+                .navbar-dropdown-nested .navbar-dropdown-link { padding: 7px 11px; color: #626d7a; font-size: 12px; }
+                .navbar-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 13px; }
+                .navbar-search-wrap { position: relative; }
+                .navbar-search-button, .navbar-mobile-toggle { display: grid; width: 38px; height: 38px; place-items: center; border: 0; background: transparent; color: #26313e; cursor: pointer; }
+                .navbar-search-button:hover, .navbar-mobile-toggle:hover { color: #315ba8; }
+                .navbar-search-input { position: absolute; top: calc(100% + 13px); right: 0; width: 230px; height: 42px; padding: 0 12px; border: 1px solid #d9dee8; outline: none; background: #fff; box-shadow: 0 10px 24px rgba(21,35,58,.12); color: #202938; font: inherit; font-size: 14px; }
+                .navbar-search-input:focus { border-color: #315ba8; }
+                .navbar-contact { min-height: 43px; display: inline-flex; align-items: center; justify-content: center; padding: 0 17px; background: #315ba8; color: #fff; font-size: 12px; font-weight: 650; text-decoration: none; white-space: nowrap; transition: background .2s ease; }
+                .navbar-contact:hover { background: #263d73; }
+                .navbar-sticky-contact { display: none; }
+                .navbar-mobile-toggle, .navbar-mobile-panel { display: none; }
+                @keyframes navbar-drop-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+                @keyframes navbar-ip-menu-in { from { opacity: 0; } to { opacity: 1; } }
+                @media (max-width: 1250px) { .navbar-shell { width: calc(100% - 48px); gap: 14px; } .navbar-desktop { gap: 7px; } .navbar-link, .navbar-dropdown-trigger { font-size: 12px; } .navbar-actions { gap: 7px; } .navbar-contact { padding-inline: 12px; } }
+                @media (max-width: 1450px) and (min-width: 1201px) {
+                    .navbar-shell { width: calc(100% - 32px); gap: 8px; padding: 0 6px; }
+                    .navbar-desktop { gap: 4px; }
+                    .navbar-link, .navbar-dropdown-trigger { font-size: 13px; }
+                    .navbar-dropdown-trigger { width: 18px; }
+                    .navbar-actions { gap: 5px; }
+                    .navbar-search-button { width: 32px; }
+                    .navbar-contact { padding-inline: 10px; font-size: 12px; }
+                }
+                @media (max-width: 900px) { .navbar-shell { width: calc(100% - 32px); } }
+                @media (max-width: 500px) { .navbar-shell { width: calc(100% - 24px); } .logo-wrapper { width: 130px; height: 60px; } .navbar-logo { width: 120px; height: 52px; } }
+                @media (max-width: 1200px) {
+                    .navbar-shell { width: calc(100% - 36px); min-height: 72px; justify-content: space-between; gap: 10px; }
+                    .navbar-desktop { display: none; }
+                    .navbar-actions { margin-left: auto; }
+                    .navbar-actions > .navbar-contact { display: none; }
+                    .navbar-sticky-contact { position: fixed; right: 18px; bottom: max(18px, env(safe-area-inset-bottom)); z-index: 51; display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 18px; background: #315ba8; box-shadow: 0 6px 20px rgba(21, 35, 58, .24); color: #fff; font-size: 14px; font-weight: 650; text-decoration: none; white-space: nowrap; }
+                    .navbar-sticky-contact:hover, .navbar-sticky-contact:focus-visible { background: #263d73; }
+                    .navbar-sticky-contact:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+                    .navbar-mobile-toggle { display: grid; }
+                    .navbar-mobile-panel { position: absolute; top: 100%; right: 0; left: 0; display: block; max-height: calc(100vh - 72px); overflow-y: auto; border-top: 1px solid #edf0f4; border-bottom: 1px solid #e1e5eb; background: #fff; box-shadow: 0 16px 28px rgba(21,35,58,.12); }
+                    .navbar-mobile-inner { width: min(100% - 36px, 720px); margin: 0 auto; padding: 12px 0 20px; }
+                    .navbar-mobile-group { border-bottom: 1px solid #edf0f4; }
+                    .navbar-mobile-group-ip .navbar-mobile-submenu a { font-size: 16px; font-weight: 400; }
+                    .navbar-mobile-group-ip .navbar-mobile-nested-submenu a { font-size: 16px; font-weight: 400; }
+                    .navbar-mobile-row { min-height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+                    .navbar-mobile-link { flex: 1; padding: 13px 0; color: #252d3a; font-size: 15px; font-weight: 600; text-decoration: none; }
+                    .navbar-mobile-link:hover { color: #315ba8; }
+                    .navbar-mobile-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 0; background: transparent; color: #26313e; cursor: pointer; }
+                    .navbar-mobile-submenu { display: grid; padding: 0 0 10px 15px; }
+                    .navbar-mobile-submenu a { padding: 9px 10px; color: #505b6a; font-size: 14px; text-decoration: none; }
+                    .navbar-mobile-submenu a:hover { color: #315ba8; }
+                    .navbar-mobile-subgroup > a { display: block; font-weight: 650; }
+                    .navbar-mobile-subgroup-row { display: flex; align-items: center; }
+                    .navbar-mobile-subgroup-row > a { flex: 1; }
+                    .navbar-mobile-subgroup-row > a.is-patent-parent, .navbar-mobile-subgroup-row > a.is-service-parent { font-weight: 400; }
+                    .navbar-mobile-subgroup-toggle { display: grid; width: 40px; height: 40px; place-items: center; border: 0; background: transparent; color: #46546a; cursor: pointer; }
+                    .navbar-mobile-subgroup-toggle:hover, .navbar-mobile-subgroup-toggle:focus-visible { color: #315ba8; }
+                    .navbar-mobile-nested-submenu { display: grid; margin: 0 0 9px 12px; padding-left: 9px; border-left: 1px solid #dfe5ef; }
+                    .navbar-mobile-nested-submenu a { padding: 7px 10px; color: #697483; font-size: 13px; }
+                    .navbar-mobile-contact { display: flex; min-height: 45px; align-items: center; justify-content: center; margin-top: 18px; background: #315ba8; color: #fff; font-size: 14px; font-weight: 650; text-decoration: none; }
+                }
+                @media (max-width: 500px) { .navbar-shell { width: calc(100% - 28px); min-height: 64px; } .navbar-actions { gap: 1px; } .navbar-search-button, .navbar-mobile-toggle { width: 34px; height: 38px; } .navbar-mobile-panel { max-height: calc(100vh - 64px); } .navbar-mobile-inner { width: calc(100% - 28px); } }
+                @media (min-width: 901px) and (max-width: 1200px) {
+                    .navbar-actions > .navbar-contact { display: inline-flex; }
+                    .navbar-sticky-contact { display: none; }
+                }
+                @media (prefers-reduced-motion: reduce) { .site-header *, .site-header *::before, .site-header *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+            `}</style>
 
-				<div className="navbar-actions">
-					<div className="navbar-search-wrap">
-						<button className="navbar-search-button" type="button" aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} onClick={() => setSearchOpen((open) => !open)}>
-							<Search size={19} />
-						</button>
-						{searchOpen && <input className="navbar-search-input" type="search" aria-label="Search this site" placeholder="Search" autoFocus />}
-					</div>
-					<Link className="navbar-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>
-					<button className="navbar-mobile-toggle" type="button" aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileMenuOpen} onClick={() => { setMobileMenuOpen((open) => !open); setActiveDropdown(null); }}>
-						{mobileMenuOpen ? <X size={23} /> : <Menu size={23} />}
-					</button>
-				</div>
-			</div>
+            <div className="navbar-shell">
+                <Link to="/" className="brand-mark" aria-label="This Innovation Private Limited home" onClick={closeMenu}>
+                    <div className="logo-wrapper">
+                        <img
+                            src="https://lucid-wave-craft.lovable.app/assets/tesla-logo-Ca0GV0eq.png"
+                            alt="Tesla Innovation Private Limited"
+                            className="navbar-logo"
+                            draggable="false"
+                        />
+                    </div>
+                </Link>
 
-			{!mobileMenuOpen && <Link className="navbar-sticky-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>}
+                <nav className="navbar-desktop" aria-label="Main navigation" ref={desktopNavRef}>
+                    {navigation.map((item) => (
+                        <div
+                            className="navbar-group"
+                            key={item.label}
+                            onMouseEnter={item.label === "Intellectual Property" ? () => {
+                                patentMenuHovered.current = true;
+                                if (!patentMenuDismissed.current) {
+                                    setActiveDropdown(item.label);
+                                }
+                            } : undefined}
+                            onMouseLeave={item.label === "Intellectual Property" ? () => {
+                                patentMenuHovered.current = false;
+                                patentMenuDismissed.current = false;
+                                setActiveDropdown(null);
+                                setExpandedPatentTypes(false);
+                                setExpandedPatentServices(false);
+                            } : undefined}
+                        >
+                            <Link className="navbar-link" to={item.path} onClick={closeMenu}>{item.label}</Link>
+                            {item.items && (
+                                <>
+                                    <button
+                                        className="navbar-dropdown-trigger"
+                                        id={item.label === "Intellectual Property" ? "navbar-intellectual-property-trigger" : undefined}
+                                        type="button"
+                                        aria-label={`Toggle ${item.label} menu`}
+                                        aria-controls={item.label === "Intellectual Property" ? "navbar-intellectual-property-menu" : undefined}
+                                        aria-expanded={activeDropdown === item.label}
+                                        onClick={() => {
+                                            if (item.label === "Intellectual Property" && patentMenuHovered.current) {
+                                                const shouldOpen = activeDropdown !== item.label;
+                                                patentMenuDismissed.current = !shouldOpen;
+                                                setActiveDropdown(shouldOpen ? item.label : null);
+                                                if (!shouldOpen) {
+                                                    setExpandedPatentTypes(false);
+                                                    setExpandedPatentServices(false);
+                                                }
+                                            } else {
+                                                toggleDropdown(item.label);
+                                            }
+                                        }}
+                                    >
+                                        <ChevronDown size={15} className={`navbar-chevron ${activeDropdown === item.label ? "is-open" : ""}`} />
+                                    </button>
+                                    {activeDropdown === item.label && (
+                                        <div
+                                            className={`navbar-dropdown ${item.label === "Intellectual Property" ? "navbar-dropdown-ip" : ""}`}
+                                            id={item.label === "Intellectual Property" ? "navbar-intellectual-property-menu" : undefined}
+                                            aria-labelledby={item.label === "Intellectual Property" ? "navbar-intellectual-property-trigger" : undefined}
+                                        >
+                                            <span className="navbar-dropdown-title">{item.dropdownTitle}</span>
+                                            {item.items.map((subItem) => {
+                                                const active = `${location.pathname}${location.hash}` === subItem.path;
+                                                const isPatentCategory =
+                                                    item.label === "Intellectual Property" &&
+                                                    subItem.label === "Patents";
+                                                const isPatentServices =
+                                                    item.label === "Intellectual Property" &&
+                                                    subItem.label === "Patent Services";
+                                                const hasExpandableSubmenu = isPatentCategory || isPatentServices;
+                                                const submenuExpanded = isPatentCategory
+                                                    ? expandedPatentTypes
+                                                    : expandedPatentServices;
+                                                return (
+                                                    <div
+                                                        key={subItem.path}
+                                                    >
+                                                        {hasExpandableSubmenu ? (
+                                                            <div className="navbar-dropdown-parent-row">
+                                                                <Link
+                                                                    className={`navbar-dropdown-link ${isPatentCategory ? "navbar-dropdown-parent" : "navbar-dropdown-parent-normal"}${active ? " is-active" : ""}`}
+                                                                    to={subItem.path}
+                                                                    onClick={closeMenu}
+                                                                    aria-current={active ? "location" : undefined}
+                                                                >
+                                                                    {subItem.label}
+                                                                </Link>
+                                                                <button
+                                                                    className="navbar-submenu-toggle"
+                                                                    type="button"
+                                                                    aria-label={`${submenuExpanded ? "Hide" : "Show"} ${subItem.label}`}
+                                                                    aria-expanded={submenuExpanded}
+                                                                    aria-controls={isPatentCategory ? "navbar-patent-types-submenu" : "navbar-patent-services-submenu"}
+                                                                    onClick={() => {
+                                                                        const setExpanded = isPatentCategory
+                                                                            ? setExpandedPatentTypes
+                                                                            : setExpandedPatentServices;
+                                                                        setExpanded((expanded) => !expanded);
+                                                                    }}
+                                                                >
+                                                                    <ChevronDown
+                                                                        size={16}
+                                                                        className={`navbar-chevron ${submenuExpanded ? "is-open" : ""}`}
+                                                                    />
+                                                                </button>
+                                                            </div>
+                                                        ) : (
+                                                            <Link
+                                                                className={`navbar-dropdown-link ${subItem.subItems ? "navbar-dropdown-parent" : ""}${active ? " is-active" : ""}`}
+                                                                to={subItem.path}
+                                                                onClick={closeMenu}
+                                                                aria-current={active ? "location" : undefined}
+                                                            >
+                                                                {subItem.label}
+                                                            </Link>
+                                                        )}
+                                                        {subItem.subItems && (!hasExpandableSubmenu || submenuExpanded) && (
+                                                            <div
+                                                                className="navbar-dropdown-nested"
+                                                                id={isPatentCategory
+                                                                    ? "navbar-patent-types-submenu"
+                                                                    : isPatentServices
+                                                                        ? "navbar-patent-services-submenu"
+                                                                        : undefined}
+                                                            >
+                                                                {subItem.subItems.map((nestedItem) => {
+                                                                    const nestedActive = `${location.pathname}${location.hash}` === nestedItem.path;
+                                                                    return (
+                                                                        <Link
+                                                                            className={`navbar-dropdown-link${nestedActive ? " is-active" : ""}`}
+                                                                            key={nestedItem.path}
+                                                                            to={nestedItem.path}
+                                                                            onClick={closeMenu}
+                                                                            aria-current={nestedActive ? "location" : undefined}
+                                                                        >
+                                                                            {nestedItem.label}
+                                                                        </Link>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    ))}
+                </nav>
 
-			{mobileMenuOpen && (
-				<nav className="navbar-mobile-panel" aria-label="Mobile navigation">
-					<div className="navbar-mobile-inner">
-						{navigation.map((item) => (
-							<div className="navbar-mobile-group" key={item.label}>
-								<div className="navbar-mobile-row">
-									<Link className="navbar-mobile-link" to={item.path} onClick={closeMenu}>{item.label}</Link>
-									{item.items && <button className="navbar-mobile-arrow" type="button" aria-label={`Toggle ${item.label} menu`} aria-expanded={activeDropdown === item.label} onClick={() => toggleDropdown(item.label)}><ChevronDown size={19} className={`navbar-chevron ${activeDropdown === item.label ? "is-open" : ""}`} /></button>}
-								</div>
-								{item.items && activeDropdown === item.label && <div className="navbar-mobile-submenu">{item.items.map((subItem) => <Link key={subItem.path} to={subItem.path} onClick={closeMenu}>{subItem.label}</Link>)}</div>}
-							</div>
-						))}
-						<Link className="navbar-mobile-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>
-					</div>
-				</nav>
-			)}
-		</header>
-	);
+                <div className="navbar-actions">
+                    <div className="navbar-search-wrap">
+                        <button className="navbar-search-button" type="button" aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} onClick={() => setSearchOpen((open) => !open)}>
+                            <Search size={19} />
+                        </button>
+                        {searchOpen && <input className="navbar-search-input" type="search" aria-label="Search this site" placeholder="Search" autoFocus />}
+                    </div>
+                    <Link className="navbar-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>
+                    <button className="navbar-mobile-toggle" type="button" aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileMenuOpen} onClick={() => { setMobileMenuOpen((open) => !open); setActiveDropdown(null); }}>
+                        {mobileMenuOpen ? <X size={23} /> : <Menu size={23} />}
+                    </button>
+                </div>
+            </div>
+
+            {!mobileMenuOpen && <Link className="navbar-sticky-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>}
+
+            {mobileMenuOpen && (
+                <nav className="navbar-mobile-panel" aria-label="Mobile navigation">
+                    <div className="navbar-mobile-inner">
+                        {navigation.map((item) => (
+                            <div
+                                className={`navbar-mobile-group${item.label === "Intellectual Property" ? " navbar-mobile-group-ip" : ""}`}
+                                key={item.label}
+                            >
+                                <div className="navbar-mobile-row">
+                                    <Link className="navbar-mobile-link" to={item.path} onClick={closeMenu}>{item.label}</Link>
+                                    {item.items && <button className="navbar-mobile-arrow" type="button" aria-label={`Toggle ${item.label} menu`} aria-expanded={activeDropdown === item.label} onClick={() => {
+                                        const isClosing = activeDropdown === item.label;
+                                        toggleDropdown(item.label);
+                                        if (isClosing) {
+                                            setExpandedPatentTypes(false);
+                                            setExpandedPatentServices(false);
+                                        }
+                                    }}><ChevronDown size={19} className={`navbar-chevron ${activeDropdown === item.label ? "is-open" : ""}`} /></button>}
+                                </div>
+                                {item.items && activeDropdown === item.label && (
+                                    <div className="navbar-mobile-submenu">
+                                        {item.items.map((subItem) => {
+                                            const isPatentCategory =
+                                                item.label === "Intellectual Property" &&
+                                                subItem.label === "Patents";
+                                            const isPatentServices =
+                                                item.label === "Intellectual Property" &&
+                                                subItem.label === "Patent Services";
+                                            const hasExpandableSubmenu = isPatentCategory || isPatentServices;
+                                            const submenuExpanded = isPatentCategory
+                                                ? expandedPatentTypes
+                                                : expandedPatentServices;
+                                            return (
+                                                <div className="navbar-mobile-subgroup" key={subItem.path}>
+                                                    {hasExpandableSubmenu ? (
+                                                        <div className="navbar-mobile-subgroup-row">
+                                                            <Link
+                                                                className={isPatentCategory ? "is-patent-parent" : "is-service-parent"}
+                                                                to={subItem.path}
+                                                                onClick={closeMenu}
+                                                            >
+                                                                {subItem.label}
+                                                            </Link>
+                                                            <button
+                                                                className="navbar-mobile-subgroup-toggle"
+                                                                type="button"
+                                                                aria-label={`${submenuExpanded ? "Hide" : "Show"} ${subItem.label}`}
+                                                                aria-expanded={submenuExpanded}
+                                                                aria-controls={isPatentCategory ? "navbar-mobile-patent-types-submenu" : "navbar-mobile-patent-services-submenu"}
+                                                                onClick={() => {
+                                                                    const setExpanded = isPatentCategory
+                                                                        ? setExpandedPatentTypes
+                                                                        : setExpandedPatentServices;
+                                                                    setExpanded((expanded) => !expanded);
+                                                                }}
+                                                            >
+                                                                <ChevronDown
+                                                                    size={17}
+                                                                    className={`navbar-chevron ${submenuExpanded ? "is-open" : ""}`}
+                                                                />
+                                                            </button>
+                                                        </div>
+                                                    ) : (
+                                                        <Link to={subItem.path} onClick={closeMenu}>{subItem.label}</Link>
+                                                    )}
+                                                    {subItem.subItems && (!hasExpandableSubmenu || submenuExpanded) && (
+                                                        <div
+                                                            className="navbar-mobile-nested-submenu"
+                                                            id={isPatentCategory
+                                                                ? "navbar-mobile-patent-types-submenu"
+                                                                : isPatentServices
+                                                                    ? "navbar-mobile-patent-services-submenu"
+                                                                    : undefined}
+                                                        >
+                                                            {subItem.subItems.map((nestedItem) => (
+                                                                <Link key={nestedItem.path} to={nestedItem.path} onClick={closeMenu}>{nestedItem.label}</Link>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                        <Link className="navbar-mobile-contact" to="/contact" onClick={closeMenu}>Start a conversation</Link>
+                    </div>
+                </nav>
+            )}
+        </header>
+    );
 }
 
 export default Navbar;

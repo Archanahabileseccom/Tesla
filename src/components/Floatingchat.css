@@ -111,6 +111,13 @@
 	align-items: flex-end;
 }
 
+.tesla-chat-page-title {
+	padding: 0 4px;
+	color: #243d79;
+	font-size: 15px;
+	font-weight: 700;
+}
+
 .tesla-chat-avatar {
 	width: 42px;
 	height: 42px;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
+import { payeeName, upiId, upiPaymentLink } from "../Data/paymentDetails";
 
 const businessCardUrl = "http://mikivcard.com/tesla-innovation";
 const defaultMessage =
@@ -84,6 +85,13 @@ function WhatsAppChat() {
 					color: #173d2b;
 					font-size: 14px;
 					overflow-wrap: anywhere;
+				}
+
+				.tesla-qr-payee {
+					margin: 0 0 14px;
+					color: #173d2b;
+					font-size: 14px;
+					line-height: 1.6;
 				}
 
 				.tesla-whatsapp-button {
@@ -196,9 +204,9 @@ function WhatsAppChat() {
 				className="tesla-qr-button"
 				type="button"
 				onClick={() => setIsQrOpen(true)}
-				aria-label="Show Tesla Innovation business card QR code"
+				aria-label="Show UPI payment QR code"
 				aria-expanded={isQrOpen}
-				title="Scan for Tesla Innovation's business card"
+				title="Scan to pay with Google Pay or another UPI app"
 			>
 				QR
 			</button>
@@ -236,23 +244,26 @@ function WhatsAppChat() {
 						>
 							&times;
 						</button>
-						<h2 id="tesla-qr-title">Tesla Innovation</h2>
-						<p>Scan to open our business card.</p>
+						<h2 id="tesla-qr-title">Pay with UPI</h2>
+						<p>Scan with Google Pay or any UPI app.</p>
 						<QRCodeSVG
 							className="tesla-qr-code"
-							value={businessCardUrl}
+							value={upiPaymentLink}
 							size={220}
 							level="H"
 							includeMargin
-							title="Tesla Innovation business card QR code"
+							title={`UPI payment QR code for ${payeeName}`}
 						/>
+						<p className="tesla-qr-payee">
+							<strong>{payeeName}</strong>
+							<br />
+							UPI ID: {upiId}
+						</p>
 						<a
 							className="tesla-qr-link"
-							href={businessCardUrl}
-							target="_blank"
-							rel="noopener noreferrer"
+							href={upiPaymentLink}
 						>
-							{businessCardUrl}
+							Open a UPI app
 						</a>
 					</section>
 				</div>

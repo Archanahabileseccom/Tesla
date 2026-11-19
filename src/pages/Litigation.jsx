@@ -399,7 +399,7 @@ function Litigation() {
         .litigation-content {
           width: min(100% - 64px, 1180px);
           margin: 0 auto;
-          padding: 0 0 96px;
+          padding: 72px 0 96px;
         }
 
         .litigation-overview {
@@ -771,7 +771,7 @@ function Litigation() {
           }
 
           .litigation-content {
-            padding-top: 50px;
+            padding-top: 64px;
           }
 
           .litigation-process-grid {

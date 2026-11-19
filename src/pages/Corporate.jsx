@@ -467,7 +467,7 @@ function Corporate() {
         .corporate-content {
           width: min(100% - 64px, 1180px);
           margin: 0 auto;
-          padding: 0 0 96px;
+          padding: 64px 0 96px;
         }
 
         .corporate-overview {
@@ -891,7 +891,7 @@ function Corporate() {
           }
 
           .corporate-content {
-            padding-top: 52px;
+            padding-top: 56px;
           }
 
           .corporate-stat-image {
@@ -927,6 +927,7 @@ function Corporate() {
 
           .corporate-content {
             width: calc(100% - 40px);
+            padding-top: 40px;
           }
 
           .corporate-overview h2,

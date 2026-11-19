@@ -1,0 +1,141 @@
+.payment-page {
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+  padding: 72px 24px;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(86, 164, 255, 0.12), transparent 32%),
+    #f4f7fc;
+}
+
+.payment-panel {
+  width: min(100%, 560px);
+  padding: 48px;
+  border: 1px solid #e3eaf5;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(8, 30, 75, 0.1);
+}
+
+.payment-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.payment-eyebrow {
+  margin-bottom: 12px;
+  color: #315ba8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.payment-copy h1 {
+  color: #10244c;
+  font-size: clamp(30px, 5vw, 42px);
+  letter-spacing: -1.2px;
+}
+
+.payment-intro {
+  max-width: 380px;
+  margin-top: 12px;
+  color: #5c6880;
+  font-size: 16px;
+}
+
+.payment-qr {
+  display: grid;
+  place-items: center;
+  margin-top: 32px;
+  padding: 16px;
+  border: 1px solid #e5eaf2;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.payment-qr svg {
+  display: block;
+  width: min(256px, 62vw);
+  height: auto;
+}
+
+.payment-scan-hint {
+  margin-top: 16px;
+  color: #5c6880;
+  font-size: 14px;
+}
+
+.payment-recipient,
+.payment-upi-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #edf0f5;
+  text-align: left;
+}
+
+.payment-recipient {
+  margin-top: 20px;
+  border-top: 1px solid #edf0f5;
+}
+
+.payment-recipient strong {
+  color: #17284b;
+  font-size: 15px;
+}
+
+.payment-recipient-label {
+  color: #778198;
+  font-size: 13px;
+}
+
+.payment-upi-row code {
+  color: #17284b;
+  font-family: inherit;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.payment-app-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  background: #0b2b70;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.payment-app-link:hover {
+  transform: translateY(-2px);
+  background: #17449d;
+}
+
+.payment-note {
+  margin-top: 18px;
+  color: #778198;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 520px) {
+  .payment-page {
+    padding: 42px 16px;
+  }
+
+  .payment-panel {
+    padding: 32px 22px;
+    border-radius: 18px;
+  }
+}

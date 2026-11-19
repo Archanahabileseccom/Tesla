@@ -84,6 +84,7 @@ import Careers from "./pages/Careers";
 
 /* Contact Page */
 import Contact from "./pages/Contact";
+import Payment from "./pages/Payment";
 
 
 function App() {
@@ -160,6 +161,12 @@ function App() {
             <Route
               path="/contact"
               element={<Contact />}
+            />
+
+            {/* UPI Payment */}
+            <Route
+              path="/payment"
+              element={<Payment />}
             />
 
             {/* Contact Form */}

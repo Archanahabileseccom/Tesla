@@ -1,3 +1,6 @@
+import logging
+
+from django.db import DatabaseError, transaction
 from rest_framework import generics, permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -8,6 +11,8 @@ from .serializers import (
     ContactEnquirySerializer,
     ContactEnquiryStatusSerializer,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def get_contact_details_data():
@@ -68,12 +73,25 @@ class ContactEnquiryCreateView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        try:
+            with transaction.atomic():
+                enquiry = serializer.save()
+        except DatabaseError:
+            logger.exception("Failed to save contact enquiry.")
+            return Response(
+                {
+                    "success": False,
+                    "message": (
+                        "Unable to submit your enquiry right now. Please try again later."
+                    ),
+                },
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
         return Response(
             {
                 "success": True,
                 "message": "Contact enquiry submitted successfully.",
-                "data": serializer.data,
+                "data": self.get_serializer(enquiry).data,
             },
             status=status.HTTP_201_CREATED,
         )

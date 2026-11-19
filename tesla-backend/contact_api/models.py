@@ -4,9 +4,9 @@ from django.db import models
 class ContactEnquiry(models.Model):
     class Status(models.TextChoices):
         NEW = "new", "New"
-        IN_PROGRESS = "in_progress", "In Progress"
-        RESPONDED = "responded", "Responded"
-        CLOSED = "closed", "Closed"
+        PENDING = "pending", "Pending"
+        CONTACTED = "contacted", "Contacted"
+        COMPLETED = "completed", "Completed"
 
     class EnquiryType(models.TextChoices):
         GENERAL = "general", "General Enquiry"

@@ -1,4 +1,7 @@
+from unittest.mock import patch
+
 from django.contrib.auth import get_user_model
+from django.db import DatabaseError
 from django.test import TestCase
 from rest_framework.test import APIClient
 
@@ -80,12 +83,39 @@ class ContactEnquiryApiTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 201)
+        self.assertEqual(response["Content-Type"], "application/json")
+        self.assertTrue(response.data["success"])
+        self.assertEqual(
+            response.data["message"],
+            "Contact enquiry submitted successfully.",
+        )
         enquiry = ContactEnquiry.objects.get()
         self.assertEqual(enquiry.name, "Alex Morgan")
         self.assertEqual(enquiry.company, "Example Ltd")
         self.assertEqual(enquiry.service, "trademarks")
         self.assertEqual(enquiry.status, ContactEnquiry.Status.NEW)
         self.assertEqual(response.data["data"]["id"], enquiry.pk)
+        self.assertEqual(response.data["data"]["email"], enquiry.email)
+        self.assertTrue(response.data["data"]["created_at"])
+
+    def test_database_failure_returns_error_without_claiming_success(self):
+        with patch(
+            "contact_api.serializers.ContactEnquirySerializer.create",
+            side_effect=DatabaseError("database unavailable"),
+        ):
+            response = self.client.post(
+                "/api/contact/",
+                self.valid_payload,
+                format="json",
+            )
+
+        self.assertEqual(response.status_code, 503)
+        self.assertFalse(response.data["success"])
+        self.assertEqual(
+            response.data["message"],
+            "Unable to submit your enquiry right now. Please try again later.",
+        )
+        self.assertEqual(ContactEnquiry.objects.count(), 0)
 
     def test_post_rejects_missing_required_fields(self):
         response = self.client.post(
@@ -113,6 +143,21 @@ class ContactEnquiryApiTests(TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertIn("email", response.data)
+        self.assertIn("service", response.data)
+        self.assertEqual(ContactEnquiry.objects.count(), 0)
+
+    def test_post_requires_service(self):
+        response = self.client.post(
+            "/api/contact/",
+            {
+                key: value
+                for key, value in self.valid_payload.items()
+                if key != "service"
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, 400)
         self.assertIn("service", response.data)
         self.assertEqual(ContactEnquiry.objects.count(), 0)
 
@@ -159,13 +204,18 @@ class ContactEnquiryApiTests(TestCase):
         self.assertEqual(enquiry.name, "Alexandra Morgan")
         self.assertEqual(enquiry.email, "alex@example.com")
 
+        put_payload = {
+            key: value
+            for key, value in self.valid_payload.items()
+            if key != "service"
+        }
+        put_payload.update(
+            name="Taylor Morgan",
+            service_interested_in="corporate",
+        )
         put_response = self.client.put(
             f"/api/contact/{enquiry.pk}/",
-            {
-                **self.valid_payload,
-                "name": "Taylor Morgan",
-                "service_interested_in": "corporate",
-            },
+            put_payload,
             format="json",
         )
         self.assertEqual(put_response.status_code, 200)
@@ -180,12 +230,12 @@ class ContactEnquiryApiTests(TestCase):
 
         status_response = self.client.patch(
             f"/api/contact/{enquiry.pk}/status/",
-            {"status": ContactEnquiry.Status.RESPONDED},
+            {"status": ContactEnquiry.Status.CONTACTED},
             format="json",
         )
         self.assertEqual(status_response.status_code, 200)
         enquiry.refresh_from_db()
-        self.assertEqual(enquiry.status, ContactEnquiry.Status.RESPONDED)
+        self.assertEqual(enquiry.status, ContactEnquiry.Status.CONTACTED)
 
         delete_response = self.client.delete(f"/api/contact/{enquiry.pk}/")
         self.assertEqual(delete_response.status_code, 204)

@@ -575,12 +575,13 @@ function GlobalIP() {
 				.global-hero-action:hover span { transform: translateY(3px); }
 				.global-hero-note { position: absolute; right: 0; bottom: 30px; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.82); font-size: 10px; font-weight: 700; letter-spacing: 1px; }
 				.global-hero-note i { width: 20px; height: 1px; background: #53d9fa; }
-				.global-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; padding-top: 94px; padding-bottom: 82px; scroll-margin-top: 75px; }
+				.global-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; padding-top: 112px; padding-bottom: 82px; scroll-margin-top: 75px; }
 				.global-intro h2 { max-width: 520px; font-size: 42px; }
 				.global-intro-copy p, .global-section-heading > p, .global-cross-copy p, .global-contact-inner p { margin: 0 0 15px; color: var(--global-muted); font-size: 16px; line-height: 1.8; }
 				.global-intro-copy p:last-child, .global-cross-copy p:last-child { margin-bottom: 0; }
 				.global-overview { padding-top: 82px; padding-bottom: 104px; border-top: 1px solid var(--global-line); scroll-margin-top: 75px; }
 				.global-section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: end; margin-bottom: 31px; }
+				.global-overview .global-section-heading { margin-bottom: 48px; }
 				.global-section-heading h2 { max-width: 560px; font-size: 38px; }
 				.global-section-heading > p { max-width: 490px; margin: 0; }
 				.global-stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 17px; }
@@ -607,7 +608,7 @@ function GlobalIP() {
 				.global-service-copy { padding-top: 18px; }
 				.global-service-copy h3, .global-process-step h3 { margin: 0 0 7px; font-size: 19px; font-weight: 650; line-height: 1.4; }
 				.global-service-copy p { max-width: 550px; }
-				.global-cross-border { display: grid; grid-template-columns: 1fr 1fr; min-height: 450px; scroll-margin-top: 58px; }
+				.global-cross-border { display: grid; grid-template-columns: 1fr 1fr; min-height: 450px; margin-top: 72px; scroll-margin-top: 58px; }
 				.global-added-section { scroll-margin-top: 145px; }
 				.global-cross-image { min-height: 450px; overflow: hidden; background: #dce5e1; }
 				.global-cross-image img { height: 100%; min-height: 450px; transition: transform .8s ease; }
@@ -615,7 +616,7 @@ function GlobalIP() {
 				.global-cross-copy { display: flex; flex-direction: column; justify-content: center; padding: 65px clamp(32px, 7vw, 105px); }
 				.global-cross-copy h2 { margin-bottom: 21px; font-size: 38px; }
 				.global-cross-copy .global-eyebrow { margin-bottom: 14px; }
-				.global-process { padding-top: 88px; padding-bottom: 95px; scroll-margin-top: 70px; }
+				.global-process { padding-top: 104px; padding-bottom: 95px; scroll-margin-top: 70px; }
 				.global-process-list { border-top: 1px solid var(--global-line); }
 				.global-process-step { display: grid; grid-template-columns: 60px minmax(180px, .75fr) 1.25fr 22px; gap: 20px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--global-line); animation: global-rise .5s ease both; }
 				.global-process-step > span:first-child { color: var(--global-green); font-size: 12px; font-weight: 700; }
@@ -658,9 +659,10 @@ function GlobalIP() {
 					.global-hero-note { right: 0; gap: 8px; font-size: 9px; }
 					.global-hero-note i { width: 12px; }
 					.global-intro, .global-section-heading, .global-contact-inner, .global-discover { grid-template-columns: 1fr; gap: 22px; }
-					.global-intro { padding-top: 62px; padding-bottom: 56px; }
+					.global-intro { padding-top: 74px; padding-bottom: 56px; }
 					.global-intro h2, .global-section-heading h2, .global-cross-copy h2, .global-contact-inner h2 { font-size: 32px; }
-					.global-overview, .global-process { padding-top: 60px; padding-bottom: 66px; }
+					.global-overview, .global-process { padding-top: 72px; padding-bottom: 66px; }
+					.global-overview .global-section-heading { margin-bottom: 36px; }
 					.global-stat-grid { gap: 12px; }
 					.global-stat-image { height: 175px; }
 					.global-stat-number { left: 12px; bottom: 10px; font-size: 26px; }
@@ -671,7 +673,7 @@ function GlobalIP() {
 					.global-services { padding: 62px 0 68px; }
 					.global-service-grid { grid-template-columns: 1fr; gap: 24px; }
 					.global-service-image { height: 220px; }
-					.global-cross-border { grid-template-columns: 1fr; }
+					.global-cross-border { grid-template-columns: 1fr; margin-top: 40px; }
 					.global-cross-image, .global-cross-image img { min-height: 270px; height: 270px; }
 					.global-cross-copy { padding: 42px 20px 48px; }
 					.global-process-step { grid-template-columns: 36px 1fr 20px; gap: 10px; align-items: start; padding: 19px 0; }

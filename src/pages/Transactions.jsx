@@ -460,7 +460,7 @@ function Transactions() {
         .transactions-content {
           width: min(100% - 64px, 1180px);
           margin: 0 auto;
-          padding: 0 0 96px;
+          padding: 72px 0 96px;
         }
 
         .transactions-overview {
