@@ -39,7 +39,7 @@ const industries = [
     title: "Healthcare",
     slug: "healthcare",
     description:
-      "Supporting healthcare and life-science organizations with innovation, technology, intellectual property, and regulatory considerations.",
+      "Supporting healthcare and life science organizations with innovation, technology, intellectual property, and regulatory considerations.",
     image: "/images/about/industries.jpg",
     services: [
       "Healthcare Innovation",

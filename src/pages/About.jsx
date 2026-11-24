@@ -48,7 +48,7 @@ const stats = [
 const industries = [
 	{
 		title: "Technology",
-		text: "Support for software, digital products and technology-led businesses protecting and commercializing new ideas.",
+		text: "Support for software, digital products and technology led businesses protecting and commercializing new ideas.",
 		image:
 			"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
 	},
@@ -66,7 +66,7 @@ const industries = [
 	},
 	{
 		title: "Finance and emerging business",
-		text: "Business-minded support for growing companies and organizations operating in regulated environments.",
+		text: "Business minded support for growing companies and organizations operating in regulated environments.",
 		image:
 			"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
 	},
@@ -122,7 +122,7 @@ const missionItems = [
 	{
 		number: "01",
 		title: "Democratize Patenting",
-		text: "Make patent filing fast, affordable and jargon-free for startups, students and R&D teams.",
+		text: "Make patent filing fast, affordable and free of jargon for startups, students and R&D teams.",
 	},
 	{
 		number: "02",
@@ -132,7 +132,7 @@ const missionItems = [
 	{
 		number: "03",
 		title: "Build Innovation Moats",
-		text: "Go beyond filing with landscape analysis, freedom-to-operate (FTO) reviews and IP strategy, helping clients compete with insight—not just comply.",
+		text: "Go beyond filing with landscape analysis, freedom to operate (FTO) reviews and IP strategy, helping clients compete with insight, not just comply.",
 	},
 	{
 		number: "04",
@@ -153,7 +153,7 @@ const innovaValues = [
 	{
 		number: "N",
 		title: "Novel Thinking",
-		text: "We use first-principles analysis to understand each invention and the problem it is designed to solve.",
+		text: "We use analysis based on first principles to understand each invention and the problem it is designed to solve.",
 		image:
 			"https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85",
 		alt: "Research equipment used to examine a technical question",
@@ -176,8 +176,8 @@ const innovaValues = [
 	},
 	{
 		number: "V",
-		title: "Value-Driven",
-		text: "We aim for transparent, fixed-fee options where scope allows, explain potential startup rebates and avoid surprise costs.",
+		title: "Value Driven",
+		text: "We aim for transparent, fixed fee options where scope allows, explain potential startup rebates and avoid surprise costs.",
 		image:
 			"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85",
 		alt: "Business information organized in a digital dashboard",
@@ -203,14 +203,14 @@ const heroContent = {
 	approach: {
 		title: "A practical approach to complex challenges.",
 		description:
-			"We combine careful analysis with clear, business-minded advice to help turn difficult questions into confident next steps.",
+			"We combine careful analysis with clear, business minded advice to help turn difficult questions into confident next steps.",
 		image:
 			"https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=90",
 	},
 	"mission-vision": {
-		title: "Turning bold ideas into protected, world-class assets.",
+		title: "Turning bold ideas into protected, world class assets.",
 		description:
-			"Our vision and mission put inventors first—combining clear guidance, technical insight and purposeful IP strategy.",
+			"Our vision and mission put inventors first, combining clear guidance, technical insight and purposeful IP strategy.",
 		heroSlides: [
 			{
 				image:
@@ -228,7 +228,7 @@ const heroContent = {
 				alt: "Business team planning a path for innovation",
 			},
 		],
-		indicator: "02 — 06",
+		indicator: "02 / 06",
 	},
 	industries: {
 		title: "Knowledge across industries.",
@@ -247,7 +247,7 @@ const heroContent = {
 	careers: {
 		title: "Build your future with us.",
 		description:
-			"Bring your curiosity to a team focused on innovation, thoughtful problem-solving and meaningful work.",
+			"Bring your curiosity to a team focused on innovation, thoughtful problem solving and meaningful work.",
 		image:
 			"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=90",
 	},
@@ -293,7 +293,7 @@ function About() {
 					<p>{hero.description}</p>
 				</div>
 				<span className="hero-index" aria-hidden="true">
-					{hero.indicator || "01 — 05"}
+					{hero.indicator || "01 / 05"}
 				</span>
 				{heroSlides.length > 1 && (
 					<div className="about-hero-slides" aria-label="Hero image slides">
@@ -443,7 +443,7 @@ function About() {
 									))}
 								</div>
 								<div className="mission-one-line">
-									<span className="eyebrow">ONE-LINE MISSION</span>
+									<span className="eyebrow">ONE LINE MISSION</span>
 									<p>To turn breakthrough ideas into “unbreakable” IP, so innovators can build without fear.</p>
 								</div>
 								<p className="mission-note">

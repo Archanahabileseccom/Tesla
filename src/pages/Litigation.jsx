@@ -42,7 +42,7 @@ const heroContent = {
     eyebrow: "IP LITIGATION",
     title: "Protecting innovation, brands, and proprietary value.",
     description:
-      "We help clients respond to infringement, enforcement, trade secret, and licensing disputes while protecting long-term business interests and commercial advantage.",
+      "We help clients respond to infringement, enforcement, trade secret, and licensing disputes while protecting long term business interests and commercial advantage.",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90",
   },
 };
@@ -65,9 +65,9 @@ const litigationStats = [
   {
     number: "12+",
     title: "Markets served",
-    text: "Cross-border perspective for disputes involving multiple jurisdictions and stakeholders.",
+    text: "Cross border perspective for disputes involving multiple jurisdictions and stakeholders.",
     image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=900&q=85",
-    alt: "World map representing cross-border markets",
+    alt: "World map representing cross border markets",
   },
 ];
 
@@ -88,7 +88,7 @@ const processSteps = {
     { number: "01", title: "Frame", text: "Set the issues, claims, procedural path, and legal objectives clearly." },
     { number: "02", title: "Organize", text: "Align evidence, chronology, submissions, and hearing strategy." },
     { number: "03", title: "Present", text: "Support clear advocacy with disciplined preparation and persuasive execution." },
-    { number: "04", title: "Defend", text: "Contribute to enforcement, award considerations, and strategic follow-through." },
+    { number: "04", title: "Defend", text: "Contribute to enforcement, award considerations, and strategic follow through." },
   ],
   mediation: [
     { number: "01", title: "Clarify", text: "Identify interests, risk, and practical outcomes that matter to each party." },
@@ -122,7 +122,7 @@ const tabContent = {
   commercial: {
     introTitle: "Commercial disagreements require careful, commercially aware action.",
     introText:
-      "Commercial disputes can affect contracts, operations, investments, relationships, and decision-making. We help clients evaluate the issues and move toward the most appropriate path forward.",
+      "Commercial disputes can affect contracts, operations, investments, relationships, and decision making. We help clients evaluate the issues and move toward the most appropriate path forward.",
     focusTitle: "Commercial dispute support with business context.",
     focusText:
       "Our advice considers the contractual position, the practical realities of the dispute, and the business consequences of the available options.",
@@ -137,7 +137,7 @@ const tabContent = {
     introTitle: "Arbitration strategy needs structure, preparation, and discipline.",
     introText:
       "Arbitration can offer a structured process for dispute resolution, but it requires careful preparation, a strong understanding of the issues, and a coordinated strategy from the outset.",
-    focusTitle: "Clear preparation for high-stakes process management.",
+    focusTitle: "Clear preparation for high stakes process management.",
     focusText:
       "We help clients shape their position, organize evidence, and present the matter coherently through procedural steps and hearing preparation.",
     bullets: [
@@ -157,7 +157,7 @@ const tabContent = {
     bullets: [
       "Negotiation planning and leverage analysis",
       "Strategic settlement evaluation",
-      "Relationship-sensitive communication",
+      "Communication that accounts for relationships",
       "Resolution without unnecessary escalation",
     ],
   },

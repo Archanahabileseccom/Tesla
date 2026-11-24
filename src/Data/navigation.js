@@ -73,7 +73,7 @@ const navigation = [
         path: "/global-ip#trademarks",
       },
       {
-        label: "Cross-Border Protection",
+        label: "Cross Border Protection",
         path: "/global-ip#cross-border",
       },
     ],

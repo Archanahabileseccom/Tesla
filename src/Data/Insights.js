@@ -8,7 +8,7 @@ const insights = {
       date: "June 18, 2026",
       title: "Building an Effective IP Strategy for Technology Companies",
       description:
-        "Key considerations for organizations developing and protecting technology-driven intellectual property.",
+        "Key considerations for organizations developing and protecting technology driven intellectual property.",
       image: "/images/insights/articles.jpg",
       path: "/insights#articles",
     },
@@ -19,7 +19,7 @@ const insights = {
       date: "May 30, 2026",
       title: "From Innovation to Commercial Value",
       description:
-        "Understanding how organizations can connect innovation with long-term business objectives.",
+        "Understanding how organizations can connect innovation with long term business objectives.",
       image: "/images/insights/articles.jpg",
       path: "/insights#articles",
     },
@@ -115,7 +115,7 @@ const insights = {
       category: "CASE STUDY",
       title: "Technology IP Portfolio Strategy",
       description:
-        "Developing a structured intellectual property approach for a technology-focused organization.",
+        "Developing a structured intellectual property approach for a technology focused organization.",
       image: "/images/insights/case-studies.jpg",
       path: "/insights#case-studies",
     },

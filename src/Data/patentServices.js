@@ -2,10 +2,10 @@ const patentServices = [
 	{
 		id: "patentability-search",
 		label: "Patentability Search",
-		indicator: "01 — 10",
+		indicator: "01 / 10",
 		title: "Understand the prior art before you invest in drafting.",
 		description:
-			"Global searches across patent publications and selected non-patent literature, with a reasoned view of novelty, risks and next steps.",
+			"Global searches across patent publications and selected non patent literature, with a reasoned view of novelty, risks and next steps.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=90",
@@ -25,11 +25,11 @@ const patentServices = [
 			"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Researchers reviewing technical documents and findings",
 		paragraphs: [
-			"The search can cover patent databases across relevant jurisdictions and, where appropriate, scientific journals, conference papers and other non-patent literature. Search scope depends on the technical disclosure, terminology and target markets.",
+			"The search can cover patent databases across relevant jurisdictions and, where appropriate, scientific journals, conference papers and other non patent literature. Search scope depends on the technical disclosure, terminology and target markets.",
 			"The report summarizes relevant references, compares key features and gives a reasoned preliminary novelty opinion with a risk rating. It is an assessment based on the information and search scope available, not a guarantee of patent grant.",
 		],
-		statNumber: "5–7 days",
-		duration: "5–7 days",
+		statNumber: "5 to 7 days",
+		duration: "5 to 7 days",
 		timelineNote: "Indicative turnaround after receiving a clear invention disclosure.",
 		audience: "Inventors, startups and R&D teams deciding whether to proceed to drafting.",
 		deliverable: "Search report, reference list, novelty assessment and risk summary.",
@@ -37,13 +37,13 @@ const patentServices = [
 			"Invention disclosure review",
 			"Global patent database search",
 			"Journal and literature review",
-			"Feature-by-feature comparison",
+			"Feature by feature comparison",
 			"Novelty opinion",
 			"Risk rating and next steps",
 		],
 		cards: [
 			{ number: "01", title: "Scope the invention", text: "Clarify the technical problem, inventive features, terminology and relevant markets before searching.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=85", alt: "Engineer examining a technical prototype" },
-			{ number: "02", title: "Search prior art", text: "Review patent publications and relevant non-patent literature within the agreed search scope.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85", alt: "Scientific instruments in a research laboratory" },
+			{ number: "02", title: "Search prior art", text: "Review patent publications and relevant non patent literature within the agreed search scope.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85", alt: "Scientific instruments in a research laboratory" },
 			{ number: "03", title: "Assess novelty", text: "Compare the invention's disclosed features with the most relevant references and identify distinctions.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team discussing research findings and documents" },
 			{ number: "04", title: "Recommend next steps", text: "Present a reasoned risk view and practical options for refinement, drafting or further review.", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=85", alt: "Assessment report prepared for review" },
 		],
@@ -51,7 +51,7 @@ const patentServices = [
 	{
 		id: "provisional-filing",
 		label: "Provisional Filing",
-		indicator: "02 — 10",
+		indicator: "02 / 10",
 		title: "Secure an early filing date while development continues.",
 		description:
 			"Prepare and file a provisional application based on a sufficiently detailed invention disclosure, with a clear plan for the complete specification.",
@@ -68,10 +68,10 @@ const patentServices = [
 		sectionLabel: "PROVISIONAL FILING",
 		heading: "Move quickly without losing sight of disclosure quality.",
 		intro:
-			"A provisional filing may establish an early priority date for subject matter adequately described in the application. It is not examined as a standalone application and must be followed by a complete specification within the applicable 12-month period to pursue the claimed priority.",
+			"A provisional filing may establish an early priority date for subject matter adequately described in the application. It is not examined as a standalone application and must be followed by a complete specification within the applicable 12 month period to pursue the claimed priority.",
 		featureTitle: "An early filing is only as useful as its disclosure.",
 		featureImage: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=1400&q=85",
-		featureAlt: "Technical team discussing an early-stage invention",
+		featureAlt: "Technical team discussing an early stage invention",
 		paragraphs: [
 			"We organize the invention disclosure, drawings and supporting technical details, prepare the provisional specification and coordinate the required filing information and forms. A filing in 48 hours may be possible only where instructions, inventor details and technical materials are complete and reviewed promptly.",
 			"During the following year, the invention may continue to develop. Before the deadline, the applicant should work with a patent professional to prepare and file a complete specification that properly supports the protection sought.",
@@ -79,7 +79,7 @@ const patentServices = [
 		statNumber: "48 hours",
 		duration: "48 hours",
 		timelineNote: "Target filing window after complete instructions and disclosure are approved.",
-		audience: "Early-stage inventors and startups with a documented invention and active development.",
+		audience: "Early stage inventors and startups with a documented invention and active development.",
 		deliverable: "Provisional specification, filing forms and filing acknowledgement when available.",
 		capabilities: [
 			"Disclosure readiness review",
@@ -87,22 +87,22 @@ const patentServices = [
 			"Drawings coordination",
 			"Inventor and applicant details",
 			"Filing forms and submission",
-			"12-month deadline planning",
+			"12 month deadline planning",
 		],
 		cards: [
 			{ number: "01", title: "Capture the invention", text: "Record the problem, solution, embodiments, alternatives and supporting technical details.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=85", alt: "Inventor working on a prototype" },
 			{ number: "02", title: "Prepare the specification", text: "Structure a clear written description and coordinate figures that explain the invention.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Technical disclosure being prepared" },
 			{ number: "03", title: "File the application", text: "Coordinate applicant information, forms and submission once the materials are approved.", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=85", alt: "Application papers ready for filing" },
-			{ number: "04", title: "Plan the next 12 months", text: "Track the complete-specification deadline and keep a record of development after filing.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar used to plan key filing deadlines" },
+			{ number: "04", title: "Plan the next 12 months", text: "Track the complete specification deadline and keep a record of development after filing.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar used to plan key filing deadlines" },
 		],
 	},
 	{
 		id: "complete-specification",
 		label: "Complete Specification Drafting",
-		indicator: "03 — 10",
+		indicator: "03 / 10",
 		title: "Develop a complete specification around the invention.",
 		description:
-			"Work with technical and patent professionals to develop the description, claims, drawings and abstract for a ready-to-file application.",
+			"Work with technical and patent professionals to develop the description, claims, drawings and abstract for an application ready to file.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=90",
@@ -122,12 +122,12 @@ const patentServices = [
 		featureAlt: "Technical and legal professionals reviewing a draft",
 		paragraphs: [
 			"The drafting process typically includes invention interviews, review of prototypes and technical records, preparation of the specification and claims, drawings coordination, and revisions with the inventors and patent agent.",
-			"Drafting scope and time depend on technical complexity, disclosure completeness and review cycles. A 10–15 day estimate is indicative and begins once the required information and stakeholder availability are in place.",
+			"Drafting scope and time depend on technical complexity, disclosure completeness and review cycles. A 10 to 15 day estimate is indicative and begins once the required information and stakeholder availability are in place.",
 		],
-		statNumber: "10–15 days",
-		duration: "10–15 days",
+		statNumber: "10 to 15 days",
+		duration: "10 to 15 days",
 		timelineNote: "Indicative drafting period, subject to technical complexity and review cycles.",
-		audience: "Applicants with a developed invention ready for patent-agent-led drafting.",
+		audience: "Applicants with a developed invention ready for drafting led by a patent agent.",
 		deliverable: "Draft description, claims, drawings coordination and abstract for approval.",
 		capabilities: [
 			"Inventor interviews",
@@ -135,7 +135,7 @@ const patentServices = [
 			"Description and embodiments",
 			"Claim drafting",
 			"Drawings coordination",
-			"Abstract and filing-readiness review",
+			"Abstract and filing readiness review",
 		],
 		cards: [
 			{ number: "01", title: "Understand the technology", text: "Review the invention, alternatives, embodiments, technical records and development context.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=85", alt: "Engineer explaining a technical invention" },
@@ -147,10 +147,10 @@ const patentServices = [
 	{
 		id: "indian-patent-filing",
 		label: "Indian Patent Filing",
-		indicator: "04 — 10",
+		indicator: "04 / 10",
 		title: "Coordinate a complete filing with the Indian Patent Office.",
 		description:
-			"Prepare filing information, applicable forms and supporting documents, then coordinate e-filing and the official acknowledgement.",
+			"Prepare filing information, applicable forms and supporting documents, then coordinate electronic filing and the official acknowledgement.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=90",
@@ -169,11 +169,11 @@ const patentServices = [
 		featureImage: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Application forms and filing documents ready for review",
 		paragraphs: [
-			"Filing coordination can include Form 1, Form 2, Form 3 where applicable, Form 5 where required, applicant and inventor details, supporting documents, e-filing and the applicable official fee payment.",
-			"A 2–3 day estimate is an operational target after the final specification, signed documents and payment instructions are complete. Filing requirements and fees should be checked against current Indian Patent Office rules; this service does not promise examination or grant within that period.",
+			"Filing coordination can include Form 1, Form 2, Form 3 where applicable, Form 5 where required, applicant and inventor details, supporting documents, electronic filing and the applicable official fee payment.",
+			"A 2 to 3 day estimate is an operational target after the final specification, signed documents and payment instructions are complete. Filing requirements and fees should be checked against current Indian Patent Office rules; this service does not promise examination or grant within that period.",
 		],
-		statNumber: "2–3 days",
-		duration: "2–3 days",
+		statNumber: "2 to 3 days",
+		duration: "2 to 3 days",
 		timelineNote: "Indicative coordination time once approved documents and filing details are complete.",
 		audience: "Indian applicants and organizations ready to submit an Indian patent application.",
 		deliverable: "Filed application package and official acknowledgement, subject to portal availability.",
@@ -182,23 +182,23 @@ const patentServices = [
 			"Form 2 specification",
 			"Form 3 and Form 5 where applicable",
 			"Applicant and inventor records",
-			"E-filing coordination",
+			"Electronic filing coordination",
 			"Official fee and acknowledgement",
 		],
 		cards: [
-			{ number: "01", title: "Confirm applicant details", text: "Check applicant, inventor, address, entitlement and supporting-document information.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team verifying application information" },
+			{ number: "01", title: "Confirm applicant details", text: "Check applicant, inventor, address, entitlement and supporting document information.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team verifying application information" },
 			{ number: "02", title: "Prepare forms", text: "Coordinate the specification and applicable forms based on filing circumstances.", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=85", alt: "Patent forms checked before submission" },
-			{ number: "03", title: "Submit and pay", text: "Arrange e-filing and applicable official fee payment after applicant approval.", image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=900&q=85", alt: "Legal filing materials in a professional office" },
-			{ number: "04", title: "Record acknowledgement", text: "Share filing particulars and acknowledgement, and note relevant follow-up dates.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar for recording filing deadlines" },
+			{ number: "03", title: "Submit and pay", text: "Arrange electronic filing and applicable official fee payment after applicant approval.", image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=900&q=85", alt: "Legal filing materials in a professional office" },
+			{ number: "04", title: "Record acknowledgement", text: "Share filing particulars and acknowledgement, and note relevant follow up dates.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar for recording filing deadlines" },
 		],
 	},
 	{
 		id: "pct-foreign-filing",
 		label: "PCT & Foreign Filing",
-		indicator: "05 — 10",
+		indicator: "05 / 10",
 		title: "Plan international patent protection around your markets.",
 		description:
-			"Assess PCT and direct foreign-filing routes, coordinate priority deadlines and plan the transition into selected national phases.",
+			"Assess PCT and direct foreign filing routes, coordinate priority deadlines and plan the transition into selected national phases.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=2000&q=90",
@@ -212,41 +212,41 @@ const patentServices = [
 		sectionLabel: "PCT & FOREIGN FILING",
 		heading: "Coordinate jurisdictions, deadlines and commercial priorities.",
 		intro:
-			"International patent planning considers where protection may matter, filing-route options, costs, translation needs and the deadlines linked to an earlier priority application.",
-		featureTitle: "Use the international phase to inform national-phase choices.",
+			"International patent planning considers where protection may matter, filing route options, costs, translation needs and the deadlines linked to an earlier priority application.",
+		featureTitle: "Use the international phase to inform national phase choices.",
 		featureImage: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "World map showing international filing markets",
 		paragraphs: [
 			"The Patent Cooperation Treaty (PCT) is an international filing procedure; it does not itself grant a worldwide patent. National or regional patent offices decide whether to grant rights when the application enters the relevant phase.",
-			"For many applications, a PCT filing deadline is 12 months from the earliest priority date. National-phase deadlines commonly arise later, often around 30 or 31 months depending on jurisdiction. Exact dates and requirements must be verified for each application and country.",
+			"For many applications, a PCT filing deadline is 12 months from the earliest priority date. National phase deadlines commonly arise later, often around 30 or 31 months depending on jurisdiction. Exact dates and requirements must be verified for each application and country.",
 		],
 		statNumber: "12 months",
-		duration: "12-month priority window",
-		timelineNote: "Priority deadlines are case-specific and must be calendared from the earliest filing date.",
-		audience: "Export-focused businesses and startups evaluating international patent coverage.",
-		deliverable: "Jurisdiction and route assessment, deadline plan and foreign-counsel coordination.",
+		duration: "12 month priority window",
+		timelineNote: "Priority deadlines depend on each case and must be calendared from the earliest filing date.",
+		audience: "Export focused businesses and startups evaluating international patent coverage.",
+		deliverable: "Jurisdiction and route assessment, deadline plan and coordination with foreign counsel.",
 		capabilities: [
 			"PCT route assessment",
-			"Priority-date and deadline review",
+			"Priority date and deadline review",
 			"US, Europe, Japan and China planning",
-			"National-phase coordination",
-			"Translation and local-counsel coordination",
+			"National phase coordination",
+			"Translation and coordination with local counsel",
 			"Cost and market prioritization",
 		],
 		cards: [
 			{ number: "01", title: "Prioritize markets", text: "Compare target product markets, manufacturing locations and competitor activity.", image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=900&q=85", alt: "Map used to plan international markets" },
 			{ number: "02", title: "Select a route", text: "Assess PCT and direct filing options with timing, costs and disclosure needs in view.", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85", alt: "Global business district representing international expansion" },
-			{ number: "03", title: "Track deadlines", text: "Calendar priority and national-phase dates and verify applicable jurisdictional rules.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar planning for international filing dates" },
-			{ number: "04", title: "Coordinate locally", text: "Work with local patent counsel on country-specific formalities, translations and filings.", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85", alt: "International team coordinating a project" },
+			{ number: "03", title: "Track deadlines", text: "Calendar priority and national phase dates and verify applicable jurisdictional rules.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar planning for international filing dates" },
+			{ number: "04", title: "Coordinate locally", text: "Work with local patent counsel on country specific formalities, translations and filings.", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85", alt: "International team coordinating a project" },
 		],
 	},
 	{
 		id: "patent-prosecution",
 		label: "Patent Prosecution",
-		indicator: "06 — 10",
+		indicator: "06 / 10",
 		title: "Respond to examination with clear technical and legal arguments.",
 		description:
-			"Coordinate office-action responses, claim amendments and hearing preparation through the examination process.",
+			"Coordinate responses to office actions, claim amendments and hearing preparation through the examination process.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=90",
@@ -274,8 +274,8 @@ const patentServices = [
 		audience: "Patent applicants responding to examination reports or hearing notices.",
 		deliverable: "Response strategy, draft submissions and coordinated prosecution record.",
 		capabilities: [
-			"FER and office-action review",
-			"Prior-art and objection analysis",
+			"FER and office action review",
+			"Prior art and objection analysis",
 			"Technical and legal arguments",
 			"Claim amendment strategy",
 			"Hearing preparation",
@@ -290,11 +290,11 @@ const patentServices = [
 	},
 	{
 		id: "freedom-to-operate",
-		label: "Freedom-to-Operate (FTO)",
-		indicator: "07 — 10",
+		label: "Freedom to Operate (FTO)",
+		indicator: "07 / 10",
 		title: "Assess patent risk before bringing a product to market.",
 		description:
-			"Review relevant live patent rights in selected markets and map potential product-to-claim risks to inform launch planning.",
+			"Review relevant live patent rights in selected markets and map potential product and claim risks to inform launch planning.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90",
@@ -305,44 +305,44 @@ const patentServices = [
 				alt: "Engineer assessing a product design",
 			},
 		],
-		sectionLabel: "FREEDOM-TO-OPERATE",
+		sectionLabel: "FREEDOM TO OPERATE",
 		heading: "Understand potential patent constraints in target markets.",
 		intro:
-			"An FTO assessment examines whether relevant in-force patent claims may cover features of a defined product or process in specified jurisdictions. It is distinct from a patentability search and is scoped to the product, markets and date of review.",
+			"An FTO assessment examines whether relevant patent claims in force may cover features of a defined product or process in specified jurisdictions. It is distinct from a patentability search and is scoped to the product, markets and date of review.",
 		featureTitle: "Translate claim analysis into a product risk matrix.",
 		featureImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85",
-		featureAlt: "Product circuit board used for a freedom-to-operate review",
+		featureAlt: "Product circuit board used for a freedom to operate review",
 		paragraphs: [
-			"The review can include product-feature mapping, searches for potentially relevant patent families, review of claim status and jurisdiction, and a risk matrix that identifies issues requiring deeper legal analysis.",
+			"The review can include product feature mapping, searches for potentially relevant patent families, review of claim status and jurisdiction, and a risk matrix that identifies issues requiring deeper legal analysis.",
 			"An FTO opinion is limited by the agreed search scope, available public records, product information and legal status at a point in time. It cannot eliminate all infringement risk or replace advice from qualified counsel in the target jurisdiction.",
 		],
-		statNumber: "10–15 days",
-		duration: "10–15 days",
+		statNumber: "10 to 15 days",
+		duration: "10 to 15 days",
 		timelineNote: "Indicative period after product specifications and target countries are confirmed.",
 		audience: "Product teams preparing a launch, manufacturing decision or market expansion.",
-		deliverable: "Scoped patent review, product-to-claim mapping and risk matrix with response options.",
+		deliverable: "Scoped patent review, product and claim mapping and risk matrix with response options.",
 		capabilities: [
 			"Product and process definition",
-			"Target-country scoping",
+			"Target country scoping",
 			"Live patent status review",
-			"Product-to-claim mapping",
+			"Product and claim mapping",
 			"Risk matrix",
-			"Design-around and escalation options",
+			"Design alternatives and escalation options",
 		],
 		cards: [
 			{ number: "01", title: "Define the product", text: "Document product features, versions, supply chain and jurisdictions for the assessment.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=85", alt: "Engineer reviewing product features" },
 			{ number: "02", title: "Identify relevant rights", text: "Search and review patent families that may be relevant and verify available status information.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85", alt: "Research process for relevant patent rights" },
 			{ number: "03", title: "Map claims to features", text: "Compare potentially relevant claims against the defined product and identify questions for counsel.", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85", alt: "Electronic product features being examined" },
-			{ number: "04", title: "Plan a response", text: "Prioritize follow-up, licensing discussions or technical design options based on the assessment.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team evaluating product launch options" },
+			{ number: "04", title: "Plan a response", text: "Prioritize follow up, licensing discussions or technical design options based on the assessment.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team evaluating product launch options" },
 		],
 	},
 	{
 		id: "patent-landscape",
-		label: "Patent Landscape & White-Space",
-		indicator: "08 — 10",
+		label: "Patent Landscape & White Space",
+		indicator: "08 / 10",
 		title: "Map technology activity and identify areas for further R&D.",
 		description:
-			"Analyze patent activity, competitors and technology trends to inform research priorities, partnerships and potential white-space opportunities.",
+			"Analyze patent activity, competitors and technology trends to inform research priorities, partnerships and potential white space opportunities.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=90",
@@ -362,10 +362,10 @@ const patentServices = [
 		featureAlt: "Analytics dashboard presenting research trends",
 		paragraphs: [
 			"The work may include query design, data collection, classification, assignee and jurisdiction analysis, trend visualizations and review of selected patent families. Findings are interpreted in light of known product and research priorities.",
-			"White-space observations are directional, not a legal conclusion that an invention is patentable or free to operate. Patent data is incomplete by nature, and publication delays and search choices affect the picture.",
+			"White space observations are directional, not a legal conclusion that an invention is patentable or free to operate. Patent data is incomplete by nature, and publication delays and search choices affect the picture.",
 		],
-		statNumber: "15–20 days",
-		duration: "15–20 days",
+		statNumber: "15 to 20 days",
+		duration: "15 to 20 days",
 		timelineNote: "Indicative timeline depending on technology scope and data volume.",
 		audience: "R&D teams, business leaders, investors and organizations evaluating a technology domain.",
 		deliverable: "Landscape report, competitor and trend maps, and prioritized opportunity hypotheses.",
@@ -374,7 +374,7 @@ const patentServices = [
 			"Patent publication analysis",
 			"Competitor and assignee mapping",
 			"Filing and trend visualization",
-			"White-space hypotheses",
+			"White space hypotheses",
 			"R&D and investment insights",
 		],
 		cards: [
@@ -387,7 +387,7 @@ const patentServices = [
 	{
 		id: "patent-watch",
 		label: "Patent Watch",
-		indicator: "09 — 10",
+		indicator: "09 / 10",
 		title: "Monitor new patent activity in your technology domain.",
 		description:
 			"Set up recurring monitoring for new publications and competitor activity, with alerts and periodic summaries tailored to agreed topics.",
@@ -405,7 +405,7 @@ const patentServices = [
 		heading: "Stay informed as the patent record changes.",
 		intro:
 			"A patent watch is a recurring search and reporting service built around selected technologies, competitors, applicants or patent families. It can help teams notice relevant publications and changes that merit closer review.",
-		featureTitle: "Useful alerts begin with a well-defined watch scope.",
+		featureTitle: "Useful alerts begin with a well defined watch scope.",
 		featureImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Monitoring dashboard used to review new patent activity",
 		paragraphs: [
@@ -421,24 +421,24 @@ const patentServices = [
 			"Technology keyword monitoring",
 			"Competitor and assignee watch",
 			"New publication alerts",
-			"Patent-family tracking",
+			"Patent family tracking",
 			"Monthly reporting",
-			"Watch-scope review",
+			"Watch scope review",
 		],
 		cards: [
 			{ number: "01", title: "Set watch parameters", text: "Agree technologies, competitors, jurisdictions, search terms and reporting frequency.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team defining monitoring priorities" },
 			{ number: "02", title: "Monitor publications", text: "Run recurring searches for new patent publications and activity within the agreed scope.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85", alt: "Dashboard displaying monitored patent activity" },
-			{ number: "03", title: "Review relevant results", text: "Summarize potentially relevant records and provide source links for follow-up review.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85", alt: "Researcher reviewing new technical publications" },
+			{ number: "03", title: "Review relevant results", text: "Summarize potentially relevant records and provide source links for follow up review.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85", alt: "Researcher reviewing new technical publications" },
 			{ number: "04", title: "Refine the watch", text: "Adjust search parameters as products, competitors and technical priorities change.", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85", alt: "Technology product used to refine a monitoring scope" },
 		],
 	},
 	{
 		id: "grant-monetization",
 		label: "Grant to Monetization",
-		indicator: "10 — 10",
+		indicator: "10 / 10",
 		title: "Manage granted patents as assets with ongoing potential.",
 		description:
-			"Coordinate post-grant maintenance and explore licensing, valuation, assignment, enforcement and other commercialization pathways.",
+			"Coordinate maintenance after grant and explore licensing, valuation, assignment, enforcement and other commercialization pathways.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=90",
@@ -458,7 +458,7 @@ const patentServices = [
 		featureAlt: "Business team discussing patent licensing and commercialization",
 		paragraphs: [
 			"Support can include maintenance coordination, portfolio review, valuation inputs, licensing or sale planning, enforcement strategy and introductions to suitable specialists. Patent value depends on evidence, market conditions, enforceable scope and commercial context.",
-			"Annuity dates, fees and consequences of non-payment vary by jurisdiction and must be verified against official records. Licensing, valuation, selling and enforcement outcomes are not guaranteed and may require separate legal, financial or technical advice.",
+			"Annuity dates, fees and consequences of failure to pay vary by jurisdiction and must be verified against official records. Licensing, valuation, selling and enforcement outcomes are not guaranteed and may require separate legal, financial or technical advice.",
 		],
 		statNumber: "Ongoing",
 		duration: "Ongoing",
@@ -474,7 +474,7 @@ const patentServices = [
 			"Enforcement coordination",
 		],
 		cards: [
-			{ number: "01", title: "Maintain the rights", text: "Track maintenance requirements and confirm jurisdiction-specific dates and fees.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar used to monitor patent maintenance dates" },
+			{ number: "01", title: "Maintain the rights", text: 			"Track maintenance requirements and confirm dates and fees for each jurisdiction.", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=85", alt: "Calendar used to monitor patent maintenance dates" },
 			{ number: "02", title: "Review portfolio value", text: "Consider patent scope, markets, product relevance and available commercial evidence.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85", alt: "Portfolio metrics displayed in an analytics dashboard" },
 			{ number: "03", title: "Explore monetization", text: "Assess licensing, assignment, collaboration and other suitable commercialization routes.", image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85", alt: "Business partners exploring a licensing opportunity" },
 			{ number: "04", title: "Coordinate next steps", text: "Bring relevant patent, commercial and legal professionals together around an agreed plan.", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85", alt: "Team coordinating patent portfolio actions" },

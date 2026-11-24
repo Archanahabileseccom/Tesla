@@ -32,7 +32,7 @@ const patentConditions = [
 	},
 	{
 		title: "Patentable subject matter",
-		text: "It must be an invention within the law—not merely an abstract idea or subject matter excluded by statute.",
+		text: "It must be an invention within the law, not merely an abstract idea or subject matter excluded by statute.",
 	},
 ];
 
@@ -69,7 +69,7 @@ const patentProcess = [
 	},
 	{
 		title: "Grant and opposition",
-		text: "A patent may be granted if requirements are met. Pre-grant and post-grant opposition procedures are available under the Act.",
+		text: "A patent may be granted if requirements are met. Pre grant and post grant opposition procedures are available under the Act.",
 	},
 	{
 		title: "Renew",
@@ -140,14 +140,14 @@ const basePages = {
 		statHeading: "Explore five areas of focused IP support.",
 		heading: "Choose the right support for each kind of intellectual property.",
 		intro:
-			"From a product’s appearance and a brand’s identity to software, content and valuable know-how, each asset calls for a considered protection approach. We help identify the right service, clarify the information needed and plan practical next steps.",
+			"From a product’s appearance and a brand’s identity to software, content and valuable know how, each asset calls for a considered protection approach. We help identify the right service, clarify the information needed and plan practical next steps.",
 		featureTitle: "One clear view of your IP services and next steps.",
 		featureImage:
 			"https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Business team collaborating around a shared plan",
 		paragraphs: [
-			"Our add-on services include design registration, trademark filing, copyright registration support, Startup India facilitation and IP audits. The right route depends on the asset, ownership, intended markets and applicable rules.",
-			"For eligible DPIIT-recognized startups, current government schemes may reduce certain filing costs and provide facilitator support. Benefits are subject to eligibility, scheme rules and the official fee schedule; we help clarify the applicable route before filing.",
+			"Our add on services include design registration, trademark filing, copyright registration support, Startup India facilitation and IP audits. The right route depends on the asset, ownership, intended markets and applicable rules.",
+			"For eligible DPIIT recognized startups, current government schemes may reduce certain filing costs and provide facilitator support. Benefits are subject to eligibility, scheme rules and the official fee schedule; we help clarify the applicable route before filing.",
 		],
 		capabilities: [
 			"Product appearance protection",
@@ -161,7 +161,7 @@ const basePages = {
 			{
 				number: "01",
 				title: "Design Registration",
-				text: "Protect a product’s visual features—such as its shape, configuration, pattern or ornamentation. Design protection addresses appearance, not technical function; it can be a more direct route than patenting a product’s technical features, but timing depends on the jurisdiction and application.",
+				text: "Protect a product’s visual features, such as its shape, configuration, pattern or ornamentation. Design protection addresses appearance, not technical function; it can be a more direct route than patenting a product’s technical features, but timing depends on the jurisdiction and application.",
 				image:
 					"https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=85",
 				alt: "Exhibition of considered product and visual design",
@@ -193,7 +193,7 @@ const basePages = {
 			{
 				number: "05",
 				title: "IP Audit",
-				text: "Identify and review IP across your company—including inventions, brands, designs, software, content, know-how and ownership records. The outcome is a prioritized protection roadmap that highlights gaps, risks and practical next steps.",
+				text: "Identify and review IP across your company, including inventions, brands, designs, software, content, know how and ownership records. The outcome is a prioritized protection roadmap that highlights gaps, risks and practical next steps.",
 				image:
 					"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85",
 				alt: "Business information organized in a digital dashboard",
@@ -227,14 +227,14 @@ const basePages = {
 			{
 				number: "04",
 				title: "Startup support",
-				text: "Scheme and facilitator coordination for eligible DPIIT-recognized startups.",
+				text: "Scheme and facilitator coordination for eligible DPIIT recognized startups.",
 				image:
 					"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85",
 				alt: "Founders discussing a business opportunity",
 			},
 			{
 				number: "05",
-				title: "Company-wide view",
+				title: "Company wide view",
 				text: "An IP audit to surface assets and shape a protection roadmap.",
 				image:
 					"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85",
@@ -248,7 +248,7 @@ const basePages = {
 		indicator: "10 SPECIALIST SERVICES",
 		title: "From first search to patent commercialization.",
 		description:
-			"Technical and patent support for inventors, startups, R&D teams and patent owners—at each stage of the invention journey.",
+			"Technical and patent support for inventors, startups, R&D teams and patent owners at each stage of the invention journey.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=90",
@@ -271,8 +271,8 @@ const basePages = {
 		featureImage: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Technical and business team collaborating on an invention",
 		paragraphs: [
-			"Our patent services support inventors from an early idea through filing, examination and post-grant opportunities. Timelines are indicative and depend on complete information, technical complexity, applicant review and patent-office requirements.",
-			"Patent protection and freedom to operate are different questions. A search or opinion is based on its defined scope and available information; it cannot guarantee grant, non-infringement or a commercial outcome.",
+			"Our patent services support inventors from an early idea through filing, examination and post grant opportunities. Timelines are indicative and depend on complete information, technical complexity, applicant review and patent office requirements.",
+			"Patent protection and freedom to operate are different questions. A search or opinion is based on its defined scope and available information; it cannot guarantee grant, non infringement or a commercial outcome.",
 		],
 		capabilities: [
 			"Search and assess",
@@ -318,7 +318,7 @@ const basePages = {
 	},
 	strategy: {
 		eyebrow: "TESLA INNOVATION / INTELLECTUAL PROPERTY",
-		indicator: "01 — 07",
+		indicator: "01 / 07",
 		title: "Building an IP strategy around business ambition.",
 		description:
 			"Connect innovation, protection and commercial priorities with a clear intellectual property strategy built around your organization.",
@@ -348,7 +348,7 @@ const basePages = {
 			{
 				number: "01",
 				title: "Identify",
-				text: "Map inventions, brands, designs, know-how and ownership across your organization.",
+				text: "Map inventions, brands, designs, know how and ownership across your organization.",
 				image:
 					"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85",
 				alt: "Business team identifying priorities in a project review",
@@ -384,7 +384,7 @@ const basePages = {
 		indicator: "PATENT OVERVIEW",
 		title: "A patent protects a qualifying invention for a limited time.",
 		description:
-			"In India, patents reward qualifying inventions with time-limited, territorial rights in exchange for public disclosure of how the invention works.",
+			"In India, patents reward qualifying inventions with time limited, territorial rights in exchange for public disclosure of how the invention works.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90",
@@ -396,9 +396,9 @@ const basePages = {
 			},
 		],
 		sectionLabel: "PATENT INFORMATION",
-		heading: "What a patent protects—and what it requires.",
+		heading: "What a patent protects and what it requires.",
 		intro:
-			"A patent is a government-granted legal right that can let its owner prevent others from making, using, offering for sale, selling or importing the claimed invention without consent, subject to the law. In India, the general patent term is 20 years from the filing date if granted, with required renewal fees.",
+			"A patent is a government granted legal right that can let its owner prevent others from making, using, offering for sale, selling or importing the claimed invention without consent, subject to the law. In India, the general patent term is 20 years from the filing date if granted, with required renewal fees.",
 		featureTitle: "A limited exclusive right in exchange for public disclosure.",
 		featureImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Team reviewing technical information and an invention plan",
@@ -408,7 +408,7 @@ const basePages = {
 		],
 		capabilities: [
 			"Novelty",
-			"Inventive step / non-obviousness",
+			"Inventive step / non obviousness",
 			"Industrial applicability / utility",
 			"Patentable subject matter",
 		],
@@ -458,7 +458,7 @@ const basePages = {
 			{
 				number: "Claims",
 				title: "Define the scope",
-				text: "The granted claims, applicable law and territory define the right—not the idea alone.",
+				text: "The granted claims, applicable law and territory define the right, not the idea alone.",
 				image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85",
 				alt: "Team reviewing technical claims and documents",
 			},
@@ -474,7 +474,7 @@ const basePages = {
 	},
 	trademarks: {
 		eyebrow: "TESLA INNOVATION / INTELLECTUAL PROPERTY",
-		indicator: "03 — 07",
+		indicator: "03 / 07",
 		title: "Protecting the identity behind your business.",
 		description:
 			"Build a thoughtful trademark approach for the names, symbols and distinctive elements that connect your brand with its customers.",
@@ -484,7 +484,7 @@ const basePages = {
 		heading: "Build a recognizable brand on a considered foundation.",
 		intro:
 			"A brand can become one of an organization's most recognizable assets. Thoughtful trademark planning helps businesses assess names and identifiers, consider protection options and maintain a consistent approach as they enter new markets.",
-		featureTitle: "From first search to long-term brand stewardship.",
+		featureTitle: "From first search to long term brand stewardship.",
 		featureImage:
 			"https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=85",
 		featureAlt: "Brand colors and visual identity references",
@@ -528,7 +528,7 @@ const basePages = {
 			{
 				number: "04",
 				title: "Enforce",
-				text: "Assess potential conflicts and consider proportionate, business-aware responses.",
+				text: "Assess potential conflicts and consider proportionate, business aware responses.",
 				image:
 					"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=85",
 				alt: "Legal books and a balance scale in a law office",
@@ -537,7 +537,7 @@ const basePages = {
 	},
 	copyright: {
 		eyebrow: "TESLA INNOVATION / INTELLECTUAL PROPERTY",
-		indicator: "04 — 07",
+		indicator: "04 / 07",
 		title: "Protecting original content, software and creative assets.",
 		description:
 			"Understand how copyright considerations may apply to the original works and digital materials your organization creates and uses.",
@@ -600,10 +600,10 @@ const basePages = {
 	},
 	portfolio: {
 		eyebrow: "TESLA INNOVATION / INTELLECTUAL PROPERTY",
-		indicator: "05 — 07",
+		indicator: "05 / 07",
 		title: "Managing intellectual property as a strategic asset.",
 		description:
-			"A well-organized portfolio helps decision-makers see what they own, where attention is needed and how assets support the business.",
+			"A well organized portfolio helps decision makers see what they own, where attention is needed and how assets support the business.",
 		heroImage:
 			"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=90",
 		sectionLabel: "IP PORTFOLIO",
@@ -664,7 +664,7 @@ const basePages = {
 	},
 	commercialization: {
 		eyebrow: "TESLA INNOVATION / INTELLECTUAL PROPERTY",
-		indicator: "06 — 07",
+		indicator: "06 / 07",
 		title: "Turning intellectual property into business opportunity.",
 		description:
 			"Explore how licensing, collaboration and technology transfer may help connect valuable IP with commercial objectives.",
@@ -710,7 +710,7 @@ const basePages = {
 			{
 				number: "03",
 				title: "Transfer",
-				text: "Plan technology transfer with attention to rights, know-how and implementation.",
+				text: "Plan technology transfer with attention to rights, know how and implementation.",
 				image:
 					"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=85",
 				alt: "Technical team demonstrating a new technology",
@@ -727,7 +727,7 @@ const basePages = {
 	},
 	enforcement: {
 		eyebrow: "TESLA INNOVATION / INTELLECTUAL PROPERTY",
-		indicator: "07 — 07",
+		indicator: "07 / 07",
 		title: "Protecting valuable rights when challenges arise.",
 		description:
 			"When an IP concern emerges, a measured response starts with the facts, the available rights and the business outcome you want to achieve.",
@@ -802,7 +802,7 @@ const patentTypePages = Object.fromEntries(
 			sectionLabel: type.label.toUpperCase(),
 			heading: type.heading,
 			intro: type.intro,
-			featureTitle: "What this route protects—and what it does not.",
+			featureTitle: "What this route protects and what it does not.",
 			featureImage: type.featureImage,
 			featureAlt: type.featureAlt,
 			paragraphs: type.paragraphs,
@@ -1003,7 +1003,7 @@ function IntellectualProperty() {
 									classes in India.
 								</p>
 							</div>
-							<div className="ip-patent-table-wrap" role="region" aria-label="Patent types and India-specific information" tabIndex="0">
+							<div className="ip-patent-table-wrap" role="region" aria-label="Patent types and India specific information" tabIndex="0">
 								<table className="ip-patent-table">
 									<thead>
 										<tr>
@@ -1050,7 +1050,7 @@ function IntellectualProperty() {
 
 						<aside className="ip-patent-example">
 							<span className="ip-eyebrow">A PRACTICAL EXAMPLE</span>
-							<h2>A faster-heating solar cooker.</h2>
+							<h2>A faster heating solar cooker.</h2>
 							<p>
 								If a new reflector mechanism makes a solar cooker heat food
 								faster, the qualifying technical mechanism may be assessed for a
@@ -1193,7 +1193,7 @@ function IntellectualProperty() {
 							<article>
 								<span>03</span>
 								<h3>Startup Focus</h3>
-								<p>Eligible DPIIT-recognized startups may receive an 80% rebate on patent government filing fees and access SIPP facilitator support, subject to current scheme rules.</p>
+								<p>Eligible DPIIT recognized startups may receive an 80% rebate on patent government filing fees and access SIPP facilitator support, subject to current scheme rules.</p>
 							</article>
 							<article>
 								<span>04</span>

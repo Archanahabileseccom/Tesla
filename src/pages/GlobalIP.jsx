@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const tabs = [
 	{ id: "strategy", label: "Global IP Strategy" },
-	{ id: "cross-border", label: "Cross-Border Protection" },
+	{ id: "cross-border", label: "Cross Border Protection" },
 	{ id: "portfolio", label: "Portfolio Management" },
 	{ id: "filing", label: "International Filing" },
 	{ id: "enforcement", label: "Global Enforcement" },
@@ -31,7 +31,7 @@ const heroContent = {
 			"Plan international filing priorities around commercial timing, asset needs and the markets where protection matters.",
 	},
 	enforcement: {
-		title: "Respond to cross-border concerns with context.",
+		title: "Respond to cross border concerns with context.",
 		description:
 			"Assess potential infringement and misuse with care for local context, available information and business goals.",
 	},
@@ -41,7 +41,7 @@ const overviewCards = [
 	{
 		number: "360°",
 		title: "Portfolio perspective",
-		text: "Connect patents, trademarks, designs and know-how to business priorities.",
+		text: "Connect patents, trademarks, designs and expertise to business priorities.",
 		image:
 			"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=85",
 		alt: "Earth at night with illuminated international connections",
@@ -57,18 +57,18 @@ const overviewCards = [
 	{
 		number: "04",
 		title: "Key protection areas",
-		text: "Consider patents, trademarks, designs and confidential know-how together.",
+		text: "Consider patents, trademarks, designs and confidential expertise together.",
 		image:
 			"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=85",
 		alt: "Team reviewing a structured business plan",
 	},
 	{
-		number: "End-to-end",
+		number: "End to end",
 		title: "Lifecycle thinking",
 		text: "Plan beyond filing, with attention to ownership, maintenance and use.",
 		image:
 			"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85",
-		alt: "Modern high-rise buildings representing long-term growth",
+		alt: "Modern high rise buildings representing long term growth",
 	},
 ];
 
@@ -114,7 +114,7 @@ const tabOverviews = {
 				text: "Keep local actions connected to the wider commercial strategy.",
 				image:
 					"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=85",
-				alt: "View of the Earth representing cross-border connections",
+				alt: "View of the Earth representing cross border connections",
 			},
 		],
 	},
@@ -153,7 +153,7 @@ const tabOverviews = {
 				text: "Consider maintenance, use and ownership alongside new filings.",
 				image:
 					"https://images.unsplash.com/photo-1507207611509-ec012433ff52?auto=format&fit=crop&w=1000&q=85",
-				alt: "Professionals planning a long-term portfolio review",
+				alt: "Professionals planning a long term portfolio review",
 			},
 		],
 	},
@@ -264,7 +264,7 @@ const services = [
 	},
 	{
 		number: "04",
-		title: "Designs and know-how",
+		title: "Designs and expertise",
 		text: "Consider how product appearance, confidential information and operational knowledge can be safeguarded appropriately.",
 		image:
 			"https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=85",
@@ -276,7 +276,7 @@ const process = [
 	{
 		number: "01",
 		title: "Map the assets",
-		text: "Understand the inventions, brands, designs and know-how behind your products and services.",
+		text: "Understand the inventions, brands, designs and expertise behind your products and services.",
 	},
 	{
 		number: "02",
@@ -401,7 +401,7 @@ function GlobalIP() {
 						/>
 					</div>
 					<div className="global-cross-copy">
-						<span className="global-eyebrow">CROSS-BORDER COORDINATION</span>
+						<span className="global-eyebrow">CROSS BORDER COORDINATION</span>
 						<h2>One direction. Local context at every step.</h2>
 						<p>
 							International protection can involve different procedures,
@@ -457,7 +457,7 @@ function GlobalIP() {
 					</div>
 					<div className="global-cross-copy">
 						<span className="global-eyebrow">GLOBAL ENFORCEMENT</span>
-						<h2>Respond to cross-border concerns with context.</h2>
+						<h2>Respond to cross border concerns with context.</h2>
 						<p>Potential infringement and misuse can call for different responses in different markets. We help organizations assess the available information, consider business priorities and coordinate a proportionate response with appropriate local counsel.</p>
 						<p>Clear records and a coordinated approach can help teams understand the options before taking action.</p>
 					</div>

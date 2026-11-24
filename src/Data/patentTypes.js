@@ -2,7 +2,7 @@ const patentTypes = [
 	{
 		id: "utility-patent",
 		label: "Utility Patent",
-		classification: "A functional-invention term used in some jurisdictions",
+		classification: "A functional invention term used in some jurisdictions",
 		title: "Protecting how an invention works.",
 		description:
 			"Utility patent is a familiar term for protection of functional inventions in some jurisdictions. India does not have a separate patent class by that name.",
@@ -11,13 +11,13 @@ const patentTypes = [
 			"An invention may be eligible for patent protection when it is new, involves an inventive step, is capable of industrial application and is not excluded by law. A patent application must explain the invention and define its scope in claims.",
 		paragraphs: [
 			"In India, qualifying functional inventions are filed under the ordinary patent system in the Patents Act, 1970. The label \"utility patent\" is used in some other countries and should not be assumed to have identical requirements across jurisdictions.",
-			"Examples may include a new engine mechanism, a technical improvement to a machine or a water-purification process, provided the claimed subject matter meets the applicable patentability requirements.",
+			"Examples may include a new engine mechanism, a technical improvement to a machine or a water purification process, provided the claimed subject matter meets the applicable patentability requirements.",
 		],
 		protection:
 			"Technical features of how an invention works, including a product, machine, composition or process, as defined by the patent claims.",
 		indiaNote:
-			"India has no separate utility-patent category. The invention must qualify under Indian patent law; the US term is not a direct substitute for Indian filing advice.",
-		example: "A new engine mechanism or a technically improved water-purification system.",
+			"India has no separate utility patent category. The invention must qualify under Indian patent law; the US term is not a direct substitute for Indian filing advice.",
+		example: "A new engine mechanism or a technically improved water purification system.",
 		term: "20 years",
 		termNote:
 			"If granted, an Indian patent generally runs for 20 years from its filing date, subject to required renewal fees and applicable law.",
@@ -51,7 +51,7 @@ const patentTypes = [
 		protection:
 			"The visual appearance of an article, including qualifying shape, configuration, pattern or ornamentation, rather than how it functions.",
 		indiaNote:
-			"This is design registration under the Designs Act, 2000—not a patent. India provides 10 years initially, with one 5-year extension.",
+			"This is design registration under the Designs Act, 2000, not a patent. India provides 10 years initially, with one 5-year extension.",
 		example: "The distinctive shape of a bottle or an original pattern applied to a chair.",
 		term: "10 + 5 years",
 		termNote:
@@ -72,25 +72,25 @@ const patentTypes = [
 	{
 		id: "plant-variety-protection",
 		label: "Plant Variety Protection",
-		classification: "A plant-variety right under separate legislation",
+		classification: "A plant variety right under separate legislation",
 		title: "Protecting eligible new plant varieties.",
 		description:
-			"India protects eligible plant varieties through a dedicated plant-variety framework, not by granting plant patents under the Patents Act.",
+			"India protects eligible plant varieties through a dedicated plant variety framework, not by granting plant patents under the Patents Act.",
 		heading: "Plant varieties have a distinct protection route in India.",
 		intro:
 			"The Protection of Plant Varieties and Farmers' Rights Act, 2001 provides a separate system for eligible plant varieties and recognizes the rights and interests of breeders and farmers.",
 		paragraphs: [
-			"India's plant-variety system is separate from patent law. Registration criteria, applicant rights and duration depend on the variety category and the applicable rules; the term for new varieties is generally 15 years, or 18 years for trees and vines. Extant varieties have a distinct term rule.",
-			"A new rose or mango variety developed through breeding may be assessed under the relevant plant-variety route. A plant patent available in another country is not automatically equivalent to Indian protection.",
+			"India's plant variety system is separate from patent law. Registration criteria, applicant rights and duration depend on the variety category and the applicable rules; the term for new varieties is generally 15 years, or 18 years for trees and vines. Extant varieties have a distinct term rule.",
+			"A new rose or mango variety developed through breeding may be assessed under the relevant plant variety route. A plant patent available in another country is not automatically equivalent to Indian protection.",
 		],
 		protection:
-			"Rights in plant varieties that qualify for registration under the plant-variety legislation and its prescribed criteria.",
+			"Rights in plant varieties that qualify for registration under the plant variety legislation and its prescribed criteria.",
 		indiaNote:
-			"Plant-variety protection is governed by the Protection of Plant Varieties and Farmers' Rights Act, 2001, not the Patents Act. Duration depends on variety category.",
+			"Plant variety protection is governed by the Protection of Plant Varieties and Farmers' Rights Act, 2001, not the Patents Act. Duration depends on variety category.",
 		example: "A new rose variety or a mango variety developed through breeding.",
 		term: "Varies",
 		termNote:
-			"Generally 15 years for new varieties and 18 years for trees and vines; extant-variety terms follow separate rules.",
+			"Generally 15 years for new varieties and 18 years for trees and vines; extant variety terms follow separate rules.",
 		heroSlides: [
 			{
 				image: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=2000&q=90",
@@ -115,10 +115,10 @@ const patentTypes = [
 		intro:
 			"A product patent may cover a product such as a device, composition or material as defined in the granted claims. The scope is determined by the claims and applicable law, not by the label alone.",
 		paragraphs: [
-			"India permits product patents subject to the Patents Act and its exclusions. The 2005 amendments introduced product-patent protection in fields including pharmaceuticals; specific requirements and exclusions, including those affecting incremental pharmaceutical inventions, still apply.",
+			"India permits product patents subject to the Patents Act and its exclusions. The 2005 amendments introduced product patent protection in fields including pharmaceuticals; specific requirements and exclusions, including those affecting incremental pharmaceutical inventions, still apply.",
 			"A new medicine molecule is an example of a product that may be considered for a product claim if it satisfies all legal requirements. A product patent does not automatically provide freedom to operate against earlier rights.",
 		],
-		protection:
+		protection: 
 			"The claimed product itself, potentially restricting unauthorized making, using, offering for sale, selling or importing within the patent's territory and scope.",
 		indiaNote:
 			"Product claims are available in India subject to statutory exclusions and patentability requirements. They are not a guarantee of broad or unrestricted control.",
@@ -137,7 +137,7 @@ const patentTypes = [
 			},
 		],
 		featureImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85",
-		featureAlt: "Electronic components in a product-development setting",
+		featureAlt: "Electronic components in a product development setting",
 	},
 	{
 		id: "process-patent",
@@ -177,7 +177,7 @@ const patentTypes = [
 	{
 		id: "provisional-filing",
 		label: "Provisional Filing",
-		classification: "A preliminary specification—not a granted patent",
+		classification: "A preliminary specification, not a granted patent",
 		title: "Secure a filing date while development continues.",
 		description:
 			"A provisional specification can support an early filing, but it is not an independently granted or enforceable patent.",
@@ -186,13 +186,13 @@ const patentTypes = [
 			"An Indian provisional specification may be filed when an invention is still being developed. The priority benefit is limited to subject matter adequately disclosed in that filing.",
 		paragraphs: [
 			"A complete specification must be filed within 12 months of the provisional filing. If it is not filed in time, the application is treated as abandoned. The complete specification must support the protection later sought.",
-			"An early filing for a solar-cooker concept may be considered while testing continues, but the technical disclosure should be sufficiently complete. Filing \"Patent Pending\" does not mean a patent has been granted.",
+			"An early filing for a solar cooker concept may be considered while testing continues, but the technical disclosure should be sufficiently complete. Filing \"Patent Pending\" does not mean a patent has been granted.",
 		],
 		protection:
 			"It does not grant patent rights by itself; it may establish an earlier filing date for adequately disclosed subject matter, subject to a timely complete specification.",
 		indiaNote:
-			"A provisional specification is an application-stage filing under Indian law, not a temporary patent. The complete specification deadline is 12 months.",
-		example: "An early, adequately described solar-cooker invention filed while the prototype is being tested.",
+			"A provisional specification is an application stage filing under Indian law, not a temporary patent. The complete specification deadline is 12 months.",
+		example: "An early, adequately described solar cooker invention filed while the prototype is being tested.",
 		term: "12 months",
 		termNote:
 			"Deadline to file the complete specification after a provisional filing; this is not the term of a patent.",
@@ -207,7 +207,7 @@ const patentTypes = [
 			},
 		],
 		featureImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=85",
-		featureAlt: "Inventor developing an early-stage technical prototype",
+		featureAlt: "Inventor developing an early stage technical prototype",
 	},
 	{
 		id: "complete-specification",
@@ -331,7 +331,7 @@ const patentTypes = [
 		protection:
 			"The invention defined by the claims in the Indian application if granted; the Convention route concerns the claimed priority from an earlier foreign application.",
 		indiaNote:
-			"File within the applicable 12-month Paris Convention priority period. The priority date and Indian patent-term start date are different concepts.",
+			"File within the applicable 12 month Paris Convention priority period. The priority date and Indian patent term start date are different concepts.",
 		example: "An Indian filing claiming priority from an earlier filing in another Paris Convention country.",
 		term: "20 years",
 		termNote:

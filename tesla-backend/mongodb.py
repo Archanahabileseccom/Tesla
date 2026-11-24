@@ -5,11 +5,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
-
+ 
 BACKEND_DIR = Path(__file__).resolve().parent
 load_dotenv(BACKEND_DIR / ".env")
 
-MONGODB_URI = os.getenv("MONGODB_URI")
+MONGODB_URI = os.getenv("mongodb+srv://archanaaiswarya76_db_user:Archu@0123@cluster0.tb5sxht.mongodb.net/tesla?retrywrites=true&w=majority")
 if not MONGODB_URI:
     raise ValueError("MONGODB_URI is not set")
 

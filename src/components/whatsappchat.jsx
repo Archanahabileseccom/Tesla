@@ -177,7 +177,7 @@ function WhatsAppChat() {
 				@media (max-width: 600px) {
 					.tesla-qr-button {
 						right: 20px;
-						bottom: max(82px, calc(env(safe-area-inset-bottom) + 66px));
+						bottom: max(152px, calc(env(safe-area-inset-bottom) + 134px));
 					}
 
 					.tesla-whatsapp-button {

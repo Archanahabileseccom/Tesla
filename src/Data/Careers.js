@@ -42,7 +42,7 @@ const careers = {
       department: "Intellectual Property",
       location: "Chennai",
       type: "Full Time",
-      experience: "0–3 Years",
+      experience: "0 to 3 Years",
       description:
         "Support intellectual property matters involving patents, trademarks, research, analysis, and client requirements.",
 
@@ -67,7 +67,7 @@ const careers = {
       department: "Technology & Innovation",
       location: "Bengaluru",
       type: "Full Time",
-      experience: "1–4 Years",
+      experience: "1 to 4 Years",
       description:
         "Work on technology research, innovation analysis, digital projects, and business technology requirements.",
 
@@ -80,7 +80,7 @@ const careers = {
 
       requirements: [
         "Strong interest in technology.",
-        "Analytical and problem-solving skills.",
+        "Analytical and problem solving skills.",
         "Good communication skills.",
         "Ability to learn new technologies quickly.",
       ],
@@ -92,7 +92,7 @@ const careers = {
       department: "Legal Research",
       location: "Mumbai",
       type: "Full Time",
-      experience: "0–2 Years",
+      experience: "0 to 2 Years",
       description:
         "Support legal and intellectual property research projects involving technology and business matters.",
 
@@ -117,7 +117,7 @@ const careers = {
       department: "Corporate",
       location: "Delhi",
       type: "Full Time",
-      experience: "1–3 Years",
+      experience: "1 to 3 Years",
       description:
         "Support corporate advisory projects involving governance, compliance, business structures, and strategic requirements.",
 

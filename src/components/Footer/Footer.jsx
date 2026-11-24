@@ -58,7 +58,7 @@ const Footer = () => {
             1fr
             0.9fr;
           gap: 64px;
-          padding-bottom: 50px;
+          padding-bottom: 120px;
         }
 
         /* =========================
@@ -178,7 +178,7 @@ const Footer = () => {
           min-height: 65px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: flex-start;
           border-top: 1px solid rgba(255, 255, 255, 0.16);
           gap: 20px;
         }
@@ -194,7 +194,8 @@ const Footer = () => {
         }
 
         .footer-tagline {
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(255, 255, 255, 0.82);
+          white-space: nowrap;
         }
 
         /* =========================
@@ -244,6 +245,15 @@ const Footer = () => {
             align-items: flex-start;
             justify-content: center;
             padding: 20px 0;
+          }
+
+          .footer-copyright,
+          .footer-tagline {
+            max-width: calc(100% - 100px);
+          }
+
+          .footer-tagline {
+            white-space: normal;
           }
         }
 

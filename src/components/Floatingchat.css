@@ -166,6 +166,103 @@
 	color: #243d79;
 }
 
+.tesla-chat-suggestions {
+	display: flex;
+	gap: 8px;
+	padding: 10px 20px 4px;
+	overflow-x: auto;
+	border-top: 1px solid #edf1f7;
+	background: #fff;
+	scrollbar-width: thin;
+}
+
+.tesla-chat-suggestions button {
+	flex: 0 0 auto;
+	padding: 8px 12px;
+	border: 1px solid #cbd8f5;
+	border-radius: 999px;
+	background: #f7f9ff;
+	color: #3154a8;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.2;
+	cursor: pointer;
+}
+
+.tesla-chat-suggestions button:hover {
+	border-color: #7798ed;
+	background: #edf3ff;
+}
+
+.tesla-chat-explorer {
+	border-top: 1px solid #edf1f7;
+	background: #fff;
+}
+
+.tesla-chat-explorer-toggle {
+	width: 100%;
+	min-height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 20px;
+	background: #fff;
+	color: #243d79;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.tesla-chat-explorer-body {
+	max-height: 180px;
+	overflow-y: auto;
+	padding: 4px 14px 12px;
+}
+
+.tesla-chat-explorer-tabs {
+	display: flex;
+	gap: 6px;
+	padding: 4px 0 8px;
+	overflow-x: auto;
+}
+
+.tesla-chat-explorer-tabs button {
+	flex: 0 0 auto;
+	padding: 7px 10px;
+	border: 1px solid #d8e0ef;
+	border-radius: 999px;
+	background: #f8faff;
+	color: #52617b;
+	font-size: 12px;
+}
+
+.tesla-chat-explorer-tabs button.is-active {
+	border-color: #2858e9;
+	background: #2858e9;
+	color: #fff;
+}
+
+.tesla-chat-explorer-items {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 7px;
+}
+
+.tesla-chat-explorer-items button {
+	min-height: 38px;
+	padding: 7px 9px;
+	border: 1px solid #dde5f1;
+	border-radius: 8px;
+	background: #fff;
+	color: #43516b;
+	font-size: 12px;
+	text-align: left;
+}
+
+.tesla-chat-explorer-items button:hover {
+	border-color: #91a9e7;
+	background: #f4f7ff;
+}
+
 .tesla-chat-composer {
 	min-height: 102px;
 	display: flex;
@@ -306,16 +403,16 @@
 
 @media (max-width: 600px) {
 	.tesla-chat-widget {
-		right: 94px;
-		bottom: max(16px, env(safe-area-inset-bottom));
+		right: 16px;
+		bottom: max(88px, calc(env(safe-area-inset-bottom) + 72px));
 	}
 
 	.tesla-chat-panel {
 		right: -4px;
 		bottom: 76px;
 		width: min(440px, calc(100vw - 24px));
-		height: min(540px, calc(100dvh - 108px));
-		min-height: 300px;
+		height: min(540px, calc(100dvh - 200px));
+		min-height: 0;
 		border-radius: 22px;
 	}
 

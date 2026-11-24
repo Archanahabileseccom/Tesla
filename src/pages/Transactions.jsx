@@ -37,7 +37,7 @@ const heroContent = {
     eyebrow: "JOINT VENTURES",
     title: "Practical structures for collaborative growth.",
     description:
-      "We help partners shape governance, risk allocation, and operational frameworks that support long-term alignment and execution.",
+      "We help partners shape governance, risk allocation, and operational frameworks that support long term alignment and execution.",
     image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=90",
   },
   investments: {
@@ -51,7 +51,7 @@ const heroContent = {
     eyebrow: "TRANSACTION CONTRACTS",
     title: "Strong documentation for clearer outcomes.",
     description:
-      "Well-drafted transaction documents reduce ambiguity, protect interests, and help each party understand the obligations and commercial framework.",
+      "Well drafted transaction documents reduce ambiguity, protect interests, and help each party understand the obligations and commercial framework.",
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=2000&q=90",
   },
   strategy: {
@@ -74,7 +74,7 @@ const transactionStats = [
   {
     number: "25+",
     title: "Industries supported",
-    text: "A cross-sector approach shaped around business realities and market factors.",
+    text: "A cross sector approach shaped around business realities and market factors.",
     image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85",
     alt: "Modern corporate workspace",
   },
@@ -88,7 +88,7 @@ const transactionStats = [
   {
     number: "12+",
     title: "Markets & regions",
-    text: "Cross-border insight for clients working across evolving business environments.",
+    text: "Cross border insight for clients working across evolving business environments.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85",
     alt: "City business district representing international markets",
   },
@@ -99,25 +99,25 @@ const processSteps = {
     { number: "01", title: "Assess", text: "Begin with clear objectives, commercial context and strategic intent." },
     { number: "02", title: "Structure", text: "Evaluate structure, governance and transaction design options." },
     { number: "03", title: "Prepare", text: "Coordinate diligence, documentation and stakeholder requirements." },
-    { number: "04", title: "Execute", text: "Support completion and delivery with disciplined follow-through." },
+    { number: "04", title: "Execute", text: "Support completion and delivery with disciplined follow through." },
   ],
   mergers: [
     { number: "01", title: "Scope", text: "Define the strategic rationale, key stakeholders and transaction objective." },
-    { number: "02", title: "Evaluate", text: "Review deal structure, value drivers and business-critical considerations." },
+    { number: "02", title: "Evaluate", text: "Review deal structure, value drivers and business critical considerations." },
     { number: "03", title: "Negotiate", text: "Shape terms, risk allocation and accountability across the transaction." },
-    { number: "04", title: "Close", text: "Support execution and transition into the post-completion phase." },
+    { number: "04", title: "Close", text: "Support execution and transition into the post completion phase." },
   ],
   "due-diligence": [
     { number: "01", title: "Frame", text: "Identify the legal, operational and commercial questions that matter most." },
     { number: "02", title: "Review", text: "Assess contracts, records, obligations and areas of risk or exposure." },
     { number: "03", title: "Interpret", text: "Translate findings into clear implications for the transaction and goals." },
-    { number: "04", title: "Decide", text: "Inform decision-making with practical guidance for next steps and protections." },
+    { number: "04", title: "Decide", text: "Inform decision making with practical guidance for next steps and protections." },
   ],
   "joint-ventures": [
     { number: "01", title: "Align", text: "Clarify the purpose, governance needs and partner objectives of the venture." },
-    { number: "02", title: "Design", text: "Shape roles, control points, decision-making and risk allocation." },
+    { number: "02", title: "Design", text: "Shape roles, control points, decision making and risk allocation." },
     { number: "03", title: "Document", text: "Draft and review arrangements that reflect the shared commercial model." },
-    { number: "04", title: "Support", text: "Guide implementation and longer-term operational coordination." },
+    { number: "04", title: "Support", text: "Guide implementation and longer term operational coordination." },
   ],
   investments: [
     { number: "01", title: "Identify", text: "Review the opportunity, market context and investment objectives." },
@@ -144,7 +144,7 @@ const tabContent = {
     introTitle: "A structured approach to complex deals and transaction decisions.",
     introText:
       "Successful transactions require clarity around both legal risk and commercial intent. We help clients assess the key issues early so that each decision supports a practical and sustainable outcome.",
-    focusTitle: "Strategy that connects decision-making to execution.",
+    focusTitle: "Strategy that connects decision making to execution.",
     focusText:
       "Whether a matter is at the start of a transaction or in the middle of a negotiation, we help clients focus on the issues that matter most and build the right path forward.",
     bullets: [
@@ -171,29 +171,29 @@ const tabContent = {
   "due-diligence": {
     introTitle: "Due diligence is where informed decisions begin.",
     introText:
-      "Well-planned diligence helps reveal priorities, exposures, and hidden issues before a transaction moves forward. We help clients ask the right questions and assess what the answers mean.",
-    focusTitle: "Insights that reduce uncertainty and sharpen decision-making.",
+      "Well planned diligence helps reveal priorities, exposures, and hidden issues before a transaction moves forward. We help clients ask the right questions and assess what the answers mean.",
+    focusTitle: "Insights that reduce uncertainty and sharpen decision making.",
     focusText:
       "Our approach combines careful review with a practical understanding of how legal and commercial findings affect transaction value and execution risk.",
     bullets: [
       "Legal and commercial review",
       "Contract and record analysis",
       "Risk and exposure assessment",
-      "Action-oriented diligence conclusions",
+      "Diligence conclusions focused on action",
     ],
   },
   "joint-ventures": {
     introTitle: "Joint ventures work best when the structure fits the business model.",
     introText:
-      "Strong joint venture arrangements require thoughtful governance, role clarity, and a sensible approach to risk, decision-making and value sharing.",
-    focusTitle: "Collaborative structures built for long-term alignment.",
+      "Strong joint venture arrangements require thoughtful governance, role clarity, and a sensible approach to risk, decision making and value sharing.",
+    focusTitle: "Collaborative structures built for long term alignment.",
     focusText:
       "We help parties design arrangements that support their business objectives while reducing ambiguity in allocation, accountability, and operational functions.",
     bullets: [
       "Governance and decision frameworks",
       "Commercial and operational alignment",
       "Risk and exit considerations",
-      "Long-term implementation planning",
+      "Long term implementation planning",
     ],
   },
   investments: {
@@ -221,7 +221,7 @@ const tabContent = {
       "Transaction drafting and review",
       "Negotiation support",
       "Commercial term alignment",
-      "Execution-ready contract design",
+      "Contract design ready for execution",
     ],
   },
   strategy: {

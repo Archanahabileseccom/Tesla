@@ -37,7 +37,7 @@ const services = [
       "Global IP Strategy",
       "International Patents",
       "International Trademarks",
-      "Cross-Border Protection",
+      "Cross Border Protection",
     ],
   },
 

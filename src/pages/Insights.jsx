@@ -82,7 +82,7 @@ const topicDescriptions = {
 	news:
 		"Recent updates and announcements from our team and the communities we work with.",
 	publications:
-		"In-depth resources to help make sense of important business and industry developments.",
+		"In depth resources to help make sense of important business and industry developments.",
 	"case-studies":
 		"Examples of the strategic questions organizations face as they protect ideas and pursue growth.",
 	events:
@@ -152,7 +152,7 @@ function Insights() {
 					className="insights-hero-index"
 					aria-hidden="true"
 				>
-					0{tabs.findIndex((tab) => tab.id === activeTab) + 1} — 05
+					0{tabs.findIndex((tab) => tab.id === activeTab) + 1} / 05
 				</span>
 			</section>
 

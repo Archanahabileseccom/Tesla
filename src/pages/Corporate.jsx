@@ -34,7 +34,7 @@ const stats = [
   {
     number: "12+",
     title: "Markets engaged",
-    text: "Cross-border capability with a clear commercial perspective.",
+    text: "Cross border capability with a clear commercial perspective.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85",
     alt: "Modern office buildings in a business district",
   },
@@ -44,12 +44,12 @@ const priorities = [
   {
     number: "01",
     title: "Governance",
-    text: "Clear structures that support accountability, performance and sound decision-making.",
+    text: "Clear structures that support accountability, performance and sound decision making.",
   },
   {
     number: "02",
     title: "Strategy",
-    text: "Business-focused direction aligned with commercial opportunities and risk realities.",
+    text: "Business focused direction aligned with commercial opportunities and risk realities.",
   },
   {
     number: "03",
@@ -59,7 +59,7 @@ const priorities = [
   {
     number: "04",
     title: "Growth",
-    text: "Support for sustainable growth, market readiness, and long-term business value.",
+    text: "Support for sustainable growth, market readiness, and long term business value.",
   },
 ];
 
@@ -78,7 +78,7 @@ const values = [
   },
   {
     title: "Innovation",
-    text: "We remain open to new thinking and practical opportunities that create long-term value.",
+    text: "We remain open to new thinking and practical opportunities that create long term value.",
   },
 ];
 
@@ -91,7 +91,7 @@ const leadership = [
   {
     name: "Rohan Kapoor",
     role: "Operations Lead",
-    text: "Oversees execution frameworks, operational capability and cross-functional business coordination.",
+    text: "Oversees execution frameworks, operational capability and cross functional business coordination.",
   },
   {
     name: "Ishita Sen",
@@ -140,17 +140,17 @@ const heroContent = {
 
 const tabContent = {
   overview: {
-    introTitle: "Building a stronger business foundation for long-term value.",
+    introTitle: "Building a stronger business foundation for long term value.",
     introText:
       "Corporate advisory is most effective when it connects governance, operational discipline, strategic focus and commercial judgment. We help organizations create the clarity needed to make sound decisions.",
-    focusTitle: "A practical, business-led approach to decision-making.",
+    focusTitle: "A practical, business led approach to decision making.",
     focusText:
       "Our work is shaped around the realities of how companies grow, manage risk and operate in competitive environments. We help leaders identify priorities and act with purpose.",
     bullets: [
       "Governance and leadership alignment",
       "Operational review and accountability",
       "Strategic planning and business structure",
-      "Risk-aware execution and growth support",
+      "Execution and growth support that accounts for risk",
     ],
   },
   governance: {
@@ -159,19 +159,19 @@ const tabContent = {
       "Strong governance improves decision quality, stakeholder confidence and the ability to act consistently as the business evolves.",
     focusTitle: "Clear structures for better decisions.",
     focusText:
-      "We help organizations evaluate board-level priorities, reporting lines, accountability frameworks and the mechanisms that support sound business activity.",
+      "We help organizations evaluate priorities at board level, reporting lines, accountability frameworks and the mechanisms that support sound business activity.",
     bullets: [
       "Board and leadership support",
       "Ownership and accountability frameworks",
       "Governance review and improvement",
-      "Decision-making clarity",
+      "Clear decision making",
     ],
   },
   compliance: {
     introTitle: "Compliance needs to be clear, practical and sustainable.",
     introText:
-      "A strong compliance culture protects the business, supports confidence in decision-making and helps teams address legal and operational obligations proactively.",
-    focusTitle: "Risk-aware frameworks that support business continuity.",
+      "A strong compliance culture protects the business, supports confidence in decision making and helps teams address legal and operational obligations proactively.",
+    focusTitle: "Frameworks that account for risk and support business continuity.",
     focusText:
       "We work with organizations to strengthen internal controls, operational routines and governance practices that reduce avoidable risk while supporting growth.",
     bullets: [
@@ -185,7 +185,7 @@ const tabContent = {
     introTitle: "Risk management should protect value and support business continuity.",
     introText:
       "A practical risk program helps organizations identify material exposures, understand their potential impact and focus attention where it matters most.",
-    focusTitle: "Risk-aware frameworks for resilient operations.",
+    focusTitle: "Frameworks that account for risk and support resilient operations.",
     focusText:
       "We help clients review controls, clarify responsibilities and plan proportionate improvements that support continuity without losing sight of business goals.",
     bullets: [

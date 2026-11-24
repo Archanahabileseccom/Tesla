@@ -8,9 +8,9 @@ const jobs = [
     department: "Intellectual Property",
     location: "Chennai",
     type: "Full Time",
-    experience: "0–3 Years",
+    experience: "0 to 3 Years",
     description:
-      "Work with our intellectual property team on patent, trademark, and technology-related matters.",
+      "Work with our intellectual property team on patent, trademark, and matters related to technology.",
     responsibilities: [
       "Assist with intellectual property research.",
       "Support patent and trademark matters.",
@@ -30,13 +30,13 @@ const jobs = [
     department: "Technology & Innovation",
     location: "Bengaluru",
     type: "Full Time",
-    experience: "1–4 Years",
+    experience: "1 to 4 Years",
     description:
-      "Support technology-focused projects and analyze emerging technologies, innovation, and intellectual property.",
+      "Support technology focused projects and analyze emerging technologies, innovation, and intellectual property.",
     responsibilities: [
       "Research emerging technologies.",
       "Analyze technology and innovation trends.",
-      "Support technology-focused projects.",
+      "Support technology focused projects.",
       "Prepare reports and analytical materials.",
     ],
     requirements: [
@@ -52,7 +52,7 @@ const jobs = [
     department: "Legal Research",
     location: "Mumbai",
     type: "Full Time",
-    experience: "0–2 Years",
+    experience: "0 to 2 Years",
     description:
       "Conduct legal research and support our teams with research, documentation, and analysis.",
     responsibilities: [
@@ -74,7 +74,7 @@ const jobs = [
     department: "Corporate",
     location: "Delhi",
     type: "Full Time",
-    experience: "1–3 Years",
+    experience: "1 to 3 Years",
     description:
       "Support corporate advisory projects involving governance, compliance, transactions, and business structuring.",
     responsibilities: [

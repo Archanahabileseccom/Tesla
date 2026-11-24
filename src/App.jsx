@@ -85,6 +85,7 @@ import Careers from "./pages/Careers";
 /* Contact Page */
 import Contact from "./pages/Contact";
 import Payment from "./pages/Payment";
+import OurClients from "./pages/OurClients";
 
 
 function App() {
@@ -143,6 +144,16 @@ function App() {
             <Route
               path="/transactions"
               element={<Transactions />}
+            />
+
+            {/* Our Clients */}
+            <Route
+              path="/our-clients"
+              element={<OurClients />}
+            />
+            <Route
+              path="/our-clients/:category"
+              element={<OurClients />}
             />
 
             {/* Insights */}

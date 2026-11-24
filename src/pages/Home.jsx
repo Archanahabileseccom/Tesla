@@ -19,7 +19,7 @@ const heroSlides = [
     highlight: "work harder.",
     text: "Build a thoughtful strategy for patents, trademarks, designs, copyright and the ideas that distinguish your business.",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=90",
-    alt: "Close-up of an electronic circuit board",
+    alt: "Close up of an electronic circuit board",
     label: "Explore intellectual property",
     path: "/intellectual-property",
   },
@@ -81,7 +81,7 @@ const capabilityCards = [
     number: "01",
     category: "ABOUT TESLA INNOVATION",
     title: "About",
-    text: "Learn about our practical, business-minded approach to intellectual property, corporate and innovation-led challenges.",
+    text: "Learn about our practical, business minded approach to intellectual property, corporate and innovation led challenges.",
     path: "/about",
     image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85",
     alt: "Team collaborating around a table",
@@ -146,7 +146,7 @@ const stats = [
   { value: "15+", label: "Years", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85", alt: "Colleagues working together" },
   { value: "25+", label: "Industries", image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85", alt: "Contemporary office workspace" },
   { value: "100+", label: "Projects", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85", alt: "Team reviewing project documents" },
-  { value: "12+", label: "Markets", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85", alt: "High-rise buildings in a business district" },
+  { value: "12+", label: "Markets", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85", alt: "High rise buildings in a business district" },
 ];
 
 function Home() {

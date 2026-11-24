@@ -73,7 +73,7 @@ function Contact() {
       const outlookWindow = window.open(composeUrl.toString(), "_blank");
       if (!outlookWindow) {
         setSubmissionError(
-          "Outlook could not be opened. Allow pop-ups for this site, then try again.",
+          "Outlook could not be opened. Allow pop ups for this site, then try again.",
         );
         return;
       }
@@ -584,7 +584,7 @@ function Contact() {
         <div className="contact-container contact-prep-grid">
 
           <article className="contact-prep-card">
-            <span>01 — YOUR BUSINESS</span>
+            <span>01 / YOUR BUSINESS</span>
             <h2>Context</h2>
             <p>
               Tell us about your organization, product or project, and the
@@ -593,7 +593,7 @@ function Contact() {
           </article>
 
           <article className="contact-prep-card">
-            <span>02 — YOUR ENQUIRY</span>
+            <span>02 / YOUR ENQUIRY</span>
             <h2>Area of Support</h2>
             <p>
               Select the closest enquiry type in the form and add key details
@@ -602,7 +602,7 @@ function Contact() {
           </article>
 
           <article className="contact-prep-card">
-            <span>03 — TIMING</span>
+            <span>03 / TIMING</span>
             <h2>Important Dates</h2>
             <p>
               Include any relevant deadlines or milestones so we can understand
